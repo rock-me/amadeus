@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CEF9B29E248275BB009FEF9B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B29D248275BB009FEF9B /* App.swift */; };
 		CEF9B2A2248275BC009FEF9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF9B2A1248275BC009FEF9B /* Assets.xcassets */; };
 		CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2AB24827C08009FEF9B /* Window.swift */; };
+		CEF9B2B224827F8A009FEF9B /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CEF9B2B124827F8A009FEF9B /* Balam */; };
+		CEF9B2B524827FFD009FEF9B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B424827FFD009FEF9B /* Preferences.swift */; };
+		CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B62482898C009FEF9B /* Persistance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,8 @@
 		CEF9B2AD24827ED8009FEF9B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CEF9B2AE24827ED8009FEF9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CEF9B2AF24827ED8009FEF9B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CEF9B2B424827FFD009FEF9B /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CEF9B2B62482898C009FEF9B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF9B2B224827F8A009FEF9B /* Balam in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,7 @@
 				CEF9B2AF24827ED8009FEF9B /* README.md */,
 				CEF9B29C248275BB009FEF9B /* macOS */,
 				CEF9B29B248275BB009FEF9B /* Products */,
+				CEF9B2B324827F9C009FEF9B /* Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +73,15 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		CEF9B2B324827F9C009FEF9B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CEF9B2B62482898C009FEF9B /* Persistance.swift */,
+				CEF9B2B424827FFD009FEF9B /* Preferences.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,6 +98,9 @@
 			dependencies = (
 			);
 			name = macOS;
+			packageProductDependencies = (
+				CEF9B2B124827F8A009FEF9B /* Balam */,
+			);
 			productName = macOS;
 			productReference = CEF9B29A248275BB009FEF9B /* Amadeus.app */;
 			productType = "com.apple.product-type.application";
@@ -109,6 +128,9 @@
 				Base,
 			);
 			mainGroup = CEC3ABB12482742E0069DBC3;
+			packageReferences = (
+				CEF9B2B024827F8A009FEF9B /* XCRemoteSwiftPackageReference "balam" */,
+			);
 			productRefGroup = CEF9B29B248275BB009FEF9B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -135,7 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF9B29E248275BB009FEF9B /* App.swift in Sources */,
+				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,
 				CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */,
+				CEF9B2B524827FFD009FEF9B /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +345,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEF9B2B024827F8A009FEF9B /* XCRemoteSwiftPackageReference "balam" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/catverse/balam.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEF9B2B124827F8A009FEF9B /* Balam */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF9B2B024827F8A009FEF9B /* XCRemoteSwiftPackageReference "balam" */;
+			productName = Balam;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEC3ABB22482742E0069DBC3 /* Project object */;
 }

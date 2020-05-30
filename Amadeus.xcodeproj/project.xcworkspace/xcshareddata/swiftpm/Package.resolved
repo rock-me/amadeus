@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Balam",
+        "repositoryURL": "https://github.com/catverse/balam.git",
+        "state": {
+          "branch": "master",
+          "revision": "2d889305b9befc049a120d80148dff688b80a2bd",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
