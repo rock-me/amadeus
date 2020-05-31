@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEF9B299248275BB009FEF9B"
-               BuildableName = "macOS.app"
+               BuildableName = "Amadeus.app"
                BlueprintName = "macOS"
                ReferencedContainer = "container:Amadeus.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEF9B299248275BB009FEF9B"
-            BuildableName = "macOS.app"
+            BuildableName = "Amadeus.app"
             BlueprintName = "macOS"
             ReferencedContainer = "container:Amadeus.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEF9B299248275BB009FEF9B"
-            BuildableName = "macOS.app"
+            BuildableName = "Amadeus.app"
             BlueprintName = "macOS"
             ReferencedContainer = "container:Amadeus.xcodeproj">
          </BuildableReference>

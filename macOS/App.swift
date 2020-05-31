@@ -1,8 +1,8 @@
 import AppKit
 import Combine
 
+let persistance = Persistance()
 @NSApplicationMain final class App: NSApplication, NSApplicationDelegate {
-    let persistance = Persistance()
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -12,19 +12,16 @@ import Combine
     }
     
     func applicationWillFinishLaunching(_: Notification) {
-        persistance.storedUI.sink {
+        persistance.loadUI.sink {
             let window: Window
             if let ui = $0 {
                 window = .init(ui.frame)
             } else {
                 window = .init()
                 window.center()
-                print(window.frame)
-                self.persistance.ui.frame = window.frame
-                self.persistance.updateUI()
+                persistance.add(ui: .init(frame: window.frame))
             }
             window.makeKeyAndOrderFront(nil)
-            
         }.store(in: &subs)
     }
 }

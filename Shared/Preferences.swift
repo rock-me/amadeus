@@ -2,7 +2,11 @@ import CoreGraphics
 
 struct Preferences {
     struct UI: Codable, Equatable {
-        var frame = CGRect.zero
+        var frame: CGRect
+        
+        init(frame: CGRect) {
+            self.frame = frame
+        }
         
         func hash(into: inout Hasher) { }
         
