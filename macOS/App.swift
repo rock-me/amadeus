@@ -12,12 +12,13 @@ let persistance = Persistance()
     }
     
     func applicationWillFinishLaunching(_: Notification) {
+        mainMenu = Menu()
         persistance.loadUI.sink {
             let window: Window
             if let ui = $0 {
                 window = .init(ui.frame)
             } else {
-                window = .init()
+                window = .init(.init(x: 0, y: 0, width: 500, height: 400))
                 window.center()
                 persistance.add(ui: .init(frame: window.frame))
             }

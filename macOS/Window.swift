@@ -1,9 +1,11 @@
 import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
-    init(_ frame: CGRect = .init(x: 0, y: 0, width: 300, height: 300)) {
-        super.init(contentRect: frame, styleMask: [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView], backing: .buffered, defer: false)
-        minSize = .init(width: 300, height: 300)
+    init(_ frame: CGRect) {
+        super.init(contentRect: frame, styleMask:
+            [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
+                   backing: .buffered, defer: false)
+        minSize = .init(width: 200, height: 100)
         titlebarAppearsTransparent = true
         titleVisibility = .hidden
         toolbar = .init()
