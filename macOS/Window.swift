@@ -13,6 +13,7 @@ final class Window: NSWindow, NSWindowDelegate {
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
         delegate = self
+        contentView = View()
     }
     
     override func close() {
