@@ -1,6 +1,7 @@
 import AppKit
 
 final class Side: NSView {
+    private weak var view: View!
     private weak var indicator: NSView!
     private weak var indicatorY: NSLayoutConstraint? {
         didSet {
@@ -10,9 +11,10 @@ final class Side: NSView {
     }
     
     required init?(coder: NSCoder) { nil }
-    init() {
+    init(view: View) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        self.view = view
         
         let blur = NSVisualEffectView()
         blur.material = .sidebar
@@ -118,7 +120,7 @@ private final class Item: Control {
         super.init()
         wantsLayer = true
         
-        let label = Label(title, .medium(14))
+        let label = Label(title, .medium(12))
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(label)

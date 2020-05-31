@@ -17,6 +17,8 @@
 		CEEA689D2483CCA700716620 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA689C2483CCA700716620 /* Control.swift */; };
 		CEEA689F2483CF0F00716620 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA689E2483CF0F00716620 /* Label.swift */; };
 		CEEA68A12483CFAF00716620 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68A02483CFAF00716620 /* Font.swift */; };
+		CEEA68A32483DB1000716620 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68A22483DB1000716620 /* Music.swift */; };
+		CEEA68A52483DB6800716620 /* Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68A42483DB6800716620 /* Scroll.swift */; };
 		CEF9B29E248275BB009FEF9B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B29D248275BB009FEF9B /* App.swift */; };
 		CEF9B2A2248275BC009FEF9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF9B2A1248275BC009FEF9B /* Assets.xcassets */; };
 		CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2AB24827C08009FEF9B /* Window.swift */; };
@@ -36,6 +38,8 @@
 		CEEA689C2483CCA700716620 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		CEEA689E2483CF0F00716620 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		CEEA68A02483CFAF00716620 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		CEEA68A22483DB1000716620 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		CEEA68A42483DB6800716620 /* Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scroll.swift; sourceTree = "<group>"; };
 		CEF9B29A248275BB009FEF9B /* Amadeus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amadeus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF9B29D248275BB009FEF9B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CEF9B2A1248275BC009FEF9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				CEEA689C2483CCA700716620 /* Control.swift */,
 				CEEA689E2483CF0F00716620 /* Label.swift */,
 				CEEA688D2483B6B400716620 /* Menu.swift */,
+				CEEA68A22483DB1000716620 /* Music.swift */,
+				CEEA68A42483DB6800716620 /* Scroll.swift */,
 				CEEA68982483BB1800716620 /* Separator.swift */,
 				CEEA689A2483BDE600716620 /* Side.swift */,
 				CEEA68942483B86500716620 /* View.swift */,
@@ -195,9 +201,11 @@
 				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,
 				CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */,
 				CEEA68A12483CFAF00716620 /* Font.swift in Sources */,
+				CEEA68A52483DB6800716620 /* Scroll.swift in Sources */,
 				CEEA689D2483CCA700716620 /* Control.swift in Sources */,
 				CEF9B2B524827FFD009FEF9B /* Preferences.swift in Sources */,
 				CEEA68952483B86500716620 /* View.swift in Sources */,
+				CEEA68A32483DB1000716620 /* Music.swift in Sources */,
 				CEEA688E2483B6B400716620 /* Menu.swift in Sources */,
 				CEEA68992483BB1800716620 /* Separator.swift in Sources */,
 			);

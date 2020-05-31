@@ -7,7 +7,7 @@ final class View: NSView {
         let bar = Bar()
         addSubview(bar)
         
-        let side = Side()
+        let side = Side(view: self)
         addSubview(side)
         
         bar.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -21,4 +21,6 @@ final class View: NSView {
         sideWidth.priority = .defaultLow
         sideWidth.isActive = true
     }
+    
+    
 }
