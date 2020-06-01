@@ -11,6 +11,7 @@
 		CE04366824853C1F003841CA /* Coverflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366724853C1F003841CA /* Coverflow.swift */; };
 		CE04366A24854181003841CA /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366924854181003841CA /* Album.swift */; };
 		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
+		CE0436702485667F003841CA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366F2485667F003841CA /* Detail.swift */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
@@ -36,6 +37,7 @@
 		CE04366724853C1F003841CA /* Coverflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coverflow.swift; sourceTree = "<group>"; };
 		CE04366924854181003841CA /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		CE04366F2485667F003841CA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				CEEA68962483B8B700716620 /* Bar.swift */,
 				CEEA689C2483CCA700716620 /* Control.swift */,
 				CE04366724853C1F003841CA /* Coverflow.swift */,
+				CE04366F2485667F003841CA /* Detail.swift */,
 				CEEA689E2483CF0F00716620 /* Label.swift */,
 				CEEA688D2483B6B400716620 /* Menu.swift */,
 				CEEA68A22483DB1000716620 /* Music.swift */,
@@ -210,6 +213,7 @@
 				CEEA68972483B8B700716620 /* Bar.swift in Sources */,
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
 				CE04366624852853003841CA /* Spectrogram.swift in Sources */,
+				CE0436702485667F003841CA /* Detail.swift in Sources */,
 				CEEA689B2483BDE600716620 /* Side.swift in Sources */,
 				CE04366A24854181003841CA /* Album.swift in Sources */,
 				CE04366824853C1F003841CA /* Coverflow.swift in Sources */,

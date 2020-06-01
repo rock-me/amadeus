@@ -12,7 +12,7 @@ struct Preferences {
         
         var frame = CGRect(x: 0, y: 0, width: 500, height: 400)
         var section = Section.music
-        var album = Album.id.mists
+        var album = Album.mists
         
         func hash(into: inout Hasher) { }
         

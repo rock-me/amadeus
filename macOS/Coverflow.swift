@@ -12,11 +12,11 @@ final class Coverflow: NSView {
         addSubview(scroll)
         
         var left = scroll.left
-        Album.id.allCases.forEach {
-            let item = Item(id: $0)
+        Album.allCases.forEach {
+            let item = Item(album: $0)
             scroll.add(item)
             
-            item.leftAnchor.constraint(equalTo: left, constant: 10).isActive = true
+            item.leftAnchor.constraint(equalTo: left, constant: 20).isActive = true
             item.topAnchor.constraint(equalTo: scroll.top, constant: 20).isActive = true
             item.bottomAnchor.constraint(equalTo: scroll.bottom, constant: -20).isActive = true
             
@@ -36,15 +36,13 @@ final class Coverflow: NSView {
 }
 
 private final class Item: Control {
-    let id: Album.id
+    let album: Album
     private weak var base: NSView!
     
     required init?(coder: NSCoder) { nil }
-    init(id: Album.id) {
-        self.id = id
+    init(album: Album) {
+        self.album = album
         super.init()
-        
-        let album = Album(id)
         
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 6
@@ -58,7 +56,7 @@ private final class Item: Control {
         addSubview(base)
         self.base = base
         
-        let image = NSImageView(image: NSImage(named: "album_\(id)")!)
+        let image = NSImageView(image: NSImage(named: "album_\(album)")!)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.wantsLayer = true
         image.layer!.cornerRadius = 10
@@ -70,7 +68,7 @@ private final class Item: Control {
         shade.layer!.cornerRadius = 10
         addSubview(shade)
         
-        let name = Label(.key("album_\(id)"), .bold(16))
+        let name = Label(.key("album_\(album)"), .bold(12))
         name.textColor = .white
         addSubview(name)
         
