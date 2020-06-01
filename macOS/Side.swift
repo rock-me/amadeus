@@ -43,7 +43,7 @@ final class Side: NSView {
         let separator = Separator()
         addSubview(separator)
         
-        widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
+        widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
         widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
         let width = widthAnchor.constraint(equalToConstant: 200)
         width.priority = .defaultLow
@@ -128,11 +128,7 @@ private final class Item: Control {
         heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         label.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        label.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -20).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        let width = label.widthAnchor.constraint(equalToConstant: 20)
-        width.priority = .defaultLow
-        width.isActive = true
     }
     
     override func updateLayer() {
