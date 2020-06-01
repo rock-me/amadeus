@@ -17,11 +17,8 @@ final class Scroll: NSScrollView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         drawsBackground = false
-        hasVerticalScroller = true
+        hasVerticalScroller = false
         hasHorizontalScroller = false
-        verticalScrollElasticity = .automatic
-        horizontalScrollElasticity = .automatic
-        verticalScroller!.controlSize = .mini
         documentView = Flipped()
         documentView!.translatesAutoresizingMaskIntoConstraints = false
         documentView!.topAnchor.constraint(equalTo: topAnchor).isActive = true

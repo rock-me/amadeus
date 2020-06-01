@@ -6,7 +6,7 @@ final class Persistance {
     private var subs = Set<AnyCancellable>()
     private let preferences = Balam("preferences.amadeus")
     
-    var loadUI: Future<Preferences.UI?, Never> {
+    var ui: Future<Preferences.UI?, Never> {
         .init { promise in
             self.preferences.nodes(Preferences.UI.self).sink {
                 promise(.success($0.first))

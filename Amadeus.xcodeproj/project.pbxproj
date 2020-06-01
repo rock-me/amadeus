@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE04366624852853003841CA /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366524852853003841CA /* Spectrogram.swift */; };
+		CE04366824853C1F003841CA /* Coverflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366724853C1F003841CA /* Coverflow.swift */; };
+		CE04366A24854181003841CA /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366924854181003841CA /* Album.swift */; };
+		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		CE04366524852853003841CA /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
+		CE04366724853C1F003841CA /* Coverflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coverflow.swift; sourceTree = "<group>"; };
+		CE04366924854181003841CA /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -95,6 +101,7 @@
 				CEF9B29D248275BB009FEF9B /* App.swift */,
 				CEEA68962483B8B700716620 /* Bar.swift */,
 				CEEA689C2483CCA700716620 /* Control.swift */,
+				CE04366724853C1F003841CA /* Coverflow.swift */,
 				CEEA689E2483CF0F00716620 /* Label.swift */,
 				CEEA688D2483B6B400716620 /* Menu.swift */,
 				CEEA68A22483DB1000716620 /* Music.swift */,
@@ -112,10 +119,12 @@
 		CEF9B2B324827F9C009FEF9B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				CE04366924854181003841CA /* Album.swift */,
 				CEEA68A02483CFAF00716620 /* Font.swift */,
 				CEF9B2B62482898C009FEF9B /* Persistance.swift */,
 				CEF9B2B424827FFD009FEF9B /* Preferences.swift */,
 				CEEA688F2483B6DA00716620 /* String.swift */,
+				CE04366B24855918003841CA /* Media.xcassets */,
 				CEEA68912483B75600716620 /* Localizable.strings */,
 			);
 			path = Shared;
@@ -185,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF9B2A2248275BC009FEF9B /* Assets.xcassets in Resources */,
+				CE04366C24855918003841CA /* Media.xcassets in Resources */,
 				CEEA68932483B75600716620 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +211,8 @@
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
 				CE04366624852853003841CA /* Spectrogram.swift in Sources */,
 				CEEA689B2483BDE600716620 /* Side.swift in Sources */,
+				CE04366A24854181003841CA /* Album.swift in Sources */,
+				CE04366824853C1F003841CA /* Coverflow.swift in Sources */,
 				CEF9B29E248275BB009FEF9B /* App.swift in Sources */,
 				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,
 				CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */,
