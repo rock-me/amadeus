@@ -25,11 +25,15 @@ class Control: NSView {
     override func mouseUp(with: NSEvent) {
         window!.makeFirstResponder(self)
         if bounds.contains(convert(with.locationInWindow, from: nil)) {
-            _ = target.perform(action, with: self)
+            click()
         } else {
             super.mouseUp(with: with)
         }
         hoverOff()
+    }
+    
+    func click() {
+        _ = target.perform(action, with: self)
     }
     
     func hoverOn() {

@@ -2,11 +2,16 @@ import CoreGraphics
 
 struct Preferences {
     struct UI: Codable, Equatable {
-        var frame: CGRect
-        
-        init(frame: CGRect) {
-            self.frame = frame
+        enum Section: UInt8, Codable {
+            case
+            music,
+            stats,
+            store,
+            settings
         }
+        
+        var frame = CGRect(x: 0, y: 0, width: 500, height: 400)
+        var section = Section.music
         
         func hash(into: inout Hasher) { }
         

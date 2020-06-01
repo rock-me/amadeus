@@ -18,9 +18,15 @@ final class Persistance {
         preferences.add(ui)
     }
     
-    func update(uiFrame: CGRect) {
+    func update(_ frame: CGRect) {
         preferences.update(Preferences.UI.self) {
-            $0.frame = uiFrame
+            $0.frame = frame
+        }
+    }
+    
+    func update(_ section: Preferences.UI.Section) {
+        preferences.update(Preferences.UI.self) {
+            $0.section = section
         }
     }
 }

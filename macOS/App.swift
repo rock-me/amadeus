@@ -16,9 +16,9 @@ let persistance = Persistance()
         persistance.loadUI.sink {
             let window: Window
             if let ui = $0 {
-                window = .init(ui.frame)
+                window = .init(ui: ui)
             } else {
-                window = .init(.init(x: 0, y: 0, width: 500, height: 400))
+                window = .init(ui: .init())
                 window.center()
                 persistance.add(ui: .init(frame: window.frame))
             }

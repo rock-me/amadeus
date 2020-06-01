@@ -1,11 +1,11 @@
 import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
-    init(_ frame: CGRect) {
-        super.init(contentRect: frame, styleMask:
+    init(ui: Preferences.UI) {
+        super.init(contentRect: ui.frame, styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
-        minSize = .init(width: 300, height: 200)
+        minSize = .init(width: 400, height: 300)
         titlebarAppearsTransparent = true
         titleVisibility = .hidden
         toolbar = .init()
@@ -13,7 +13,7 @@ final class Window: NSWindow, NSWindowDelegate {
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
         delegate = self
-        contentView = View()
+        contentView = View(ui: ui)
     }
     
     override func close() {
@@ -21,10 +21,10 @@ final class Window: NSWindow, NSWindowDelegate {
     }
     
     func windowDidMove(_: Notification) {
-        persistance.update(uiFrame: frame)
+        persistance.update(frame)
     }
     
     func windowDidResize(_: Notification) {
-        persistance.update(uiFrame: frame)
+        persistance.update(frame)
     }
 }

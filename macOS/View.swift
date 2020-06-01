@@ -5,7 +5,7 @@ final class View: NSView {
     private weak var side: Side!
     
     required init?(coder: NSCoder) { nil }
-    init() {
+    init(ui: Preferences.UI) {
         super.init(frame: .zero)
         let bar = Bar()
         addSubview(bar)
@@ -22,13 +22,17 @@ final class View: NSView {
         side.topAnchor.constraint(equalTo: bar.bottomAnchor).isActive = true
         side.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         side.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        let sideWidth = side.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)
-        sideWidth.priority = .defaultLow
-        sideWidth.isActive = true
+        
+        switch ui.section {
+        case .music: side.music.click()
+        case .stats: side.store.click()
+        case .store: side.store.click()
+        case .settings: side.settings.click()
+        }
     }
     
     func show(_ view: NSView) {
-        subviews.filter { !($0 is Bar) && !($0 is Side) }.forEach {
+        subviews.filter { !($0 is Bar || $0 is Side) }.forEach {
             $0.removeFromSuperview()
         }
         addSubview(view)

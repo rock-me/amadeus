@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE04366624852853003841CA /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366524852853003841CA /* Spectrogram.swift */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE04366524852853003841CA /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				CEEA68A42483DB6800716620 /* Scroll.swift */,
 				CEEA68982483BB1800716620 /* Separator.swift */,
 				CEEA689A2483BDE600716620 /* Side.swift */,
+				CE04366524852853003841CA /* Spectrogram.swift */,
 				CEEA68942483B86500716620 /* View.swift */,
 				CEF9B2AB24827C08009FEF9B /* Window.swift */,
 				CEF9B2A1248275BC009FEF9B /* Assets.xcassets */,
@@ -196,6 +199,7 @@
 				CEEA68902483B6DA00716620 /* String.swift in Sources */,
 				CEEA68972483B8B700716620 /* Bar.swift in Sources */,
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
+				CE04366624852853003841CA /* Spectrogram.swift in Sources */,
 				CEEA689B2483BDE600716620 /* Side.swift in Sources */,
 				CEF9B29E248275BB009FEF9B /* App.swift in Sources */,
 				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,

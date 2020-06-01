@@ -1,6 +1,10 @@
 import AppKit
 
 final class Side: NSView {
+    private(set) weak var music: Control!
+    private(set) weak var stats: Control!
+    private(set) weak var store: Control!
+    private(set) weak var settings: Control!
     private weak var view: View!
     private weak var indicator: NSView!
     private weak var indicatorY: NSLayoutConstraint? {
@@ -21,17 +25,17 @@ final class Side: NSView {
         blur.translatesAutoresizingMaskIntoConstraints = false
         addSubview(blur)
         
-        let music = item(.key("Music"), top: topAnchor)
-        music.action = #selector(self.music)
+        music = item(.key("Music"), top: topAnchor)
+        music.action = #selector(openMusic)
         
-        let stats = item(.key("Stats"), top: music.bottomAnchor)
-        stats.action = #selector(self.stats)
+        stats = item(.key("Stats"), top: music.bottomAnchor)
+        stats.action = #selector(openStats)
         
-        let store = item(.key("Store"), top: stats.bottomAnchor)
-        store.action = #selector(self.store)
+        store = item(.key("Store"), top: stats.bottomAnchor)
+        store.action = #selector(openStore)
         
-        let settings = item(.key("Settings"), top: store.bottomAnchor)
-        settings.action = #selector(self.settings)
+        settings = item(.key("Settings"), top: store.bottomAnchor)
+        settings.action = #selector(openSettings)
         
         let indicator = NSView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -43,11 +47,7 @@ final class Side: NSView {
         let separator = Separator()
         addSubview(separator)
         
-        widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
-        widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
-        let width = widthAnchor.constraint(equalToConstant: 200)
-        width.priority = .defaultLow
-        width.isActive = true
+        widthAnchor.constraint(equalToConstant: 150).isActive = true
         
         blur.topAnchor.constraint(equalTo: topAnchor).isActive = true
         blur.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -62,8 +62,6 @@ final class Side: NSView {
         indicator.rightAnchor.constraint(equalTo: separator.rightAnchor, constant: -10).isActive = true
         indicator.widthAnchor.constraint(equalToConstant: 2).isActive = true
         indicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        self.music(music)
     }
     
     override func updateLayer() {
@@ -91,20 +89,25 @@ final class Side: NSView {
         return true
     }
     
-    @objc private func music(_ item: Item) {
+    @objc private func openMusic(_ item: Item) {
         guard select(item: item) else { return }
+        view.show(Music())
+        persistance.update(.music)
     }
     
-    @objc private func stats(_ item: Item) {
+    @objc private func openStats(_ item: Item) {
         guard select(item: item) else { return }
+        persistance.update(.stats)
     }
     
-    @objc private func store(_ item: Item) {
+    @objc private func openStore(_ item: Item) {
         guard select(item: item) else { return }
+        persistance.update(.store)
     }
     
-    @objc private func settings(_ item: Item) {
+    @objc private func openSettings(_ item: Item) {
         guard select(item: item) else { return }
+        persistance.update(.settings)
     }
 }
 
