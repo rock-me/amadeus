@@ -44,11 +44,16 @@ final class Music: NSView {
         detail.rightAnchor.constraint(equalTo: scroll.right, constant: -30).isActive = true
         
         persistance.ui.sink { [weak self] in
-            self?.select(album: $0!.album)
+            self?.show($0!.album)
         }.store(in: &subs)
     }
     
     func select(album: Album) {
+        show(album)
+        persistance.update(album)
+    }
+    
+    private func show(_ album: Album) {
         detail.show(album)
     }
 }
