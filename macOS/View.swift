@@ -24,10 +24,10 @@ final class View: NSView {
         side.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
         switch ui.section {
-        case .music: side.music.click()
-        case .stats: side.store.click()
-        case .store: side.store.click()
-        case .settings: side.settings.click()
+        case .music: side.showMusic()
+        case .stats: side.showStats()
+        case .store: side.showStore()
+        case .settings: side.showSettings()
         }
     }
     

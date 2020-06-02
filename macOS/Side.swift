@@ -1,11 +1,11 @@
 import AppKit
 
 final class Side: NSView {
-    private(set) weak var music: Control!
-    private(set) weak var stats: Control!
-    private(set) weak var store: Control!
-    private(set) weak var settings: Control!
     private weak var view: View!
+    private weak var music: Item!
+    private weak var stats: Item!
+    private weak var store: Item!
+    private weak var settings: Item!
     private weak var indicator: NSView!
     private weak var indicatorY: NSLayoutConstraint? {
         didSet {
@@ -26,16 +26,16 @@ final class Side: NSView {
         addSubview(blur)
         
         music = item(.key("Music"), top: topAnchor)
-        music.action = #selector(openMusic)
+        music.action = #selector(selectMusic)
         
         stats = item(.key("Stats"), top: music.bottomAnchor)
-        stats.action = #selector(openStats)
+        stats.action = #selector(selectStats)
         
         store = item(.key("Store"), top: stats.bottomAnchor)
-        store.action = #selector(openStore)
+        store.action = #selector(selectStore)
         
         settings = item(.key("Settings"), top: store.bottomAnchor)
-        settings.action = #selector(openSettings)
+        settings.action = #selector(selectSettings)
         
         let indicator = NSView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +68,27 @@ final class Side: NSView {
         indicator.layer!.backgroundColor = NSColor.highlightColor.cgColor
     }
     
+    @discardableResult func showMusic() -> Bool {
+        guard select(item: music) else { return false }
+        view.show(Music())
+        return true
+    }
+    
+    @discardableResult func showStats() -> Bool {
+        guard select(item: stats) else { return false }
+        return true
+    }
+    
+    @discardableResult func showStore() -> Bool {
+        guard select(item: store) else { return false }
+        return true
+    }
+    
+    @discardableResult func showSettings() -> Bool {
+        guard select(item: settings) else { return false }
+        return true
+    }
+    
     private func item(_ title: String, top: NSLayoutYAxisAnchor) -> Item {
         let item = Item(title: title)
         item.target = self
@@ -89,24 +110,23 @@ final class Side: NSView {
         return true
     }
     
-    @objc private func openMusic(_ item: Item) {
-        guard select(item: item) else { return }
-        view.show(Music())
+    @objc private func selectMusic() {
+        guard showMusic() else { return }
         persistance.update(.music)
     }
     
-    @objc private func openStats(_ item: Item) {
-        guard select(item: item) else { return }
+    @objc private func selectStats() {
+        guard showStats() else { return }
         persistance.update(.stats)
     }
     
-    @objc private func openStore(_ item: Item) {
-        guard select(item: item) else { return }
+    @objc private func selectStore() {
+        guard showStore() else { return }
         persistance.update(.store)
     }
     
-    @objc private func openSettings(_ item: Item) {
-        guard select(item: item) else { return }
+    @objc private func selectSettings() {
+        guard showSettings() else { return }
         persistance.update(.settings)
     }
 }
