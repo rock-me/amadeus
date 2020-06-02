@@ -3,6 +3,7 @@ import Combine
 
 final class Music: NSView {
     private weak var detail: Detail!
+    private weak var coverflow: Coverflow!
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -18,6 +19,7 @@ final class Music: NSView {
         
         let coverflow = Coverflow(music: self)
         scroll.add(coverflow)
+        self.coverflow = coverflow
         
         let detail = Detail()
         scroll.add(detail)
@@ -54,6 +56,7 @@ final class Music: NSView {
     }
     
     private func show(_ album: Album) {
+        coverflow.show(album)
         detail.show(album)
     }
 }
