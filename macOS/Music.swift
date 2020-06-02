@@ -16,7 +16,7 @@ final class Music: NSView {
         let spectrogram = Spectrogram()
         scroll.add(spectrogram)
         
-        let coverflow = Coverflow()
+        let coverflow = Coverflow(music: self)
         scroll.add(coverflow)
         
         let detail = Detail()

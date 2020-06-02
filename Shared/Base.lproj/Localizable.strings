@@ -9,6 +9,9 @@ album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
 album_melancholy = "Melancholy";
 album_melancholy_subtitle = "When music reminds us of someone.";
 
+album_thriller = "Thriller";
+album_thriller_subtitle = "A dramatic suspense trying not to hold your breath for too long.";
+
 Amadeus = "Amadeus";
 About = "About";
 Hide = "Hide";

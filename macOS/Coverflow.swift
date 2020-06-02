@@ -1,10 +1,13 @@
 import AppKit
 
 final class Coverflow: NSView {
+    private weak var music: Music!
+    
     required init?(coder: NSCoder) { nil }
-    init() {
+    init(music: Music) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        self.music = music
         
         let scroll = Scroll()
         scroll.verticalScrollElasticity = .none
@@ -14,6 +17,8 @@ final class Coverflow: NSView {
         var left = scroll.left
         Album.allCases.forEach {
             let item = Item(album: $0)
+            item.target = self
+            item.action = #selector(select(item:))
             scroll.add(item)
             
             item.leftAnchor.constraint(equalTo: left, constant: 20).isActive = true
@@ -32,6 +37,10 @@ final class Coverflow: NSView {
         scroll.right.constraint(greaterThanOrEqualTo: left, constant: 20).isActive = true
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
+    }
+    
+    @objc private func select(item: Item) {
+        music.select(album: item.album)
     }
 }
 
@@ -68,7 +77,7 @@ private final class Item: Control {
         shade.layer!.cornerRadius = 10
         addSubview(shade)
         
-        let name = Label(.key("album_\(album)"), .bold(12))
+        let name = Label(.key("album_\(album)"), .bold(11))
         name.textColor = .white
         addSubview(name)
         
