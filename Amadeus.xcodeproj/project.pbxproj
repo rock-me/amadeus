@@ -30,6 +30,7 @@
 		CEF9B2B224827F8A009FEF9B /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CEF9B2B124827F8A009FEF9B /* Balam */; };
 		CEF9B2B524827FFD009FEF9B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B424827FFD009FEF9B /* Preferences.swift */; };
 		CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B62482898C009FEF9B /* Persistance.swift */; };
+		CEFA91CD2486B4A800274309 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA91CC2486B4A800274309 /* Track.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		CEF9B2AF24827ED8009FEF9B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEF9B2B424827FFD009FEF9B /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CEF9B2B62482898C009FEF9B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		CEFA91CC2486B4A800274309 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				CEF9B2B62482898C009FEF9B /* Persistance.swift */,
 				CEF9B2B424827FFD009FEF9B /* Preferences.swift */,
 				CEEA688F2483B6DA00716620 /* String.swift */,
+				CEFA91CC2486B4A800274309 /* Track.swift */,
 				CE04366B24855918003841CA /* Media.xcassets */,
 				CEEA68912483B75600716620 /* Localizable.strings */,
 			);
@@ -220,6 +223,7 @@
 				CEF9B29E248275BB009FEF9B /* App.swift in Sources */,
 				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,
 				CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */,
+				CEFA91CD2486B4A800274309 /* Track.swift in Sources */,
 				CEEA68A12483CFAF00716620 /* Font.swift in Sources */,
 				CEEA68A52483DB6800716620 /* Scroll.swift in Sources */,
 				CEEA689D2483CCA700716620 /* Control.swift in Sources */,
