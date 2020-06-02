@@ -12,6 +12,9 @@ album_melancholy_subtitle = "The shine of your eyes.";
 album_tension = "Tension";
 album_tension_subtitle = "Try not to hold your breath for too long.";
 
+album_dawn = "A New Dawn";
+album_dawn_subtitle = "The start of a new cycle.";
+
 Amadeus = "Amadeus";
 About = "About";
 Hide = "Hide";

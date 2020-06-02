@@ -35,5 +35,44 @@ final class Detail: NSView {
     func show(_ album: Album) {
         title.stringValue = .key("album_\(album)")
         subtitle.stringValue = .key("album_\(album)_subtitle")
+        subviews.filter { !($0 == title || $0 == subtitle) }.forEach {
+            $0.removeFromSuperview()
+        }
+        
+        var top = subtitle.bottomAnchor
+        album.tracks.forEach {
+            let item = self.item($0)
+            
+            if top != subtitle.bottomAnchor {
+                let separator = Separator()
+                addSubview(separator)
+                
+                separator.topAnchor.constraint(equalTo: top).isActive = true
+                separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
+                separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
+                separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+                top = separator.bottomAnchor
+            }
+            
+            item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 0).isActive = true
+        }
+    }
+    
+    private func item(_ track: Track) -> Item {
+        let item = Item(track: track)
+        addSubview(item)
+        
+        item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+        return item
+    }
+}
+
+private final class Item: NSView {
+    required init?(coder: NSCoder) { nil }
+    init(track: Track) {
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

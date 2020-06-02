@@ -4,13 +4,20 @@ enum Album: UInt8, Codable, CaseIterable {
     case
     mists,
     melancholy,
-    tension
+    tension,
+    dawn
     
     var tracks: [Track] {
         switch self {
-        case .mists: return [.satieGymnopedies]
-        case .melancholy: return [.beethovenPianoSonata14]
-        case .tension: return [.mozartSymphony40]
+        case .mists: return [
+            .satieGymnopedies]
+        case .melancholy: return [
+            .beethovenMoonlightSonata,
+            .debussyClairDeLune]
+        case .tension: return [
+            .mozartSymphony40]
+        case .dawn: return [
+            .mozartEineKleineNachtmusik]
         }
     }
 }

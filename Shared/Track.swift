@@ -3,6 +3,8 @@ import Foundation
 enum Track {
     case
     satieGymnopedies,
-    beethovenPianoSonata14,
-    mozartSymphony40
+    beethovenMoonlightSonata,
+    debussyClairDeLune,
+    mozartSymphony40,
+    mozartEineKleineNachtmusik
 }
