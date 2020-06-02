@@ -9,7 +9,7 @@ final class Detail: NSView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
-        let title = Label("", .bold(18))
+        let title = Label("", .bold(20))
         title.textColor = .headerTextColor
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)

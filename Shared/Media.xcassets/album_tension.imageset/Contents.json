@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "album_thriller.jpg",
+      "filename" : "album_tension.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "album_thriller@2x.jpg",
+      "filename" : "album_tension@2x.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "album_thriller@3x.jpg",
+      "filename" : "album_tension@3x.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
