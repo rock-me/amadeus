@@ -4,7 +4,10 @@ Store = "Store";
 Settings = "Settings";
 
 album_mists = "The Mists";
-album_subtitle_mists = "A temporary lapse of reasoning with oneself.";
+album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
+
+album_melancholy = "Melancholy";
+album_melancholy_subtitle = "When music reminds us of someone.";
 
 Amadeus = "Amadeus";
 About = "About";

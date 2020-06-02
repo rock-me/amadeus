@@ -34,6 +34,6 @@ final class Detail: NSView {
     
     func show(_ album: Album) {
         title.stringValue = .key("album_\(album)")
-        subtitle.stringValue = .key("album_subtitle_\(album)")
+        subtitle.stringValue = .key("album_\(album)_subtitle")
     }
 }
