@@ -2,6 +2,7 @@ import AppKit
 import Combine
 
 final class Bar: NSView {
+    private weak var controls: NSView!
     private weak var base: NSView!
     private weak var border: NSView!
     private var subs = Set<AnyCancellable>()
@@ -12,6 +13,18 @@ final class Bar: NSView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
+        
+        let controls = NSView()
+        controls.translatesAutoresizingMaskIntoConstraints = false
+        controls.wantsLayer = true
+        controls.layer!.cornerRadius = 13
+        addSubview(controls)
+        self.controls = controls
+        
+        let play = Button(image: "play")
+        play.target = self
+        play.action = #selector(self.play)
+        controls.addSubview(play)
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +67,18 @@ final class Bar: NSView {
         border.topAnchor.constraint(equalTo: base.topAnchor).isActive = true
         border.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
+        controls.rightAnchor.constraint(equalTo: base.leftAnchor, constant: -10).isActive = true
+        controls.heightAnchor.constraint(equalToConstant: 26).isActive = true
+        controls.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        controls.leftAnchor.constraint(greaterThanOrEqualTo: leftAnchor, constant: 80).isActive = true
+        controls.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
+        let controlsWidth = controls.widthAnchor.constraint(equalToConstant: 150)
+        controlsWidth.priority = .defaultLow
+        controlsWidth.isActive = true
+        
+        play.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
+        play.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
+        
         title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
         title.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -75,5 +100,41 @@ final class Bar: NSView {
     override func updateLayer() {
         base.layer!.backgroundColor = NSColor.controlHighlightColor.cgColor
         border.layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
+        controls.layer!.backgroundColor = NSColor.underPageBackgroundColor.cgColor
+    }
+    
+    @objc private func play() {
+        
+    }
+}
+
+private final class Button: Control {
+    private weak var image: NSImageView!
+    
+    required init?(coder: NSCoder) { nil }
+    init(image: String) {
+        super.init()
+        
+        let image = NSImageView(image: NSImage(named: image)!)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentTintColor = .highlightColor
+        addSubview(image)
+        self.image = image
+        
+        widthAnchor.constraint(equalToConstant: 24).isActive = true
+        heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 16).isActive = true
+    }
+    
+    override func hoverOn() {
+        image.contentTintColor = .textColor
+    }
+    
+    override func hoverOff() {
+        image.contentTintColor = .highlightColor
     }
 }
