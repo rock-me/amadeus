@@ -13,15 +13,14 @@ let persistance = Persistance()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        persistance.ui.sink {
+        persistance.load().sink {
             let window: Window
-            if let ui = $0 {
-                window = .init(ui: ui)
+            if $0 {
+                window = .init(ui: persistance.ui)
             } else {
-                persistance.add(ui: .init())
                 window = .init(ui: .init())
                 window.center()
-                persistance.update(window.frame)
+                persistance.add(ui: .init(frame: window.frame))
             }
             window.makeKeyAndOrderFront(nil)
         }.store(in: &subs)

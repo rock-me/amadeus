@@ -3,42 +3,29 @@ import Balam
 import Combine
 
 final class Persistance {
+    private(set) var ui = UI()
     private var subs = Set<AnyCancellable>()
-    private let preferences = Balam("preferences.amadeus")
+    private let storeUI = Balam("ui.amadeus")
     
-    var ui: Future<Preferences.UI?, Never> {
+    func load() -> Future<Bool, Never> {
         .init { promise in
-            self.preferences.nodes(Preferences.UI.self).sink {
-                promise(.success($0.first))
+            self.storeUI.nodes(UI.self).sink {
+                guard let ui = $0.first else {
+                    promise(.success(false))
+                    return
+                }
+                self.ui = ui
+                promise(.success(true))
             }.store(in: &self.subs)
         }
     }
     
-    func add(ui: Preferences.UI) {
-        preferences.add(ui)
+    func add(ui: UI) {
+        storeUI.add(ui)
     }
     
-    func update(_ frame: CGRect) {
-        preferences.update(Preferences.UI.self) {
-            $0.frame = frame
-        }
-    }
-    
-    func update(_ section: Preferences.UI.Section) {
-        preferences.update(Preferences.UI.self) {
-            $0.section = section
-        }
-    }
-    
-    func update(_ album: Album) {
-        preferences.update(Preferences.UI.self) {
-            $0.album = album
-        }
-    }
-    
-    func update(_ track: Track) {
-        preferences.update(Preferences.UI.self) {
-            $0.track = track
-        }
+    func update(ui completion: (inout UI) -> Void) {
+        completion(&ui)
+        storeUI.update(ui)
     }
 }

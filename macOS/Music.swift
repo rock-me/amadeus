@@ -1,10 +1,8 @@
 import AppKit
-import Combine
 
 final class Music: NSView {
     private weak var detail: Detail!
     private weak var coverflow: Coverflow!
-    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
     init() {
@@ -47,14 +45,14 @@ final class Music: NSView {
         detail.leftAnchor.constraint(equalTo: scroll.left, constant: 30).isActive = true
         detail.rightAnchor.constraint(equalTo: scroll.right, constant: -30).isActive = true
         
-        persistance.ui.sink { [weak self] in
-            self?.show($0!.album)
-        }.store(in: &subs)
+        show(persistance.ui.album)
     }
     
     func select(album: Album) {
         show(album)
-        persistance.update(album)
+        persistance.update {
+            $0.album = album
+        }
     }
     
     private func show(_ album: Album) {

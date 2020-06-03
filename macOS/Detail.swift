@@ -1,10 +1,8 @@
 import AppKit
-import Combine
 
 final class Detail: NSView {
     private weak var title: Label!
     private weak var subtitle: Label!
-    private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     private let font = NSFont(descriptor: NSFont.regular(12).fontDescriptor.addingAttributes([
         .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
@@ -58,6 +56,7 @@ final class Detail: NSView {
             }
             
             let item = self.item($0)
+            item.selected = $0 == persistance.ui.track
             item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
             top = item.bottomAnchor
         }
@@ -86,13 +85,20 @@ final class Detail: NSView {
     }
     
     @objc private func select(item: Item) {
-        guard !item.selected else { return }
-        persistance.update(item.track)
+        guard show(item) else { return }
+        persistance.update {
+            $0.track = item.track
+        }
     }
 }
 
 private final class Item: Control {
-    var selected = false
+    var selected = false {
+        didSet {
+            updateLayer()
+        }
+    }
+    
     let track: Track
     
     required init?(coder: NSCoder) { nil }
@@ -130,11 +136,15 @@ private final class Item: Control {
         duration.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
+    override func updateLayer() {
+        layer!.backgroundColor = selected ? NSColor.controlColor.cgColor : .clear
+    }
+    
     override func hoverOn() {
         layer!.backgroundColor = NSColor.controlColor.cgColor
     }
     
     override func hoverOff() {
-        layer!.backgroundColor = .clear
+        updateLayer()
     }
 }

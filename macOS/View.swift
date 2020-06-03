@@ -5,7 +5,7 @@ final class View: NSView {
     private weak var side: Side!
     
     required init?(coder: NSCoder) { nil }
-    init(ui: Preferences.UI) {
+    init(ui: UI) {
         super.init(frame: .zero)
         let bar = Bar()
         addSubview(bar)

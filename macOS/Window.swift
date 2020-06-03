@@ -1,7 +1,7 @@
 import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
-    init(ui: Preferences.UI) {
+    init(ui: UI) {
         super.init(contentRect: ui.frame, styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
@@ -21,10 +21,14 @@ final class Window: NSWindow, NSWindowDelegate {
     }
     
     func windowDidMove(_: Notification) {
-        persistance.update(frame)
+        persistance.update {
+            $0.frame = frame
+        }
     }
     
     func windowDidResize(_: Notification) {
-        persistance.update(frame)
+        persistance.update {
+            $0.frame = frame
+        }
     }
 }
