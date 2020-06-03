@@ -2,6 +2,7 @@ import Foundation
 
 enum Track: UInt32, Codable {
     case
+    none,
     satieGymnopedies,
     beethovenMoonlightSonata,
     debussyClairDeLune,

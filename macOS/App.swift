@@ -2,6 +2,8 @@ import AppKit
 import Combine
 
 let persistance = Persistance()
+let playback = Playback()
+
 @NSApplicationMain final class App: NSApplication, NSApplicationDelegate {
     private var subs = Set<AnyCancellable>()
     
@@ -24,6 +26,7 @@ let persistance = Persistance()
             }
             window.makeKeyAndOrderFront(nil)
             window.delegate = window
+            playback.state = .init(persistance.ui.track)
         }.store(in: &subs)
     }
 }
