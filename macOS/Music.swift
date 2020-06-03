@@ -12,6 +12,8 @@ final class Music: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         
         let scroll = Scroll()
+        scroll.hasVerticalScroller = true
+        scroll.verticalScroller!.controlSize = .mini
         addSubview(scroll)
         
         let spectrogram = Spectrogram()

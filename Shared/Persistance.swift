@@ -35,4 +35,10 @@ final class Persistance {
             $0.album = album
         }
     }
+    
+    func update(_ track: Track) {
+        preferences.update(Preferences.UI.self) {
+            $0.track = track
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-enum Track {
+enum Track: UInt32, Codable {
     case
     satieGymnopedies,
     beethovenMoonlightSonata,

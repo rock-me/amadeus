@@ -1,8 +1,10 @@
 import AppKit
+import Combine
 
 final class Detail: NSView {
     private weak var title: Label!
     private weak var subtitle: Label!
+    private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     private let font = NSFont(descriptor: NSFont.regular(12).fontDescriptor.addingAttributes([
         .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
@@ -48,7 +50,7 @@ final class Detail: NSView {
                 let separator = Separator()
                 addSubview(separator)
                 
-                separator.topAnchor.constraint(equalTo: top).isActive = true
+                separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
                 separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
                 separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
                 separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -56,7 +58,7 @@ final class Detail: NSView {
             }
             
             let item = self.item($0)
-            item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 0).isActive = true
+            item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
             top = item.bottomAnchor
         }
         
@@ -65,6 +67,8 @@ final class Detail: NSView {
     
     private func item(_ track: Track) -> Item {
         let item = Item(track: track, duration: formatter.string(from: track.duration)!, font: font)
+        item.target = self
+        item.action = #selector(select(item:))
         addSubview(item)
         
         item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -72,13 +76,32 @@ final class Detail: NSView {
         
         return item
     }
+    
+    private func show(_ item: Item) -> Bool {
+        guard !item.selected else { return false }
+        subviews.compactMap { $0 as? Item }.forEach {
+            $0.selected = item == $0
+        }
+        return true
+    }
+    
+    @objc private func select(item: Item) {
+        guard !item.selected else { return }
+        persistance.update(item.track)
+    }
 }
 
-private final class Item: NSView {
+private final class Item: Control {
+    var selected = false
+    let track: Track
+    
     required init?(coder: NSCoder) { nil }
     init(track: Track, duration: String, font: NSFont) {
-        super.init(frame: .zero)
+        self.track = track
+        super.init()
         translatesAutoresizingMaskIntoConstraints = false
+        wantsLayer = true
+        layer!.cornerRadius = 10
         
         let title = Label(.key("track_\(track)_title"), .bold(14))
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -96,14 +119,22 @@ private final class Item: NSView {
         bottomAnchor.constraint(equalTo: composer.bottomAnchor, constant: 15).isActive = true
         
         title.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
     
         composer.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        composer.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        composer.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
         composer.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
         
-        duration.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        duration.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
         duration.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    override func hoverOn() {
+        layer!.backgroundColor = NSColor.controlColor.cgColor
+    }
+    
+    override func hoverOff() {
+        layer!.backgroundColor = .clear
     }
 }
