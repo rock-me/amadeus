@@ -104,7 +104,7 @@ final class Bar: NSView {
     }
     
     @objc private func play() {
-        
+        player.play()
     }
 }
 

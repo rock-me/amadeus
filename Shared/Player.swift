@@ -6,7 +6,7 @@ final class Player: Publisher {
     typealias Output = State
     typealias Failure = Never
     fileprivate var subscriptions = [Sub]()
-    private let engine = AVAudioEngine()
+    private var player: AVAudioPlayer?
     
     var state = State.none {
         didSet {
@@ -22,7 +22,12 @@ final class Player: Publisher {
     }
     
     func play() {
-        engine.attach(AVAudioSourceNode(format: <#T##AVAudioFormat#>, renderBlock: <#T##AVAudioSourceNodeRenderBlock##AVAudioSourceNodeRenderBlock##(UnsafeMutablePointer<ObjCBool>, UnsafePointer<AudioTimeStamp>, AVAudioFrameCount, UnsafeMutablePointer<AudioBufferList>) -> OSStatus#>))
+        #if os(iOS)
+        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try AVAudioSession.sharedInstance().setActive(true)
+        #endif
+        player = try! AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "Test", withExtension: "mp3")!, fileTypeHint: AVFileType.mp3.rawValue)
+        player!.play()
     }
 }
 
