@@ -91,7 +91,7 @@ final class Bar: NSView {
         separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        playback.sink {
+        player.sink {
             title.stringValue = .key("track_\($0.track)_composer") + " - " + .key("track_\($0.track)_title")
             time.stringValue = self.formatter.string(from: $0.elapsed)! + " / " + self.formatter.string(from: $0.track.duration)!
         }.store(in: &subs)

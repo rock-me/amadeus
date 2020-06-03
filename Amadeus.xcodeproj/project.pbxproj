@@ -12,7 +12,9 @@
 		CE04366A24854181003841CA /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366924854181003841CA /* Album.swift */; };
 		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
 		CE0436702485667F003841CA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366F2485667F003841CA /* Detail.swift */; };
-		CEB6E66C2487FAF0006C9C47 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6E66B2487FAF0006C9C47 /* Playback.swift */; };
+		CEB6E66C2487FAF0006C9C47 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6E66B2487FAF0006C9C47 /* Player.swift */; };
+		CEB6E66F248819C6006C9C47 /* Test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEB6E66E248819C6006C9C47 /* Test.mp3 */; };
+		CEB6E67124881A2F006C9C47 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6E67024881A2F006C9C47 /* State.swift */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
@@ -40,7 +42,9 @@
 		CE04366924854181003841CA /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CE04366F2485667F003841CA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		CEB6E66B2487FAF0006C9C47 /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
+		CEB6E66B2487FAF0006C9C47 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		CEB6E66E248819C6006C9C47 /* Test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Test.mp3; sourceTree = "<group>"; };
+		CEB6E67024881A2F006C9C47 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -79,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEB6E66D24881998006C9C47 /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				CEB6E66E248819C6006C9C47 /* Test.mp3 */,
+			);
+			path = Tracks;
+			sourceTree = "<group>";
+		};
 		CEC3ABB12482742E0069DBC3 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +100,7 @@
 				CEF9B29C248275BB009FEF9B /* macOS */,
 				CEF9B29B248275BB009FEF9B /* Products */,
 				CEF9B2B324827F9C009FEF9B /* Shared */,
+				CEB6E66D24881998006C9C47 /* Tracks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,7 +142,8 @@
 				CE04366924854181003841CA /* Album.swift */,
 				CEEA68A02483CFAF00716620 /* Font.swift */,
 				CEF9B2B62482898C009FEF9B /* Persistance.swift */,
-				CEB6E66B2487FAF0006C9C47 /* Playback.swift */,
+				CEB6E66B2487FAF0006C9C47 /* Player.swift */,
+				CEB6E67024881A2F006C9C47 /* State.swift */,
 				CEEA688F2483B6DA00716620 /* String.swift */,
 				CEFA91CC2486B4A800274309 /* Track.swift */,
 				CEF9B2B424827FFD009FEF9B /* UI.swift */,
@@ -204,6 +218,7 @@
 			files = (
 				CEF9B2A2248275BC009FEF9B /* Assets.xcassets in Resources */,
 				CE04366C24855918003841CA /* Media.xcassets in Resources */,
+				CEB6E66F248819C6006C9C47 /* Test.mp3 in Resources */,
 				CEEA68932483B75600716620 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,8 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEEA68902483B6DA00716620 /* String.swift in Sources */,
-				CEB6E66C2487FAF0006C9C47 /* Playback.swift in Sources */,
+				CEB6E66C2487FAF0006C9C47 /* Player.swift in Sources */,
 				CEEA68972483B8B700716620 /* Bar.swift in Sources */,
+				CEB6E67124881A2F006C9C47 /* State.swift in Sources */,
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
 				CE04366624852853003841CA /* Spectrogram.swift in Sources */,
 				CE0436702485667F003841CA /* Detail.swift in Sources */,
