@@ -12,7 +12,6 @@ final class Window: NSWindow, NSWindowDelegate {
         toolbar!.showsBaselineSeparator = false
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
-        delegate = self
         contentView = View(ui: ui)
     }
     

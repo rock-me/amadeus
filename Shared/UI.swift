@@ -9,7 +9,7 @@ struct UI: Codable, Equatable {
         settings
     }
     
-    var frame = CGRect(x: 0, y: 0, width: 500, height: 400)
+    var frame = CGRect(x: 0, y: 0, width: 800, height: 700)
     var section = Section.music
     var album = Album.mists
     var track = Track.satieGymnopedies

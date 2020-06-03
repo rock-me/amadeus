@@ -23,6 +23,7 @@ let persistance = Persistance()
                 persistance.add(ui: .init(frame: window.frame))
             }
             window.makeKeyAndOrderFront(nil)
+            window.delegate = window
         }.store(in: &subs)
     }
 }
