@@ -7,12 +7,21 @@ final class Player: Publisher {
     typealias Failure = Never
     fileprivate var subscriptions = [Sub]()
     private var player: AVAudioPlayer?
+    private let timer = DispatchSource.makeTimerSource(queue: .main)
     
     var state = State.none {
         didSet {
             subscriptions.forEach {
                 _ = $0.subscriber.receive(state)
             }
+        }
+    }
+    
+    init() {
+        timer.activate()
+        timer.setEventHandler {
+            guard let player = self.player else { return }
+            self.state.elapsed = player.currentTime
         }
     }
     
@@ -28,6 +37,7 @@ final class Player: Publisher {
         #endif
         player = try! AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "Test", withExtension: "mp3")!, fileTypeHint: AVFileType.mp3.rawValue)
         player!.play()
+        timer.schedule(deadline: .now(), repeating: 0.5)
     }
 }
 
