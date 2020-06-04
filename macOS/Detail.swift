@@ -89,7 +89,7 @@ final class Detail: NSView {
         persistance.update {
             $0.track = item.track
         }
-        player.state = .init(item.track)
+        player.track(item.track)
     }
 }
 

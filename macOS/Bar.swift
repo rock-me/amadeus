@@ -81,8 +81,8 @@ final class Bar: NSView {
         controls.heightAnchor.constraint(equalToConstant: 26).isActive = true
         controls.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         controls.leftAnchor.constraint(greaterThanOrEqualTo: leftAnchor, constant: 80).isActive = true
-        controls.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
-        let controlsWidth = controls.widthAnchor.constraint(equalToConstant: 150)
+        controls.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
+        let controlsWidth = controls.widthAnchor.constraint(equalToConstant: 100)
         controlsWidth.priority = .defaultLow
         controlsWidth.isActive = true
         

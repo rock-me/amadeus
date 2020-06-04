@@ -26,7 +26,7 @@ let player = Player()
             }
             window.makeKeyAndOrderFront(nil)
             window.delegate = window
-            player.state = .init(persistance.ui.track)
+            player.track(persistance.ui.track)
         }.store(in: &subs)
     }
 }

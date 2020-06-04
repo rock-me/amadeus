@@ -6,10 +6,10 @@ final class Player: Publisher {
     typealias Output = State
     typealias Failure = Never
     fileprivate var subscriptions = [Sub]()
-    private var observations = Set<NSKeyValueObservation>()
+    private var subs = Set<AnyCancellable>()
     private let player = AVPlayer()
     
-    var state = State.none {
+    private var state = State.none {
         didSet {
             subscriptions.forEach {
                 _ = $0.subscriber.receive(state)
@@ -21,9 +21,10 @@ final class Player: Publisher {
         player.addPeriodicTimeObserver(forInterval: CMTime(value: 5, timescale: 10), queue: .main) {
             self.state.elapsed = CMTimeGetSeconds($0)
         }
-        observations.insert(player.observe(\.timeControlStatus) { _, _ in
-            self.state.playing = self.player.timeControlStatus == .playing
-        })
+        
+        player.publisher(for: \.timeControlStatus).sink {
+            self.state.playing = $0 == .playing
+        }.store(in: &subs)
     }
     
     func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
@@ -31,12 +32,16 @@ final class Player: Publisher {
         subscriber.receive(subscription: subscriptions.last!)
     }
     
+    func track(_ track: Track) {
+        player.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: "Test", withExtension: "mp3")!)))
+        state = .init(track)
+    }
+    
     func play() {
         #if os(iOS)
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         try AVAudioSession.sharedInstance().setActive(true)
         #endif
-        player.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: "Test", withExtension: "mp3")!)))
         player.play()
     }
     
