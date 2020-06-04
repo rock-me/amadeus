@@ -2,6 +2,7 @@ Music = "Music";
 Stats = "Stats";
 Store = "Store";
 Settings = "Settings";
+In.app = "In-App Purchase";
 
 album_mists = "The Mists";
 album_mists_subtitle = "A temporary lapse of reasoning with oneself.";

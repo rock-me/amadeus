@@ -18,12 +18,16 @@ final class Player: Publisher {
     }
     
     init() {
-        player.addPeriodicTimeObserver(forInterval: CMTime(value: 5, timescale: 10), queue: .main) {
+        player.addPeriodicTimeObserver(forInterval: .init(value: 5, timescale: 10), queue: .main) {
             self.state.elapsed = CMTimeGetSeconds($0)
         }
         
         player.publisher(for: \.timeControlStatus).sink {
             self.state.playing = $0 == .playing
+        }.store(in: &subs)
+        
+        NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime).sink { _ in
+            
         }.store(in: &subs)
     }
     
@@ -56,6 +60,7 @@ private final class Sub: Subscription {
     
     init(_ subscriber: AnySubscriber<State, Never>, publisher: Player) {
         self.subscriber = subscriber
+        self.publisher = publisher
     }
     
     func request(_ demand: Subscribers.Demand) { }

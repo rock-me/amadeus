@@ -1,8 +1,10 @@
 import AppKit
+import Combine
 
 final class Coverflow: NSView {
     private weak var music: Music!
     private weak var scroll: Scroll!
+    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
     init(music: Music) {
@@ -39,6 +41,14 @@ final class Coverflow: NSView {
         scroll.right.constraint(greaterThanOrEqualTo: left, constant: 60).isActive = true
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        session.sink { preferences in
+            scroll.views.map { $0 as! Item }.forEach { item in
+                item.purchase.isHidden = preferences.purchases.contains {
+                    $0.hasSuffix("\(item.album)")
+                }
+            }
+        }.store(in: &subs)
     }
     
     func show(_ album: Album) {
@@ -61,6 +71,10 @@ final class Coverflow: NSView {
         }
         music.select(album: item.album)
     }
+    
+    @objc private func store() {
+        
+    }
 }
 
 private final class Item: Control {
@@ -72,6 +86,7 @@ private final class Item: Control {
     }
     
     let album: Album
+    private(set) weak var purchase: NSView!
     private weak var base: NSView!
     private weak var width: NSLayoutConstraint!
     private weak var height: NSLayoutConstraint!
@@ -111,6 +126,18 @@ private final class Item: Control {
         name.textColor = .white
         addSubview(name)
         
+        let purchase = NSView()
+        purchase.translatesAutoresizingMaskIntoConstraints = false
+        purchase.wantsLayer = true
+        purchase.layer!.backgroundColor = CGColor(gray: 0, alpha: 0.85)
+        purchase.isHidden = true
+        addSubview(purchase)
+        self.purchase = purchase
+        
+        let visitStore = Label(.key("In.app"), .bold(10))
+        visitStore.textColor = .white
+        purchase.addSubview(visitStore)
+        
         widthAnchor.constraint(equalTo: base.widthAnchor, constant: 20).isActive = true
         
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -133,6 +160,14 @@ private final class Item: Control {
         name.bottomAnchor.constraint(equalTo: base.bottomAnchor, constant: -10).isActive = true
         name.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         name.rightAnchor.constraint(lessThanOrEqualTo: base.rightAnchor, constant: -10).isActive = true
+        
+        purchase.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
+        purchase.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
+        purchase.centerYAnchor.constraint(equalTo: base.centerYAnchor).isActive = true
+        purchase.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        visitStore.centerYAnchor.constraint(equalTo: purchase.centerYAnchor).isActive = true
+        visitStore.centerXAnchor.constraint(equalTo: purchase.centerXAnchor).isActive = true
     }
     
     override func updateLayer() {

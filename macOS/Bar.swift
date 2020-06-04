@@ -115,7 +115,7 @@ final class Bar: NSView {
     override func updateLayer() {
         base.layer!.backgroundColor = NSColor.controlHighlightColor.cgColor
         border.layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
-        controls.layer!.backgroundColor = NSColor.underPageBackgroundColor.cgColor
+        controls.layer!.backgroundColor = .clear
     }
     
     @objc private func play() {
@@ -150,7 +150,7 @@ private final class Button: Control {
     }
     
     override func hoverOn() {
-        image.contentTintColor = .textColor
+        image.contentTintColor = .controlAccentColor
     }
     
     override func hoverOff() {
