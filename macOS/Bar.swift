@@ -5,6 +5,8 @@ final class Bar: NSView {
     private weak var controls: NSView!
     private weak var base: NSView!
     private weak var border: NSView!
+    private weak var playButton: Button!
+    private weak var pauseButton: Button!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     
@@ -21,10 +23,18 @@ final class Bar: NSView {
         addSubview(controls)
         self.controls = controls
         
-        let play = Button(image: "play")
-        play.target = self
-        play.action = #selector(self.play)
-        controls.addSubview(play)
+        let playButton = Button(image: "play")
+        playButton.target = self
+        playButton.action = #selector(play)
+        controls.addSubview(playButton)
+        self.playButton = playButton
+        
+        let pauseButton = Button(image: "pause")
+        pauseButton.target = self
+        pauseButton.action = #selector(pause)
+        pauseButton.isHidden = true
+        controls.addSubview(pauseButton)
+        self.pauseButton = pauseButton
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
@@ -76,8 +86,11 @@ final class Bar: NSView {
         controlsWidth.priority = .defaultLow
         controlsWidth.isActive = true
         
-        play.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
-        play.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
+        playButton.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
+        playButton.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
+        
+        pauseButton.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
+        pauseButton.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
         
         title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
@@ -94,6 +107,8 @@ final class Bar: NSView {
         player.sink {
             title.stringValue = .key("track_\($0.track)_composer") + " - " + .key("track_\($0.track)_title")
             time.stringValue = self.formatter.string(from: $0.elapsed)! + " / " + self.formatter.string(from: $0.track.duration)!
+            playButton.isHidden = $0.playing
+            pauseButton.isHidden = !$0.playing
         }.store(in: &subs)
     }
     
@@ -105,6 +120,10 @@ final class Bar: NSView {
     
     @objc private func play() {
         player.play()
+    }
+    
+    @objc private func pause() {
+        player.pause()
     }
 }
 

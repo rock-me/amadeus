@@ -6,8 +6,8 @@ final class Player: Publisher {
     typealias Output = State
     typealias Failure = Never
     fileprivate var subscriptions = [Sub]()
-    private var player: AVAudioPlayer?
-    private let timer = DispatchSource.makeTimerSource(queue: .main)
+    private var observations = Set<NSKeyValueObservation>()
+    private let player = AVPlayer()
     
     var state = State.none {
         didSet {
@@ -18,11 +18,12 @@ final class Player: Publisher {
     }
     
     init() {
-        timer.activate()
-        timer.setEventHandler {
-            guard let player = self.player else { return }
-            self.state.elapsed = player.currentTime
+        player.addPeriodicTimeObserver(forInterval: CMTime(value: 5, timescale: 10), queue: .main) {
+            self.state.elapsed = CMTimeGetSeconds($0)
         }
+        observations.insert(player.observe(\.timeControlStatus) { _, _ in
+            self.state.playing = self.player.timeControlStatus == .playing
+        })
     }
     
     func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
@@ -35,9 +36,12 @@ final class Player: Publisher {
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         try AVAudioSession.sharedInstance().setActive(true)
         #endif
-        player = try! AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "Test", withExtension: "mp3")!, fileTypeHint: AVFileType.mp3.rawValue)
-        player!.play()
-        timer.schedule(deadline: .now(), repeating: 0.5)
+        player.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: "Test", withExtension: "mp3")!)))
+        player.play()
+    }
+    
+    func pause() {
+        player.pause()
     }
 }
 

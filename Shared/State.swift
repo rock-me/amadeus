@@ -2,7 +2,8 @@ import Foundation
 
 struct State {
     static let none = State(.none)
-    
+
+    var playing = false
     var elapsed = TimeInterval()
     let track: Track
     
