@@ -21,8 +21,8 @@ final class Player: Publisher {
         player.addPeriodicTimeObserver(forInterval: CMTime(value: 5, timescale: 10), queue: .main) {
             self.state.elapsed = CMTimeGetSeconds($0)
         }
-        observations.insert(player.observe(\.timeControlStatus, options: .new) {
-            self.state.playing = $1.newValue == .playing
+        observations.insert(player.observe(\.timeControlStatus) { _, _ in
+            self.state.playing = self.player.timeControlStatus == .playing
         })
     }
     
