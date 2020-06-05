@@ -76,16 +76,19 @@ final class Side: NSView {
     
     @discardableResult func showStats() -> Bool {
         guard select(item: stats) else { return false }
+        view.show(Stats())
         return true
     }
     
     @discardableResult func showStore() -> Bool {
         guard select(item: store) else { return false }
+        view.show(Stats())
         return true
     }
     
     @discardableResult func showSettings() -> Bool {
         guard select(item: settings) else { return false }
+        view.show(Stats())
         return true
     }
     

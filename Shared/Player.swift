@@ -64,7 +64,14 @@ final class Player: Publisher {
                 track(Album.allCases[album].tracks[index + 1])
                 play()
             } else {
-                
+                switch session.preferences.albumEnds {
+                case .loop:
+                    track(Album.allCases[album].tracks.first!)
+                    play()
+                case .next:
+                    break
+                case .stop: break
+                }
             }
         }
     }
