@@ -4,8 +4,8 @@ import Combine
 final class Session: Publisher {
     typealias Output = Preferences
     typealias Failure = Never
+    private(set) var preferences = Preferences()
     fileprivate var subscriptions = [Sub]()
-    private var preferences = Preferences()
     
     func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
         subscriptions.append(.init(.init(subscriber), publisher: self))

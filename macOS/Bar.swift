@@ -18,8 +18,6 @@ final class Bar: NSView {
         
         let controls = NSView()
         controls.translatesAutoresizingMaskIntoConstraints = false
-        controls.wantsLayer = true
-        controls.layer!.cornerRadius = 13
         addSubview(controls)
         self.controls = controls
         
