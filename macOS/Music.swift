@@ -45,12 +45,12 @@ final class Music: NSView {
         detail.leftAnchor.constraint(equalTo: scroll.left, constant: 30).isActive = true
         detail.rightAnchor.constraint(equalTo: scroll.right, constant: -30).isActive = true
         
-        show(persistance.ui.album)
+        show(session.ui.value.album)
     }
     
     func select(album: Album) {
         show(album)
-        persistance.update {
+        session.update {
             $0.album = album
         }
     }

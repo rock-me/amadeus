@@ -42,7 +42,7 @@ final class Coverflow: NSView {
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
         
-        session.sink { preferences in
+        session.preferences.sink { preferences in
             scroll.views.map { $0 as! Item }.forEach { item in
                 item.purchase.isHidden = preferences.purchases.contains {
                     $0.hasSuffix("\(item.album)")

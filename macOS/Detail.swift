@@ -56,7 +56,7 @@ final class Detail: NSView {
             }
             
             let item = self.item($0)
-            item.selected = $0 == persistance.ui.track
+            item.selected = $0 == session.ui.value.track
             item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
             top = item.bottomAnchor
         }
@@ -86,7 +86,7 @@ final class Detail: NSView {
     
     @objc private func select(item: Item) {
         guard show(item) else { return }
-        persistance.update {
+        session.update {
             $0.track = item.track
         }
         player.track(item.track)

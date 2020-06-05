@@ -5,7 +5,7 @@ final class View: NSView {
     private weak var side: Side!
     
     required init?(coder: NSCoder) { nil }
-    init(ui: UI) {
+    init() {
         super.init(frame: .zero)
         let bar = Bar()
         addSubview(bar)
@@ -23,7 +23,7 @@ final class View: NSView {
         side.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         side.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
-        switch ui.section {
+        switch session.ui.value.section {
         case .music: side.showMusic()
         case .stats: side.showStats()
         case .store: side.showStore()

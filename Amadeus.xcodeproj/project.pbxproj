@@ -37,7 +37,6 @@
 		CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2AB24827C08009FEF9B /* Window.swift */; };
 		CEF9B2B224827F8A009FEF9B /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CEF9B2B124827F8A009FEF9B /* Balam */; };
 		CEF9B2B524827FFD009FEF9B /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B424827FFD009FEF9B /* UI.swift */; };
-		CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B2B62482898C009FEF9B /* Persistance.swift */; };
 		CEFA91CD2486B4A800274309 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFA91CC2486B4A800274309 /* Track.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +76,6 @@
 		CEF9B2AE24827ED8009FEF9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CEF9B2AF24827ED8009FEF9B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEF9B2B424827FFD009FEF9B /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
-		CEF9B2B62482898C009FEF9B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		CEFA91CC2486B4A800274309 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +151,6 @@
 				CE04366924854181003841CA /* Album.swift */,
 				CEEA68A02483CFAF00716620 /* Font.swift */,
 				CE48A41A248958DC004555C1 /* Heuristic.swift */,
-				CEF9B2B62482898C009FEF9B /* Persistance.swift */,
 				CEB6E66B2487FAF0006C9C47 /* Player.swift */,
 				CE48A41824895857004555C1 /* Preferences.swift */,
 				CE48A41624895786004555C1 /* Section.swift */,
@@ -257,7 +254,6 @@
 				CE04366A24854181003841CA /* Album.swift in Sources */,
 				CE04366824853C1F003841CA /* Coverflow.swift in Sources */,
 				CEF9B29E248275BB009FEF9B /* App.swift in Sources */,
-				CEF9B2B72482898C009FEF9B /* Persistance.swift in Sources */,
 				CEF9B2AC24827C08009FEF9B /* Window.swift in Sources */,
 				CEFA91CD2486B4A800274309 /* Track.swift in Sources */,
 				CEEA68A12483CFAF00716620 /* Font.swift in Sources */,

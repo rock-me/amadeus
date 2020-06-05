@@ -115,28 +115,28 @@ final class Side: NSView {
     
     @objc private func selectMusic() {
         guard showMusic() else { return }
-        persistance.update {
+        session.update {
             $0.section = .music
         }
     }
     
     @objc private func selectStats() {
         guard showStats() else { return }
-        persistance.update {
+        session.update {
             $0.section = .stats
         }
     }
     
     @objc private func selectStore() {
         guard showStore() else { return }
-        persistance.update {
+        session.update {
             $0.section = .store
         }
     }
     
     @objc private func selectSettings() {
         guard showSettings() else { return }
-        persistance.update {
+        session.update {
             $0.section = .settings
         }
     }

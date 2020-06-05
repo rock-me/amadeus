@@ -1,47 +1,50 @@
 import Foundation
+import Balam
 import Combine
 
-final class Session: Publisher {
-    typealias Output = Preferences
-    typealias Failure = Never
-    private(set) var preferences = Preferences()
-    fileprivate var subscriptions = [Sub]()
+final class Session {
+    private(set) var preferences = CurrentValueSubject<Preferences, Never>(.init())
+    private(set) var ui = CurrentValueSubject<UI, Never>(.init())
+    private var subs = Set<AnyCancellable>()
+    private let storeUI = Balam("ui.amadeus")
+    private let storePreferences = Balam("preferences.amadeus")
     
-    func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
-        subscriptions.append(.init(.init(subscriber), publisher: self))
-        subscriber.receive(subscription: subscriptions.last!)
-        _ = subscriber.receive(preferences)
-    }
-    
-    func loaded(_ preferences: Preferences) {
-        self.preferences = preferences
-        notify()
-    }
-    
-    private func notify() {
-        subscriptions.forEach {
-            _ = $0.subscriber.receive(preferences)
+    var loadUI: Future<Bool, Never> {
+        .init { promise in
+            self.storeUI.nodes(UI.self).sink {
+                guard let ui = $0.first else {
+                    promise(.success(false))
+                    return
+                }
+                self.ui.value = ui
+                promise(.success(true))
+            }.store(in: &self.subs)
         }
     }
     
-    private func save() {
-        persistance.save(preferences)
-    }
-}
-
-private final class Sub: Subscription {
-    private weak var publisher: Session!
-    fileprivate var subscriber: AnySubscriber<Preferences, Never>!
-    
-    init(_ subscriber: AnySubscriber<Preferences, Never>, publisher: Session) {
-        self.subscriber = subscriber
-        self.publisher = publisher
+    func add(ui frame: CGRect) {
+        ui.value.frame = frame
+        storeUI.add(ui.value)
     }
     
-    func request(_ demand: Subscribers.Demand) { }
+    func loadPreferences() {
+        storePreferences.nodes(Preferences.self).sink {
+            if let stored = $0.first {
+                self.preferences.value = stored
+            } else {
+                self.preferences.value = .init()
+                self.storePreferences.add(self.preferences.value)
+            }
+        }.store(in: &self.subs)
+    }
     
-    func cancel() {
-        subscriber = nil
-        publisher.subscriptions.removeAll { $0 === self }
+    func update(ui completion: (inout UI) -> Void) {
+        completion(&ui.value)
+        storeUI.update(ui.value)
+    }
+    
+    func update(preferences completion: (inout Preferences) -> Void) {
+        completion(&preferences.value)
+        storePreferences.update(preferences.value)
     }
 }

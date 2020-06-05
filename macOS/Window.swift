@@ -1,8 +1,8 @@
 import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
-    init(ui: UI) {
-        super.init(contentRect: ui.frame, styleMask:
+    init() {
+        super.init(contentRect: session.ui.value.frame, styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
         minSize = .init(width: 400, height: 300)
@@ -12,7 +12,7 @@ final class Window: NSWindow, NSWindowDelegate {
         toolbar!.showsBaselineSeparator = false
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
-        contentView = View(ui: ui)
+        contentView = View()
     }
     
     override func close() {
@@ -20,13 +20,13 @@ final class Window: NSWindow, NSWindowDelegate {
     }
     
     func windowDidMove(_: Notification) {
-        persistance.update {
+        session.update {
             $0.frame = frame
         }
     }
     
     func windowDidResize(_: Notification) {
-        persistance.update {
+        session.update {
             $0.frame = frame
         }
     }

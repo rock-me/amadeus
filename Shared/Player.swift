@@ -27,7 +27,7 @@ final class Player: Publisher {
         }.store(in: &subs)
         
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime).sink { _ in
-            switch session.preferences.trackEnds {
+            switch session.preferences.value.trackEnds {
             case .loop: self.play()
             case .next: self.next()
             case .stop: break
@@ -58,13 +58,13 @@ final class Player: Publisher {
     }
     
     private func next() {
-        Album.allCases.firstIndex { $0.tracks.contains(persistance.ui.track) }.map { album in
-            let index = Album.allCases[album].tracks.firstIndex(of: persistance.ui.track)!
+        Album.allCases.firstIndex { $0.tracks.contains(session.ui.value.track) }.map { album in
+            let index = Album.allCases[album].tracks.firstIndex(of: session.ui.value.track)!
             if Album.allCases[album].tracks.count > index + 1 {
                 track(Album.allCases[album].tracks[index + 1])
                 play()
             } else {
-                switch session.preferences.albumEnds {
+                switch session.preferences.value.albumEnds {
                 case .loop:
                     track(Album.allCases[album].tracks.first!)
                     play()

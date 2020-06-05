@@ -1,7 +1,6 @@
 import AppKit
 import Combine
 
-let persistance = Persistance()
 let session = Session()
 let player = Player()
 
@@ -16,21 +15,19 @@ let player = Player()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        persistance.loadUI.sink {
+        session.loadUI.sink {
             let window: Window
             if $0 {
-                window = .init(ui: persistance.ui)
+                window = .init()
             } else {
-                window = .init(ui: .init())
+                window = .init()
                 window.center()
-                persistance.add(.init(frame: window.frame))
+                session.add(ui: window.frame)
             }
             window.makeKeyAndOrderFront(nil)
             window.delegate = window
-            player.track(persistance.ui.track)
-            persistance.loadPreferences.sink {
-                session.loaded($0)
-            }.store(in: &self.subs)
+            player.track(session.ui.value.track)
+            session.loadPreferences()
         }.store(in: &subs)
     }
 }
