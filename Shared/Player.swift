@@ -2,32 +2,25 @@ import Foundation
 import Combine
 import AVFoundation
 
-final class Player: Publisher {
-    typealias Output = State
-    typealias Failure = Never
-    fileprivate var subscriptions = [Sub]()
+public final class Player {
+    public var config = CurrentValueSubject<Config, Never>(.init())
+    public private(set) var track = CurrentValueSubject<Track, Never>(.satieGymnopedies)
+    public private(set) var playing = CurrentValueSubject<Bool, Never>(false)
+    public private(set) var time = CurrentValueSubject<TimeInterval, Never>(.init())
     private var subs = Set<AnyCancellable>()
     private let player = AVPlayer()
     
-    private var state = State.none {
-        didSet {
-            subscriptions.forEach {
-                _ = $0.subscriber.receive(state)
-            }
-        }
-    }
-    
     init() {
         player.addPeriodicTimeObserver(forInterval: .init(value: 5, timescale: 10), queue: .main) {
-            self.state.elapsed = CMTimeGetSeconds($0)
+            self.time.value = CMTimeGetSeconds($0)
         }
         
         player.publisher(for: \.timeControlStatus).sink {
-            self.state.playing = $0 == .playing
+            self.playing.value = $0 == .playing
         }.store(in: &subs)
         
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime).sink { _ in
-            switch session.preferences.value.trackEnds {
+            switch self.config.value.trackEnds {
             case .loop: self.play()
             case .next: self.next()
             case .stop: break
@@ -35,20 +28,15 @@ final class Player: Publisher {
         }.store(in: &subs)
     }
     
-    func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
-        subscriptions.append(.init(.init(subscriber), publisher: self))
-        subscriber.receive(subscription: subscriptions.last!)
-    }
-    
     func track(_ track: Track) {
         player.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: "Test", withExtension: "mp3")!)))
-        state = .init(track)
+        track = .init(track)
     }
     
     func play() {
         #if os(iOS)
-        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try AVAudioSession.sharedInstance().setActive(true)
+        try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try! AVAudioSession.sharedInstance().setActive(true)
         #endif
         player.play()
     }
@@ -58,38 +46,21 @@ final class Player: Publisher {
     }
     
     private func next() {
-        Album.allCases.firstIndex { $0.tracks.contains(session.ui.value.track) }.map { album in
-            let index = Album.allCases[album].tracks.firstIndex(of: session.ui.value.track)!
-            if Album.allCases[album].tracks.count > index + 1 {
-                track(Album.allCases[album].tracks[index + 1])
-                play()
-            } else {
-                switch session.preferences.value.albumEnds {
-                case .loop:
-                    track(Album.allCases[album].tracks.first!)
-                    play()
-                case .next:
-                    break
-                case .stop: break
-                }
-            }
-        }
-    }
-}
-
-private final class Sub: Subscription {
-    private weak var publisher: Player!
-    fileprivate var subscriber: AnySubscriber<State, Never>!
-    
-    init(_ subscriber: AnySubscriber<State, Never>, publisher: Player) {
-        self.subscriber = subscriber
-        self.publisher = publisher
-    }
-    
-    func request(_ demand: Subscribers.Demand) { }
-    
-    func cancel() {
-        subscriber = nil
-        publisher.subscriptions.removeAll { $0 === self }
+//        Album.allCases.firstIndex { $0.tracks.contains(session.ui.value.track) }.map { album in
+//            let index = Album.allCases[album].tracks.firstIndex(of: session.ui.value.track)!
+//            if Album.allCases[album].tracks.count > index + 1 {
+//                track(Album.allCases[album].tracks[index + 1])
+//                play()
+//            } else {
+//                switch session.preferences.value.albumEnds {
+//                case .loop:
+//                    track(Album.allCases[album].tracks.first!)
+//                    play()
+//                case .next:
+//                    break
+//                case .stop: break
+//                }
+//            }
+//        }
     }
 }
