@@ -15,9 +15,6 @@ final class Music: NSView {
         scroll.verticalScroller!.controlSize = .mini
         addSubview(scroll)
         
-        let spectrogram = Spectrogram()
-        scroll.add(spectrogram)
-        
         let coverflow = Coverflow(music: self)
         scroll.add(coverflow)
         self.coverflow = coverflow
@@ -34,11 +31,7 @@ final class Music: NSView {
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: detail.bottomAnchor, constant: 30).isActive = true
         
-        spectrogram.topAnchor.constraint(equalTo: scroll.top, constant: 30).isActive = true
-        spectrogram.leftAnchor.constraint(equalTo: scroll.left, constant: 30).isActive = true
-        spectrogram.rightAnchor.constraint(equalTo: scroll.right, constant: -30).isActive = true
-        
-        coverflow.topAnchor.constraint(equalTo: spectrogram.bottomAnchor, constant: 30).isActive = true
+        coverflow.topAnchor.constraint(equalTo: scroll.top, constant: 30).isActive = true
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         coverflow.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         

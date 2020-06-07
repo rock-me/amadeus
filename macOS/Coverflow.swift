@@ -107,7 +107,7 @@ private final class Item: Control {
         addSubview(base)
         self.base = base
         
-        let image = NSImageView(image: NSImage(named: "album_\(album)")!)
+        let image = NSImageView(image: NSImage(named: album.cover)!)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.imageScaling = .scaleProportionallyUpOrDown
         image.wantsLayer = true
@@ -121,7 +121,7 @@ private final class Item: Control {
         shade.layer!.cornerRadius = 10
         addSubview(shade)
         
-        let name = Label(.key("album_\(album)"), .bold(10))
+        let name = Label(.key(album.title), .bold(10))
         name.textColor = .white
         addSubview(name)
         

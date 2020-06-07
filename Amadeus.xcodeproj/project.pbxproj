@@ -15,29 +15,29 @@
 		CE48A41724895786004555C1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41624895786004555C1 /* Section.swift */; };
 		CE48A41D24895B71004555C1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41C24895B71004555C1 /* Session.swift */; };
 		CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD9C21248B992F00E1BDB2 /* Playback.swift */; };
-		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.music */; };
-		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.music */; };
-		CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.music */; };
-		CEAD9C3D248BCC6300E1BDB2 /* beethovenPathetique.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.music */; };
-		CEAD9C3E248BCC6300E1BDB2 /* mozartPianoConcerto23.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.music */; };
-		CEAD9C3F248BCC6300E1BDB2 /* beethovenPianoConcerto3.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.music */; };
-		CEAD9C40248BCC6300E1BDB2 /* mozartEineKleineNachtmusik.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.music */; };
-		CEAD9C41248BCC6300E1BDB2 /* beethovenFurElise.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.music */; };
-		CEAD9C42248BCC6300E1BDB2 /* beethovenSymphony5.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.music */; };
-		CEAD9C43248BCC6300E1BDB2 /* mozartPianoConcerto20.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.music */; };
-		CEAD9C44248BCC6300E1BDB2 /* mozartPrague.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.music */; };
-		CEAD9C45248BCC6300E1BDB2 /* mozartRequiem.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.music */; };
-		CEAD9C46248BCC6300E1BDB2 /* mozartPianoConcerto22.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.music */; };
-		CEAD9C47248BCC6300E1BDB2 /* satieGymnopedies.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.music */; };
-		CEAD9C48248BCC6300E1BDB2 /* mozartPianoSonata11.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.music */; };
-		CEAD9C49248BCC6300E1BDB2 /* mozartElviraMadigan.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.music */; };
-		CEAD9C4A248BCC6300E1BDB2 /* beethovenMoonlightSonata.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.music */; };
-		CEAD9C4B248BCC6300E1BDB2 /* beethovenSymphony9.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.music */; };
-		CEAD9C4C248BCC6300E1BDB2 /* beethovenSymphony7.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.music */; };
-		CEAD9C4D248BCC6300E1BDB2 /* mozartFantasia.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.music */; };
-		CEAD9C4E248BCC6300E1BDB2 /* debussyClairDeLune.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.music */; };
-		CEAD9C4F248BCC6300E1BDB2 /* mozartSymphony1.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.music */; };
-		CEAD9C50248BCC6300E1BDB2 /* beethovenPianoSonata1.music in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.music */; };
+		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
+		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */; };
+		CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */; };
+		CEAD9C3D248BCC6300E1BDB2 /* beethovenPathetique.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.mp3 */; };
+		CEAD9C3E248BCC6300E1BDB2 /* mozartPianoConcerto23.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.mp3 */; };
+		CEAD9C3F248BCC6300E1BDB2 /* beethovenPianoConcerto3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.mp3 */; };
+		CEAD9C40248BCC6300E1BDB2 /* mozartEineKleineNachtmusik.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.mp3 */; };
+		CEAD9C41248BCC6300E1BDB2 /* beethovenFurElise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.mp3 */; };
+		CEAD9C42248BCC6300E1BDB2 /* beethovenSymphony5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.mp3 */; };
+		CEAD9C43248BCC6300E1BDB2 /* mozartPianoConcerto20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.mp3 */; };
+		CEAD9C44248BCC6300E1BDB2 /* mozartPrague.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.mp3 */; };
+		CEAD9C45248BCC6300E1BDB2 /* mozartRequiem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.mp3 */; };
+		CEAD9C46248BCC6300E1BDB2 /* mozartPianoConcerto22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.mp3 */; };
+		CEAD9C47248BCC6300E1BDB2 /* satieGymnopedies.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.mp3 */; };
+		CEAD9C48248BCC6300E1BDB2 /* mozartPianoSonata11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.mp3 */; };
+		CEAD9C49248BCC6300E1BDB2 /* mozartElviraMadigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.mp3 */; };
+		CEAD9C4A248BCC6300E1BDB2 /* beethovenMoonlightSonata.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.mp3 */; };
+		CEAD9C4B248BCC6300E1BDB2 /* beethovenSymphony9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.mp3 */; };
+		CEAD9C4C248BCC6300E1BDB2 /* beethovenSymphony7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.mp3 */; };
+		CEAD9C4D248BCC6300E1BDB2 /* mozartFantasia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.mp3 */; };
+		CEAD9C4E248BCC6300E1BDB2 /* debussyClairDeLune.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.mp3 */; };
+		CEAD9C4F248BCC6300E1BDB2 /* mozartSymphony1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */; };
+		CEAD9C50248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 */; };
 		CEB55D3C248A3073002CDB8A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB55D3B248A3073002CDB8A /* Stats.swift */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
@@ -66,29 +66,29 @@
 		CE48A41624895786004555C1 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		CE48A41C24895B71004555C1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CEAD9C21248B992F00E1BDB2 /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
-		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenSymphony2.music; sourceTree = "<group>"; };
-		CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = brahmsSymphony3.music; sourceTree = "<group>"; };
-		CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartSymphony40.music; sourceTree = "<group>"; };
-		CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenPathetique.music; sourceTree = "<group>"; };
-		CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartPianoConcerto23.music; sourceTree = "<group>"; };
-		CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenPianoConcerto3.music; sourceTree = "<group>"; };
-		CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartEineKleineNachtmusik.music; sourceTree = "<group>"; };
-		CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenFurElise.music; sourceTree = "<group>"; };
-		CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenSymphony5.music; sourceTree = "<group>"; };
-		CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartPianoConcerto20.music; sourceTree = "<group>"; };
-		CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartPrague.music; sourceTree = "<group>"; };
-		CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartRequiem.music; sourceTree = "<group>"; };
-		CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartPianoConcerto22.music; sourceTree = "<group>"; };
-		CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = satieGymnopedies.music; sourceTree = "<group>"; };
-		CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartPianoSonata11.music; sourceTree = "<group>"; };
-		CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartElviraMadigan.music; sourceTree = "<group>"; };
-		CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenMoonlightSonata.music; sourceTree = "<group>"; };
-		CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenSymphony9.music; sourceTree = "<group>"; };
-		CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenSymphony7.music; sourceTree = "<group>"; };
-		CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartFantasia.music; sourceTree = "<group>"; };
-		CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = debussyClairDeLune.music; sourceTree = "<group>"; };
-		CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = mozartSymphony1.music; sourceTree = "<group>"; };
-		CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.music */ = {isa = PBXFileReference; lastKnownFileType = file; path = beethovenPianoSonata1.music; sourceTree = "<group>"; };
+		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony2.mp3; sourceTree = "<group>"; };
+		CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brahmsSymphony3.mp3; sourceTree = "<group>"; };
+		CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartSymphony40.mp3; sourceTree = "<group>"; };
+		CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenPathetique.mp3; sourceTree = "<group>"; };
+		CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartPianoConcerto23.mp3; sourceTree = "<group>"; };
+		CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenPianoConcerto3.mp3; sourceTree = "<group>"; };
+		CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartEineKleineNachtmusik.mp3; sourceTree = "<group>"; };
+		CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenFurElise.mp3; sourceTree = "<group>"; };
+		CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony5.mp3; sourceTree = "<group>"; };
+		CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartPianoConcerto20.mp3; sourceTree = "<group>"; };
+		CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartPrague.mp3; sourceTree = "<group>"; };
+		CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartRequiem.mp3; sourceTree = "<group>"; };
+		CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartPianoConcerto22.mp3; sourceTree = "<group>"; };
+		CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = satieGymnopedies.mp3; sourceTree = "<group>"; };
+		CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartPianoSonata11.mp3; sourceTree = "<group>"; };
+		CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartElviraMadigan.mp3; sourceTree = "<group>"; };
+		CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenMoonlightSonata.mp3; sourceTree = "<group>"; };
+		CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony9.mp3; sourceTree = "<group>"; };
+		CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony7.mp3; sourceTree = "<group>"; };
+		CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartFantasia.mp3; sourceTree = "<group>"; };
+		CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = debussyClairDeLune.mp3; sourceTree = "<group>"; };
+		CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartSymphony1.mp3; sourceTree = "<group>"; };
+		CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenPianoSonata1.mp3; sourceTree = "<group>"; };
 		CEB55D3B248A3073002CDB8A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -130,29 +130,29 @@
 		CEB6E66D24881998006C9C47 /* Tracks */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.music */,
-				CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.music */,
-				CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.music */,
-				CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.music */,
-				CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.music */,
-				CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.music */,
-				CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.music */,
-				CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.music */,
-				CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.music */,
-				CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.music */,
-				CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.music */,
-				CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.music */,
-				CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.music */,
-				CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.music */,
-				CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.music */,
-				CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.music */,
-				CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.music */,
-				CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.music */,
-				CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.music */,
-				CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.music */,
-				CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.music */,
-				CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.music */,
-				CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.music */,
+				CEAD9C2A248BCC6200E1BDB2 /* beethovenFurElise.mp3 */,
+				CEAD9C33248BCC6300E1BDB2 /* beethovenMoonlightSonata.mp3 */,
+				CEAD9C26248BCC6200E1BDB2 /* beethovenPathetique.mp3 */,
+				CEAD9C28248BCC6200E1BDB2 /* beethovenPianoConcerto3.mp3 */,
+				CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 */,
+				CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */,
+				CEAD9C2B248BCC6200E1BDB2 /* beethovenSymphony5.mp3 */,
+				CEAD9C35248BCC6300E1BDB2 /* beethovenSymphony7.mp3 */,
+				CEAD9C34248BCC6300E1BDB2 /* beethovenSymphony9.mp3 */,
+				CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */,
+				CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.mp3 */,
+				CEAD9C29248BCC6200E1BDB2 /* mozartEineKleineNachtmusik.mp3 */,
+				CEAD9C32248BCC6300E1BDB2 /* mozartElviraMadigan.mp3 */,
+				CEAD9C36248BCC6300E1BDB2 /* mozartFantasia.mp3 */,
+				CEAD9C2C248BCC6300E1BDB2 /* mozartPianoConcerto20.mp3 */,
+				CEAD9C2F248BCC6300E1BDB2 /* mozartPianoConcerto22.mp3 */,
+				CEAD9C27248BCC6200E1BDB2 /* mozartPianoConcerto23.mp3 */,
+				CEAD9C31248BCC6300E1BDB2 /* mozartPianoSonata11.mp3 */,
+				CEAD9C2D248BCC6300E1BDB2 /* mozartPrague.mp3 */,
+				CEAD9C2E248BCC6300E1BDB2 /* mozartRequiem.mp3 */,
+				CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */,
+				CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */,
+				CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.mp3 */,
 			);
 			path = Tracks;
 			sourceTree = "<group>";
@@ -283,32 +283,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAD9C4A248BCC6300E1BDB2 /* beethovenMoonlightSonata.music in Resources */,
-				CEAD9C3E248BCC6300E1BDB2 /* mozartPianoConcerto23.music in Resources */,
-				CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.music in Resources */,
-				CEAD9C3D248BCC6300E1BDB2 /* beethovenPathetique.music in Resources */,
+				CEAD9C4A248BCC6300E1BDB2 /* beethovenMoonlightSonata.mp3 in Resources */,
+				CEAD9C3E248BCC6300E1BDB2 /* mozartPianoConcerto23.mp3 in Resources */,
+				CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */,
+				CEAD9C3D248BCC6300E1BDB2 /* beethovenPathetique.mp3 in Resources */,
 				CEF9B2A2248275BC009FEF9B /* Assets.xcassets in Resources */,
-				CEAD9C4D248BCC6300E1BDB2 /* mozartFantasia.music in Resources */,
-				CEAD9C4E248BCC6300E1BDB2 /* debussyClairDeLune.music in Resources */,
-				CEAD9C4B248BCC6300E1BDB2 /* beethovenSymphony9.music in Resources */,
+				CEAD9C4D248BCC6300E1BDB2 /* mozartFantasia.mp3 in Resources */,
+				CEAD9C4E248BCC6300E1BDB2 /* debussyClairDeLune.mp3 in Resources */,
+				CEAD9C4B248BCC6300E1BDB2 /* beethovenSymphony9.mp3 in Resources */,
 				CE04366C24855918003841CA /* Media.xcassets in Resources */,
-				CEAD9C49248BCC6300E1BDB2 /* mozartElviraMadigan.music in Resources */,
-				CEAD9C41248BCC6300E1BDB2 /* beethovenFurElise.music in Resources */,
-				CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.music in Resources */,
-				CEAD9C42248BCC6300E1BDB2 /* beethovenSymphony5.music in Resources */,
-				CEAD9C4C248BCC6300E1BDB2 /* beethovenSymphony7.music in Resources */,
-				CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.music in Resources */,
-				CEAD9C4F248BCC6300E1BDB2 /* mozartSymphony1.music in Resources */,
-				CEAD9C3F248BCC6300E1BDB2 /* beethovenPianoConcerto3.music in Resources */,
-				CEAD9C45248BCC6300E1BDB2 /* mozartRequiem.music in Resources */,
-				CEAD9C47248BCC6300E1BDB2 /* satieGymnopedies.music in Resources */,
-				CEAD9C43248BCC6300E1BDB2 /* mozartPianoConcerto20.music in Resources */,
-				CEAD9C40248BCC6300E1BDB2 /* mozartEineKleineNachtmusik.music in Resources */,
-				CEAD9C44248BCC6300E1BDB2 /* mozartPrague.music in Resources */,
+				CEAD9C49248BCC6300E1BDB2 /* mozartElviraMadigan.mp3 in Resources */,
+				CEAD9C41248BCC6300E1BDB2 /* beethovenFurElise.mp3 in Resources */,
+				CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.mp3 in Resources */,
+				CEAD9C42248BCC6300E1BDB2 /* beethovenSymphony5.mp3 in Resources */,
+				CEAD9C4C248BCC6300E1BDB2 /* beethovenSymphony7.mp3 in Resources */,
+				CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */,
+				CEAD9C4F248BCC6300E1BDB2 /* mozartSymphony1.mp3 in Resources */,
+				CEAD9C3F248BCC6300E1BDB2 /* beethovenPianoConcerto3.mp3 in Resources */,
+				CEAD9C45248BCC6300E1BDB2 /* mozartRequiem.mp3 in Resources */,
+				CEAD9C47248BCC6300E1BDB2 /* satieGymnopedies.mp3 in Resources */,
+				CEAD9C43248BCC6300E1BDB2 /* mozartPianoConcerto20.mp3 in Resources */,
+				CEAD9C40248BCC6300E1BDB2 /* mozartEineKleineNachtmusik.mp3 in Resources */,
+				CEAD9C44248BCC6300E1BDB2 /* mozartPrague.mp3 in Resources */,
 				CEEA68932483B75600716620 /* Localizable.strings in Resources */,
-				CEAD9C48248BCC6300E1BDB2 /* mozartPianoSonata11.music in Resources */,
-				CEAD9C50248BCC6300E1BDB2 /* beethovenPianoSonata1.music in Resources */,
-				CEAD9C46248BCC6300E1BDB2 /* mozartPianoConcerto22.music in Resources */,
+				CEAD9C48248BCC6300E1BDB2 /* mozartPianoSonata11.mp3 in Resources */,
+				CEAD9C50248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 in Resources */,
+				CEAD9C46248BCC6300E1BDB2 /* mozartPianoConcerto22.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

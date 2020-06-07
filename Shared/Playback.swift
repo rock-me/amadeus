@@ -24,7 +24,7 @@ final class Playback {
         }.store(in: &subs)
         
         player.track.sink {
-            self.audio.replaceCurrentItem(with: .init(asset: .init(url: Bundle.main.url(forResource: $0.file, withExtension: "music")!)))
+            self.audio.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: $0.file, withExtension: "mp3")!)))
         }.store(in: &subs)
     }
     

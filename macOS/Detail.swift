@@ -37,8 +37,8 @@ final class Detail: NSView {
     }
     
     func show(_ album: Album) {
-        title.stringValue = .key("album_\(album)")
-        subtitle.stringValue = .key("album_\(album)_subtitle")
+        title.stringValue = .key(album.title)
+        subtitle.stringValue = .key(album.subtitle)
         subviews.filter { !($0 == title || $0 == subtitle) }.forEach {
             $0.removeFromSuperview()
         }
