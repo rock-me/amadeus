@@ -9,6 +9,15 @@
           "revision": "2d889305b9befc049a120d80148dff688b80a2bd",
           "version": null
         }
+      },
+      {
+        "package": "Player",
+        "repositoryURL": "https://github.com/rock-me/player.git",
+        "state": {
+          "branch": "master",
+          "revision": "5df380ce09e73a8c4a6fdf2831c80e6b32b1538c",
+          "version": null
+        }
       }
     ]
   },

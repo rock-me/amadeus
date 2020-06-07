@@ -1,4 +1,5 @@
 import AppKit
+import Player
 
 final class Detail: NSView {
     private weak var title: Label!
@@ -56,7 +57,7 @@ final class Detail: NSView {
             }
             
             let item = self.item($0)
-            item.selected = $0 == session.ui.value.track
+            item.selected = $0 == playback.player.track.value
             item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
             top = item.bottomAnchor
         }
@@ -86,10 +87,7 @@ final class Detail: NSView {
     
     @objc private func select(item: Item) {
         guard show(item) else { return }
-        session.update {
-            $0.track = item.track
-        }
-        player.track(item.track)
+        playback.player.track.value = item.track
     }
 }
 
@@ -110,11 +108,11 @@ private final class Item: Control {
         wantsLayer = true
         layer!.cornerRadius = 10
         
-        let title = Label(.key("track_\(track)_title"), .bold(14))
+        let title = Label(.key(track.title), .bold(14))
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
-        let composer = Label(.key("track_\(track)_composer"), .regular(14))
+        let composer = Label(.key(track.composer), .regular(14))
         composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         composer.textColor = .secondaryLabelColor
         addSubview(composer)

@@ -2,7 +2,7 @@ import AppKit
 import Combine
 
 let session = Session()
-let player = Player()
+let playback = Playback()
 
 @NSApplicationMain final class App: NSApplication, NSApplicationDelegate {
     private var subs = Set<AnyCancellable>()
@@ -26,8 +26,7 @@ let player = Player()
             }
             window.makeKeyAndOrderFront(nil)
             window.delegate = window
-            player.track(session.ui.value.track)
-            session.loadPreferences()
+            session.loadPlayer()
         }.store(in: &subs)
     }
 }

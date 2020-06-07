@@ -1,4 +1,5 @@
 import AppKit
+import Player
 
 final class Music: NSView {
     private weak var detail: Detail!

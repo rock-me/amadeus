@@ -1,5 +1,6 @@
 import AppKit
 import Combine
+import Player
 
 final class Coverflow: NSView {
     private weak var music: Music!
@@ -42,11 +43,9 @@ final class Coverflow: NSView {
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
         
-        session.preferences.sink { preferences in
+        playback.player.config.sink { config in
             scroll.views.map { $0 as! Item }.forEach { item in
-                item.purchase.isHidden = preferences.purchases.contains {
-                    $0.hasSuffix("\(item.album)")
-                }
+                item.purchase.isHidden = config.purchases.contains(item.album.purchase)
             }
         }.store(in: &subs)
     }

@@ -4,16 +4,16 @@ Store = "Store";
 Settings = "Settings";
 In.app = "In-App Purchase";
 
-album_mists = "The Mists";
+album_mists_title = "The Mists";
 album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
 
-album_melancholy = "Melancholy";
+album_melancholy_title = "Melancholy";
 album_melancholy_subtitle = "The shine of your eyes.";
 
-album_tension = "Tension";
+album_tension_title = "Tension";
 album_tension_subtitle = "Try not to hold your breath for too long.";
 
-album_dawn = "A New Dawn";
+album_dawn_title = "A New Dawn";
 album_dawn_subtitle = "The start of a new cycle.";
 
 Amadeus = "Amadeus";
