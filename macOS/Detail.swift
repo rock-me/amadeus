@@ -5,6 +5,7 @@ import Combine
 final class Detail: NSView {
     private weak var title: Label!
     private weak var subtitle: Label!
+    private weak var duration: Label!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     private let font = NSFont(descriptor: NSFont.regular(12).fontDescriptor.addingAttributes([
@@ -29,13 +30,21 @@ final class Detail: NSView {
         addSubview(subtitle)
         self.subtitle = subtitle
         
+        let duration = Label("", font)
+        duration.textColor = .secondaryLabelColor
+        addSubview(duration)
+        self.duration = duration
+        
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        title.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor).isActive = true
+        title.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
         
         subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
         subtitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        subtitle.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor).isActive = true
+        subtitle.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
+        
+        duration.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        duration.bottomAnchor.constraint(equalTo: subtitle.bottomAnchor).isActive = true
         
         playback.player.track.sink { [weak self] track in
             self?.subviews.compactMap { $0 as? Item }.forEach {
@@ -47,25 +56,31 @@ final class Detail: NSView {
     func show(_ album: Album) {
         title.stringValue = .key(album.title)
         subtitle.stringValue = .key(album.subtitle)
-        subviews.filter { !($0 == title || $0 == subtitle) }.forEach {
+        duration.stringValue = formatter.string(from: album.duration)!
+        
+        subviews.filter { !($0 is Label) }.forEach {
             $0.removeFromSuperview()
         }
         
         var top = subtitle.bottomAnchor
         album.tracks.forEach {
-            if top != subtitle.bottomAnchor {
-                let separator = Separator()
-                addSubview(separator)
-                
-                separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
-                separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-                separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
-                separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-                top = separator.bottomAnchor
-            }
+            let separator = Separator()
+            addSubview(separator)
             
             let item = self.item($0)
-            item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
+            
+            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 40).isActive = true
+            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -40).isActive = true
+            separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            
+            if top == subtitle.bottomAnchor {
+                separator.topAnchor.constraint(equalTo: top, constant: 20).isActive = true
+                item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20).isActive = true
+            } else {
+                separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
+                item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 2).isActive = true
+            }
+            
             top = item.bottomAnchor
         }
         
