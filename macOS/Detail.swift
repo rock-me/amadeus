@@ -1,9 +1,11 @@
 import AppKit
 import Player
+import Combine
 
 final class Detail: NSView {
     private weak var title: Label!
     private weak var subtitle: Label!
+    private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     private let font = NSFont(descriptor: NSFont.regular(12).fontDescriptor.addingAttributes([
         .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
@@ -34,6 +36,12 @@ final class Detail: NSView {
         subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
         subtitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         subtitle.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor).isActive = true
+        
+        playback.player.track.sink { [weak self] track in
+            self?.subviews.compactMap { $0 as? Item }.forEach {
+                $0.selected = $0.track == track
+            }
+        }.store(in: &self.subs)
     }
     
     func show(_ album: Album) {
@@ -57,7 +65,6 @@ final class Detail: NSView {
             }
             
             let item = self.item($0)
-            item.selected = $0 == playback.player.track.value
             item.topAnchor.constraint(equalTo: top, constant: top == subtitle.bottomAnchor ? 30 : 2).isActive = true
             top = item.bottomAnchor
         }

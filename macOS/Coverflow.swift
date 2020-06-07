@@ -23,7 +23,6 @@ final class Coverflow: NSView {
         Album.allCases.forEach {
             let item = Item(album: $0)
             item.target = self
-            item.action = #selector(select(item:))
             scroll.add(item)
             
             item.leftAnchor.constraint(equalTo: left, constant: left == scroll.left ? 60 : 10).isActive = true
@@ -43,9 +42,12 @@ final class Coverflow: NSView {
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
         
-        playback.player.config.sink { config in
+        playback.player.config.sink { [weak self] config in
+            guard let self = self else { return }
             scroll.views.map { $0 as! Item }.forEach { item in
                 item.purchase.isHidden = config.purchases.contains(item.album.purchase)
+                item.action = #selector(self.select(item:))
+                item.action = #selector(self.store)
             }
         }.store(in: &subs)
     }

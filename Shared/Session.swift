@@ -60,7 +60,7 @@ final class Session {
     
     private func listenTrack() {
         playback.player.track.dropFirst().sink {
-            self.storePlayer.update($0)
+            self.storePlayer.replace(Track.self, with: $0)
         }.store(in: &subs)
     }
 }
