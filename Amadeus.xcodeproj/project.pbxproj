@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE04366624852853003841CA /* Spectrogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366524852853003841CA /* Spectrogram.swift */; };
 		CE04366824853C1F003841CA /* Coverflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366724853C1F003841CA /* Coverflow.swift */; };
 		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
 		CE0436702485667F003841CA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366F2485667F003841CA /* Detail.swift */; };
@@ -38,7 +37,7 @@
 		CEAD9C4E248BCC6300E1BDB2 /* debussyClairDeLune.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.mp3 */; };
 		CEAD9C4F248BCC6300E1BDB2 /* mozartSymphony1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */; };
 		CEAD9C50248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 */; };
-		CEB55D3C248A3073002CDB8A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB55D3B248A3073002CDB8A /* Stats.swift */; };
+		CEB55D3C248A3073002CDB8A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB55D3B248A3073002CDB8A /* Settings.swift */; };
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
@@ -59,7 +58,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE04366524852853003841CA /* Spectrogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrogram.swift; sourceTree = "<group>"; };
 		CE04366724853C1F003841CA /* Coverflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coverflow.swift; sourceTree = "<group>"; };
 		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CE04366F2485667F003841CA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
@@ -89,7 +87,7 @@
 		CEAD9C37248BCC6300E1BDB2 /* debussyClairDeLune.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = debussyClairDeLune.mp3; sourceTree = "<group>"; };
 		CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartSymphony1.mp3; sourceTree = "<group>"; };
 		CEAD9C39248BCC6300E1BDB2 /* beethovenPianoSonata1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenPianoSonata1.mp3; sourceTree = "<group>"; };
-		CEB55D3B248A3073002CDB8A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		CEB55D3B248A3073002CDB8A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -193,9 +191,8 @@
 				CEEA68A22483DB1000716620 /* Music.swift */,
 				CEEA68A42483DB6800716620 /* Scroll.swift */,
 				CEEA68982483BB1800716620 /* Separator.swift */,
+				CEB55D3B248A3073002CDB8A /* Settings.swift */,
 				CEEA689A2483BDE600716620 /* Side.swift */,
-				CE04366524852853003841CA /* Spectrogram.swift */,
-				CEB55D3B248A3073002CDB8A /* Stats.swift */,
 				CEEA68942483B86500716620 /* View.swift */,
 				CEF9B2AB24827C08009FEF9B /* Window.swift */,
 				CEF9B2A1248275BC009FEF9B /* Assets.xcassets */,
@@ -322,7 +319,6 @@
 				CEEA68902483B6DA00716620 /* String.swift in Sources */,
 				CEEA68972483B8B700716620 /* Bar.swift in Sources */,
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
-				CE04366624852853003841CA /* Spectrogram.swift in Sources */,
 				CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */,
 				CE0436702485667F003841CA /* Detail.swift in Sources */,
 				CEEA689B2483BDE600716620 /* Side.swift in Sources */,
@@ -333,7 +329,7 @@
 				CE48A41724895786004555C1 /* Section.swift in Sources */,
 				CEEA68A52483DB6800716620 /* Scroll.swift in Sources */,
 				CEEA689D2483CCA700716620 /* Control.swift in Sources */,
-				CEB55D3C248A3073002CDB8A /* Stats.swift in Sources */,
+				CEB55D3C248A3073002CDB8A /* Settings.swift in Sources */,
 				CEF9B2B524827FFD009FEF9B /* UI.swift in Sources */,
 				CE48A41D24895B71004555C1 /* Session.swift in Sources */,
 				CEEA68952483B86500716620 /* View.swift in Sources */,

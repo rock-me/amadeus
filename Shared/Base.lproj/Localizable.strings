@@ -3,6 +3,15 @@ Analytics = "Analytics";
 Store = "Store";
 Settings = "Settings";
 In.app = "In-App Purchase";
+Random = "Random";
+Off = "Off";
+Track = "Track";
+Album = "Album";
+Stop = "Stop";
+Loop = "Play Again";
+Next = "Play Next";
+When.track.finishes = "When Frack Finishes";
+When.album.finishes = "When Album Finishes";
 
 album_mists_title = "The Mists";
 album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
