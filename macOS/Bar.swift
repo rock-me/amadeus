@@ -141,6 +141,7 @@ private final class Button: Control {
         let image = NSImageView(image: NSImage(named: image)!)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentTintColor = .highlightColor
+        image.imageScaling = .scaleNone
         addSubview(image)
         self.image = image
         
@@ -149,8 +150,8 @@ private final class Button: Control {
         
         image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        image.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
     
     override func hoverOn() {
