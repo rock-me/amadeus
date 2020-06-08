@@ -82,12 +82,15 @@ final class Settings: NSView {
         albumSeparator.leftAnchor.constraint(equalTo: randomSeparator.leftAnchor).isActive = true
         albumSeparator.rightAnchor.constraint(equalTo: randomSeparator.rightAnchor).isActive = true
         
-        
-        /*
-        
         playback.player.config.sink {
             random.selectItem(at: .init($0.random.rawValue))
-        }.store(in: &subs)*/
+            track.selectItem(at: .init($0.trackEnds.rawValue))
+            album.selectItem(at: .init($0.albumEnds.rawValue))
+            track.isEnabled = $0.random == .none
+            album.isEnabled = $0.random == .none
+            trackTitle.alphaValue = $0.random == .none ? 1 : 0.3
+            albumTitle.alphaValue = $0.random == .none ? 1 : 0.3
+        }.store(in: &subs)
     }
     
     @objc private func random(_ button: NSPopUpButton) {
