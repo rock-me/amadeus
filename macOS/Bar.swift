@@ -68,7 +68,7 @@ final class Bar: NSView {
         base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         base.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        base.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 0.4).isActive = true
+        base.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         
         border.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
         border.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
@@ -103,7 +103,7 @@ final class Bar: NSView {
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         playback.player.track.sink {
-            title.stringValue = .key($0.composer) + " - " + .key($0.title)
+            title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
         }.store(in: &subs)
         
         playback.time.sink {

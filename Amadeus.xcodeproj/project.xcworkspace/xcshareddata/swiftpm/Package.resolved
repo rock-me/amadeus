@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/catverse/balam.git",
         "state": {
           "branch": "master",
-          "revision": "d744f651f76c92538bbba75d02697aa552af078d",
+          "revision": "d3be40eec44f3d725ceeef0f913d567740133855",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/rock-me/player.git",
         "state": {
           "branch": "master",
-          "revision": "51faa21ca1705fada961a81c0e9022773230a9bc",
+          "revision": "aa2a87c6a2b6869e01d82624f7da4b7f93cc44b2",
           "version": null
         }
       }

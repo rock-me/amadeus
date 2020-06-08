@@ -46,10 +46,8 @@ final class Detail: NSView {
         duration.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         duration.bottomAnchor.constraint(equalTo: subtitle.bottomAnchor).isActive = true
         
-        playback.player.track.sink { [weak self] track in
-            self?.subviews.compactMap { $0 as? Item }.forEach {
-                $0.selected = $0.track == track
-            }
+        playback.player.track.sink { [weak self] in
+            self?.current($0)
         }.store(in: &self.subs)
     }
     
@@ -85,6 +83,13 @@ final class Detail: NSView {
         }
         
         bottomAnchor.constraint(equalTo: top).isActive = true
+        current(playback.player.track.value)
+    }
+    
+    private func current(_ track: Track) {
+        subviews.compactMap { $0 as? Item }.forEach {
+            $0.selected = $0.track == track
+        }
     }
     
     private func item(_ track: Track) -> Item {
@@ -134,7 +139,7 @@ private final class Item: Control {
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
-        let composer = Label(.key(track.composer), .regular(14))
+        let composer = Label(.key(track.composer.name), .regular(14))
         composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         composer.textColor = .secondaryLabelColor
         addSubview(composer)

@@ -16,6 +16,36 @@ album_tension_subtitle = "Try not to hold your breath for too long.";
 album_dawn_title = "A New Dawn";
 album_dawn_subtitle = "The start of a new cycle.";
 
+composer_satie_name = "Erik Satie";
+composer_mozart_name = "Wolfgang Amadeus Mozart";
+composer_beethoven_name = "Ludwig van Beethoven";
+composer_brahms_name = "Johannes Brahms";
+composer_debussy_name = "Claude Debussy";
+
+track_satieGymnopedies_title = "Gymnopédies";
+track_mozartSymphony40_title = "Symphony No. 40";
+track_mozartEineKleineNachtmusik_title = "Eine kleine Nachtmusik";
+track_mozartPrague_title = "Prague";
+track_mozartPianoConcerto23_title = "Piano Concerto No. 23";
+track_mozartRequiem_title = "Requiem";
+track_mozartSymphony1_title = "Symphony No. 1";
+track_mozartPianoSonata11_title = "Piano Sonata No. 11";
+track_mozartPianoConcerto20_title = "Piano Concerto No. 20";
+track_mozartElviraMadigan_title = "Elvira Madigan";
+track_mozartPianoConcerto22_title = "Piano Concerto No. 22";
+track_mozartFantasia_title = "Fantasia";
+track_beethovenMoonlightSonata_title = "Moonlight Sonata";
+track_beethovenPathetique_title = "Pathétique";
+track_beethovenSymphony2_title = "Symphony No. 2";
+track_beethovenSymphony9_title = "Symphony No. 9";
+track_beethovenPianoSonata1_title = "Piano Sonata No. 1";
+track_beethovenPianoConcerto3_title = "Piano Concerto No. 3";
+track_beethovenSymphony7_title = "Symphony No. 7";
+track_beethovenSymphony5_title = "Symphony No. 5";
+track_beethovenFurElise_title = "Für Elise";
+track_brahmsSymphony3_title = "Symphony No. 3";
+track_debussyClairDeLune_title = "Clair de lune";
+
 Amadeus = "Amadeus";
 About = "About";
 Hide = "Hide";
