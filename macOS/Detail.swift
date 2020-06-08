@@ -67,8 +67,8 @@ final class Detail: NSView {
             
             let item = self.item($0)
             
-            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 40).isActive = true
-            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -40).isActive = true
+            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 15).isActive = true
+            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -15).isActive = true
             separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
             
             if top == subtitle.bottomAnchor {

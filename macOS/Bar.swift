@@ -4,10 +4,6 @@ import Combine
 final class Bar: NSView {
     private weak var base: NSView!
     private weak var border: NSView!
-    private weak var playButton: Button!
-    private weak var pauseButton: Button!
-    private weak var previousButton: Button!
-    private weak var nextButton: Button!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     
@@ -21,26 +17,22 @@ final class Bar: NSView {
         playButton.target = self
         playButton.action = #selector(play)
         addSubview(playButton)
-        self.playButton = playButton
         
         let pauseButton = Button(image: "pause")
         pauseButton.target = self
         pauseButton.action = #selector(pause)
         pauseButton.isHidden = true
         addSubview(pauseButton)
-        self.pauseButton = pauseButton
         
         let previousButton = Button(image: "previous")
         previousButton.target = self
         previousButton.action = #selector(previous)
         addSubview(previousButton)
-        self.previousButton = previousButton
         
         let nextButton = Button(image: "next")
         nextButton.target = self
         nextButton.action = #selector(next)
         addSubview(nextButton)
-        self.nextButton = nextButton
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +111,14 @@ final class Bar: NSView {
             playButton.isHidden = $0
             pauseButton.isHidden = !$0
         }.store(in: &subs)
+        
+        playback.player.forwardable.sink {
+            nextButton.enabled = $0
+        }.store(in: &subs)
+        
+        playback.player.backable.sink {
+            previousButton.enabled = $0
+        }.store(in: &subs)
     }
     
     override func updateLayer() {
@@ -144,6 +144,12 @@ final class Bar: NSView {
 }
 
 private final class Button: Control {
+    override var enabled: Bool {
+        didSet {
+            alphaValue = enabled ? 1 : 0.3
+        }
+    }
+    
     private weak var image: NSImageView!
     
     required init?(coder: NSCoder) { nil }
