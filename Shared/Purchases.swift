@@ -2,7 +2,7 @@ import StoreKit
 import Player
 import Combine
 
-final class StoreMaster: NSObject, SKRequestDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+final class Purchases: NSObject, SKRequestDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     private(set) var products = CurrentValueSubject<[SKProduct], Never>([])
     private(set) var error = PassthroughSubject<String, Never>()
     private weak var request: SKProductsRequest?

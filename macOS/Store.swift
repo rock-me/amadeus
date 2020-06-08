@@ -1,21 +1,17 @@
 import AppKit
 import StoreKit
 
-final class Store: NSView {/*
+final class Store: NSView {
     private weak var scroll: Scroll!
-    private let store = StoreMaster()
+    private let purchases = Purchases()
     
     required init?(coder: NSCoder) { nil }
     init() {
         super.init(frame: .zero)
-        let title = Label(.key("Store"), .bold(12))
-        title.textColor = .black
-        addSubview(title)
         
         let restore = Button(.key("Restore.purchases"))
         restore.target = self
         restore.action = #selector(self.restore)
-        restore.minimal()
         addSubview(restore)
         
         let done = Button(.key("Done"))
@@ -270,4 +266,31 @@ private final class SkinItem: Item {
             subtitle.stringValue = .key("Purchase.skin.subtitle")
         }
     }*/
+}
+
+final class Button: Control {
+    private weak var label: Label!
+    
+    required init?(coder: NSCoder) { nil }
+    init(_ title: String) {
+        super.init()
+        wantsLayer = true
+        layer!.cornerRadius = 6
+        
+        let label = Label(title, .bold(12))
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.textColor = .controlAccentColor
+        addSubview(label)
+        self.label = label
+        
+        bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 7).isActive = true
+        rightAnchor.constraint(equalTo: label.rightAnchor, constant: 16).isActive = true
+        
+        label.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
+        label.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+    }
+    
+    override func updateLayer() {
+        layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
+    }
 }

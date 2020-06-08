@@ -12,6 +12,7 @@ Loop = "Play Again";
 Next = "Play Next";
 When.track.finishes = "When Frack Finishes";
 When.album.finishes = "When Album Finishes";
+Restore.purchases = "Restore purchases";
 
 album_mists_title = "The Mists";
 album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
