@@ -39,4 +39,12 @@ final class Playback {
     func pause() {
         audio.pause()
     }
+    
+    func next() {
+        
+    }
+    
+    func previous() {
+        
+    }
 }

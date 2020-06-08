@@ -2,11 +2,12 @@ import AppKit
 import Combine
 
 final class Bar: NSView {
-    private weak var controls: NSView!
     private weak var base: NSView!
     private weak var border: NSView!
     private weak var playButton: Button!
     private weak var pauseButton: Button!
+    private weak var previousButton: Button!
+    private weak var nextButton: Button!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     
@@ -16,23 +17,30 @@ final class Bar: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
         
-        let controls = NSView()
-        controls.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(controls)
-        self.controls = controls
-        
         let playButton = Button(image: "play")
         playButton.target = self
         playButton.action = #selector(play)
-        controls.addSubview(playButton)
+        addSubview(playButton)
         self.playButton = playButton
         
         let pauseButton = Button(image: "pause")
         pauseButton.target = self
         pauseButton.action = #selector(pause)
         pauseButton.isHidden = true
-        controls.addSubview(pauseButton)
+        addSubview(pauseButton)
         self.pauseButton = pauseButton
+        
+        let previousButton = Button(image: "previous")
+        previousButton.target = self
+        previousButton.action = #selector(previous)
+        addSubview(previousButton)
+        self.previousButton = previousButton
+        
+        let nextButton = Button(image: "next")
+        nextButton.target = self
+        nextButton.action = #selector(next)
+        addSubview(nextButton)
+        self.nextButton = nextButton
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
@@ -75,20 +83,17 @@ final class Bar: NSView {
         border.topAnchor.constraint(equalTo: base.topAnchor).isActive = true
         border.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        controls.rightAnchor.constraint(equalTo: base.leftAnchor, constant: -10).isActive = true
-        controls.heightAnchor.constraint(equalToConstant: 26).isActive = true
-        controls.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        controls.leftAnchor.constraint(greaterThanOrEqualTo: leftAnchor, constant: 80).isActive = true
-        controls.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
-        let controlsWidth = controls.widthAnchor.constraint(equalToConstant: 100)
-        controlsWidth.priority = .defaultLow
-        controlsWidth.isActive = true
+        playButton.rightAnchor.constraint(equalTo: nextButton.leftAnchor, constant: -10).isActive = true
+        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        playButton.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
-        playButton.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
+        pauseButton.centerXAnchor.constraint(equalTo: playButton.centerXAnchor).isActive = true
+        pauseButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        pauseButton.centerXAnchor.constraint(equalTo: controls.centerXAnchor).isActive = true
-        pauseButton.centerYAnchor.constraint(equalTo: controls.centerYAnchor).isActive = true
+        previousButton.rightAnchor.constraint(equalTo: playButton.leftAnchor, constant: -10).isActive = true
+        previousButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        nextButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        nextButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
@@ -119,7 +124,6 @@ final class Bar: NSView {
     override func updateLayer() {
         base.layer!.backgroundColor = NSColor.controlHighlightColor.cgColor
         border.layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
-        controls.layer!.backgroundColor = .clear
     }
     
     @objc private func play() {
@@ -128,6 +132,14 @@ final class Bar: NSView {
     
     @objc private func pause() {
         playback.pause()
+    }
+    
+    @objc private func previous() {
+        playback.previous()
+    }
+    
+    @objc private func next() {
+        playback.next()
     }
 }
 

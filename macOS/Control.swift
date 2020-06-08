@@ -3,6 +3,7 @@ import AppKit
 class Control: NSView {
     weak var target: AnyObject!
     var action: Selector!
+    var enabled = true
     override var mouseDownCanMoveWindow: Bool { false }
     
     required init?(coder: NSCoder) { nil }
@@ -19,10 +20,12 @@ class Control: NSView {
     }
     
     override func mouseDown(with: NSEvent) {
+        guard enabled else { return }
         hoverOn()
     }
     
     override func mouseUp(with: NSEvent) {
+        guard enabled else { return }
         window!.makeFirstResponder(self)
         if bounds.contains(convert(with.locationInWindow, from: nil)) {
             click()
