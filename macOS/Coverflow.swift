@@ -25,7 +25,7 @@ final class Coverflow: NSView {
             item.target = self
             scroll.add(item)
             
-            item.leftAnchor.constraint(equalTo: left, constant: left == scroll.left ? 60 : 10).isActive = true
+            item.leftAnchor.constraint(equalTo: left, constant: left == scroll.left ? 100 : 10).isActive = true
             item.topAnchor.constraint(equalTo: scroll.top, constant: 20).isActive = true
             item.bottomAnchor.constraint(equalTo: scroll.bottom, constant: -20).isActive = true
             
@@ -38,7 +38,7 @@ final class Coverflow: NSView {
         scroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
         scroll.bottom.constraint(equalTo: scroll.bottomAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: left, constant: 60).isActive = true
+        scroll.right.constraint(greaterThanOrEqualTo: left, constant: 100).isActive = true
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
         

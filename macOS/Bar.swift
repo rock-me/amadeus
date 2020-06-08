@@ -68,7 +68,7 @@ final class Bar: NSView {
         base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         base.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        base.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
+        base.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         
         border.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
         border.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
@@ -112,11 +112,11 @@ final class Bar: NSView {
             pauseButton.isHidden = !$0
         }.store(in: &subs)
         
-        playback.player.forwardable.sink {
+        playback.player.nextable.sink {
             nextButton.enabled = $0
         }.store(in: &subs)
         
-        playback.player.backable.sink {
+        playback.player.previousable.sink {
             previousButton.enabled = $0
         }.store(in: &subs)
     }

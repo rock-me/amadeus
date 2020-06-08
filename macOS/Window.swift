@@ -5,7 +5,7 @@ final class Window: NSWindow, NSWindowDelegate {
         super.init(contentRect: session.ui.value.frame, styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
-        minSize = .init(width: 400, height: 300)
+        minSize = .init(width: 500, height: 400)
         titlebarAppearsTransparent = true
         titleVisibility = .hidden
         toolbar = .init()

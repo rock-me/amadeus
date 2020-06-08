@@ -28,10 +28,11 @@ final class Side: NSView {
         music = item(.key("Music"), top: topAnchor)
         music.action = #selector(selectMusic)
         
-        stats = item(.key("Stats"), top: music.bottomAnchor)
+        stats = item(.key("Analytics"), top: music.bottomAnchor)
         stats.action = #selector(selectStats)
+        stats.isHidden = true
         
-        store = item(.key("Store"), top: stats.bottomAnchor)
+        store = item(.key("Store"), top: music.bottomAnchor)
         store.action = #selector(selectStore)
         
         settings = item(.key("Settings"), top: store.bottomAnchor)

@@ -41,10 +41,10 @@ final class Playback {
     }
     
     func next() {
-        
+        player.next()
     }
     
     func previous() {
-        
+        player.previous()
     }
 }

@@ -2,7 +2,7 @@ import CoreGraphics
 import Player
 
 struct UI: Codable, Equatable {
-    var frame = CGRect(x: 0, y: 0, width: 800, height: 700)
+    var frame = CGRect(x: 0, y: 0, width: 900, height: 600)
     var section = Section.music
     var album = Album.mists
     
