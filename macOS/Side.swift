@@ -83,7 +83,7 @@ final class Side: NSView {
     
     @discardableResult func showStore() -> Bool {
         guard select(item: store) else { return false }
-        view.show(Settings())
+        view.show(Store())
         return true
     }
     
