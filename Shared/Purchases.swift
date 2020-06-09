@@ -41,7 +41,8 @@ final class Purchases: NSObject, SKRequestDelegate, SKProductsRequestDelegate, S
         error.send(didFailWithError.localizedDescription)
     }
     
-    func paymentQueue(_: SKPaymentQueue, restoreCompletedTransactionsFailedWithError: Error) { error.send(restoreCompletedTransactionsFailedWithError.localizedDescription)
+    func paymentQueue(_: SKPaymentQueue, restoreCompletedTransactionsFailedWithError: Error) {
+        error.send(restoreCompletedTransactionsFailedWithError.localizedDescription)
     }
     
     private func update(_ transactions: [SKPaymentTransaction]) {
