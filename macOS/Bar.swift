@@ -158,7 +158,7 @@ private final class Button: Control {
         
         let image = NSImageView(image: NSImage(named: image)!)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentTintColor = .highlightColor
+        image.contentTintColor = .controlTextColor
         image.imageScaling = .scaleNone
         addSubview(image)
         self.image = image
@@ -177,6 +177,6 @@ private final class Button: Control {
     }
     
     override func hoverOff() {
-        image.contentTintColor = .highlightColor
+        image.contentTintColor = .controlTextColor
     }
 }
