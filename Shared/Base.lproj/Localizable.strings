@@ -12,6 +12,7 @@ Loop = "Play Again";
 Next = "Play Next";
 When.track.finishes = "When Frack Finishes";
 When.album.finishes = "When Album Finishes";
+Notify.on.track = "Notification on new Track";
 Restore.purchases = "Restore Purchases";
 Purchases.are = "All purchases are non-consumable, you only pay for them once, and they are shared between iOS and macOS.";
 

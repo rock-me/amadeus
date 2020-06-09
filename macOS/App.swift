@@ -41,13 +41,13 @@ let playback = Playback()
             }
         }
         
-        playback.player.track.sink { track in
-            guard playback.playing.value else { return }
+        playback.player.start.sink {
+            guard playback.player.config.value.notifications else { return }
             UNUserNotificationCenter.current().getNotificationSettings {
                 guard $0.authorizationStatus == .authorized else { return }
                 UNUserNotificationCenter.current().add({
-                    $0.title = track.composer.name
-                    $0.body = track.title
+                    $0.title = .key(playback.player.track.value.title)
+                    $0.body = .key(playback.player.track.value.composer.name)
                     return .init(identifier: UUID().uuidString, content: $0, trigger: nil)
                 } (UNMutableNotificationContent()))
             }

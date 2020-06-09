@@ -49,6 +49,11 @@ final class Settings: NSView {
         let albumSeparator = Separator()
         addSubview(albumSeparator)
         
+        let notifications = NSButton(checkboxWithTitle: .key("Notify.on.track"), target: self, action: #selector(self.notifications))
+        notifications.translatesAutoresizingMaskIntoConstraints = false
+        notifications.font = .regular(14)
+        addSubview(notifications)
+        
         random.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
         random.leftAnchor.constraint(equalTo: centerXAnchor, constant: 30).isActive = true
         
@@ -82,6 +87,9 @@ final class Settings: NSView {
         albumSeparator.leftAnchor.constraint(equalTo: randomSeparator.leftAnchor).isActive = true
         albumSeparator.rightAnchor.constraint(equalTo: randomSeparator.rightAnchor).isActive = true
         
+        notifications.topAnchor.constraint(equalTo: albumSeparator.bottomAnchor, constant: 32).isActive = true
+        notifications.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         playback.player.config.sink {
             random.selectItem(at: .init($0.random.rawValue))
             track.selectItem(at: .init($0.trackEnds.rawValue))
@@ -90,6 +98,7 @@ final class Settings: NSView {
             album.isEnabled = $0.random == .none
             trackTitle.alphaValue = $0.random == .none ? 1 : 0.3
             albumTitle.alphaValue = $0.random == .none ? 1 : 0.3
+            notifications.state = $0.notifications ? .on : .off
         }.store(in: &subs)
     }
     
@@ -103,5 +112,9 @@ final class Settings: NSView {
     
     @objc private func album(_ button: NSPopUpButton) {
         playback.player.config.value.albumEnds = Heuristic(rawValue: .init(button.indexOfSelectedItem))!
+    }
+    
+    @objc private func notifications(_ button: NSButton) {
+        playback.player.config.value.notifications = button.state == .on
     }
 }
