@@ -5,6 +5,7 @@ import StoreKit
 
 final class Store: NSView {
     private weak var scroll: Scroll!
+    private weak var background: NSView!
     private var subs = Set<AnyCancellable>()
     private let purchases = Purchases()
     
@@ -12,6 +13,12 @@ final class Store: NSView {
     init() {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        
+        let background = NSView()
+        background.translatesAutoresizingMaskIntoConstraints = false
+        background.wantsLayer = true
+        addSubview(background)
+        self.background = background
         
         let restore = Button(.key("Restore.purchases"))
         restore.target = self
@@ -37,9 +44,14 @@ final class Store: NSView {
         subtitle.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
         subtitle.rightAnchor.constraint(lessThanOrEqualTo: restore.leftAnchor, constant: -20).isActive = true
         
-        separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
-        separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
-        separator.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 30).isActive = true
+        background.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        background.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        background.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        background.bottomAnchor.constraint(equalTo: separator.topAnchor).isActive = true
+        
+        separator.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        separator.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 20).isActive = true
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         scroll.topAnchor.constraint(equalTo: separator.bottomAnchor).isActive = true
@@ -49,7 +61,7 @@ final class Store: NSView {
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
         
-        purchases.products.receive(on: DispatchQueue.main).sink { [weak self] in
+        purchases.products.dropFirst().receive(on: DispatchQueue.main).sink { [weak self] in
             guard let self = self else { return }
             scroll.views.forEach { $0.removeFromSuperview() }
             
@@ -59,8 +71,8 @@ final class Store: NSView {
                     let separator = Separator()
                     scroll.add(separator)
                     
-                    separator.leftAnchor.constraint(equalTo: scroll.left, constant: 80).isActive = true
-                    separator.rightAnchor.constraint(equalTo: scroll.right, constant: -80).isActive = true
+                    separator.leftAnchor.constraint(equalTo: scroll.left, constant: 100).isActive = true
+                    separator.rightAnchor.constraint(equalTo: scroll.right, constant: -100).isActive = true
                     separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
                     separator.topAnchor.constraint(equalTo: top).isActive = true
                     top = separator.bottomAnchor
@@ -86,6 +98,10 @@ final class Store: NSView {
         
         loading()
         purchases.load()
+    }
+    
+    override func updateLayer() {
+        background.layer!.backgroundColor = NSColor.underPageBackgroundColor.cgColor
     }
     
     func error(_ string: String) {
@@ -133,26 +149,43 @@ private final class Item: NSView {
         
         let album = Album.allCases.first { $0.purchase == product.productIdentifier }!
         
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 20
+        shadow.shadowOffset.height = -6
+        
+        let base = NSView()
+        base.translatesAutoresizingMaskIntoConstraints = false
+        base.wantsLayer = true
+        base.layer!.cornerRadius = 10
+        base.shadow = shadow
+        addSubview(base)
+        
         let image = NSImageView(image: NSImage(named: album.cover)!)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.imageScaling = .scaleNone
-        addSubview(image)
+        image.wantsLayer = true
+        image.layer!.cornerRadius = 10
+        base.addSubview(image)
         
-        let title = Label(album.title, .bold(24))
+        let title = Label(.key(album.title), .bold(24))
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
-        let subtitle = Label("", .regular(13))
-        subtitle.attributedStringValue = { mutable in
+        let subtitle = Label(.key(album.subtitle), .medium(15))
+        subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        subtitle.textColor = .secondaryLabelColor
+        addSubview(subtitle)
+        
+        let tracks = Label("", .regular(13))
+        tracks.attributedStringValue = { mutable in
             album.tracks.forEach { track in
-                mutable.append(.init(string: "\n" + track.composer.name, attributes: [.font : NSFont.medium(13)]))
-                mutable.append(.init(string: " - " + track.title, attributes: [.font : NSFont.regular(13)]))
+                mutable.append(.init(string: "\n" + .key(track.title), attributes: [.font : NSFont.medium(13), .foregroundColor: NSColor.labelColor]))
+                mutable.append(.init(string: "  " + .key(track.composer.name), attributes: [.font : NSFont.light(13), .foregroundColor: NSColor.secondaryLabelColor]))
             }
             return mutable
         } (NSMutableAttributedString())
-        subtitle.textColor = .secondaryLabelColor
-        subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        addSubview(subtitle)
+        tracks.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        addSubview(tracks)
         
         if playback.player.config.value.purchases.contains(product.productIdentifier) {
             let purchased = NSImageView(image: NSImage(named: "purchased")!)
@@ -161,12 +194,10 @@ private final class Item: NSView {
             purchased.contentTintColor = .controlAccentColor
             addSubview(purchased)
             
-            title.rightAnchor.constraint(lessThanOrEqualTo: purchased.leftAnchor, constant: -20).isActive = true
+            bottomAnchor.constraint(greaterThanOrEqualTo: purchased.bottomAnchor, constant: 60).isActive = true
             
-            subtitle.rightAnchor.constraint(lessThanOrEqualTo: purchased.leftAnchor, constant: -20).isActive = true
-            
-            purchased.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-            purchased.rightAnchor.constraint(equalTo: rightAnchor, constant: -40).isActive = true
+            purchased.topAnchor.constraint(equalTo: base.bottomAnchor, constant: 30).isActive = true
+            purchased.centerXAnchor.constraint(equalTo: base.centerXAnchor).isActive = true
             purchased.widthAnchor.constraint(equalToConstant: 30).isActive = true
             purchased.heightAnchor.constraint(equalToConstant: 30).isActive = true
         } else {
@@ -174,43 +205,48 @@ private final class Item: NSView {
             formatter.numberStyle = .currencyISOCode
             formatter.locale = product.priceLocale
             
-            let price = Label(formatter.string(from: product.price) ?? "", .regular(12))
-            price.textColor = .controlAccentColor
+            let price = Label(formatter.string(from: product.price) ?? "", .medium(12))
             addSubview(price)
             
             let purchase = ButtonPurchase(.key("Purchase"), product: product)
             addSubview(purchase)
             self.purchase = purchase
             
-            title.rightAnchor.constraint(lessThanOrEqualTo: purchase.leftAnchor, constant: -20).isActive = true
-            title.rightAnchor.constraint(lessThanOrEqualTo: price.leftAnchor, constant: -20).isActive = true
+            bottomAnchor.constraint(greaterThanOrEqualTo: purchase.bottomAnchor, constant: 60).isActive = true
             
-            subtitle.rightAnchor.constraint(lessThanOrEqualTo: purchase.leftAnchor, constant: -20).isActive = true
-            subtitle.rightAnchor.constraint(lessThanOrEqualTo: price.leftAnchor, constant: -20).isActive = true
+            price.centerXAnchor.constraint(equalTo: base.centerXAnchor).isActive = true
+            price.topAnchor.constraint(equalTo: base.bottomAnchor, constant: 30).isActive = true
             
-            price.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
-            price.topAnchor.constraint(equalTo: image.topAnchor).isActive = true
-            
-            purchase.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 5).isActive = true
-            purchase.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
+            purchase.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 10).isActive = true
+            purchase.centerXAnchor.constraint(equalTo: price.centerXAnchor).isActive = true
         }
 
-        bottomAnchor.constraint(greaterThanOrEqualTo: subtitle.bottomAnchor, constant: 20).isActive = true
-        bottomAnchor.constraint(greaterThanOrEqualTo: image.bottomAnchor, constant: 30).isActive = true
+        bottomAnchor.constraint(greaterThanOrEqualTo: tracks.bottomAnchor, constant: 60).isActive = true
         let height = heightAnchor.constraint(equalToConstant: 1)
         height.priority = .defaultLow
         height.isActive = true
         
-        image.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        image.leftAnchor.constraint(equalTo: leftAnchor, constant: 40).isActive = true
-        image.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
+        base.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        base.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        base.leftAnchor.constraint(equalTo: leftAnchor, constant: 40).isActive = true
+        base.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
         
-        title.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 10).isActive = true
+        image.topAnchor.constraint(equalTo: base.topAnchor).isActive = true
+        image.bottomAnchor.constraint(equalTo: base.bottomAnchor).isActive = true
+        image.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
+        image.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
+        
+        title.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 20).isActive = true
+        title.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -40).isActive = true
         title.topAnchor.constraint(equalTo: image.topAnchor, constant: 5).isActive = true
         
+        subtitle.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 20).isActive = true
+        subtitle.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -40).isActive = true
         subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 2).isActive = true
-        subtitle.leftAnchor.constraint(equalTo: title.leftAnchor).isActive = true
+        
+        tracks.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 6).isActive = true
+        tracks.leftAnchor.constraint(equalTo: title.leftAnchor).isActive = true
+        tracks.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -40).isActive = true
     }
 }
 
@@ -221,18 +257,18 @@ private class Button: Control {
     init(_ title: String) {
         super.init()
         wantsLayer = true
-        layer!.cornerRadius = 6
+        layer!.cornerRadius = 14
         
-        let label = Label(title, .bold(12))
+        let label = Label(title, .medium(12))
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(label)
         self.label = label
         
-        bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 7).isActive = true
+        heightAnchor.constraint(equalToConstant: 28).isActive = true
         rightAnchor.constraint(equalTo: label.rightAnchor, constant: 16).isActive = true
         
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
         label.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     override func updateLayer() {

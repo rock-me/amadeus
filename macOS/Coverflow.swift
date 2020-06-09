@@ -46,8 +46,7 @@ final class Coverflow: NSView {
             guard let self = self else { return }
             scroll.views.map { $0 as! Item }.forEach { item in
                 item.purchase.isHidden = config.purchases.contains(item.album.purchase)
-                item.action = #selector(self.select(item:))
-                item.action = #selector(self.store)
+                item.action = config.purchases.contains(item.album.purchase) ? #selector(self.select(item:)) : #selector(self.store)
             }
         }.store(in: &subs)
     }
@@ -64,6 +63,7 @@ final class Coverflow: NSView {
     }
     
     @objc private func select(item: Item) {
+        guard !item.selected else { return }
         selected(item: item)
         NSAnimationContext.runAnimationGroup {
             $0.duration = 1

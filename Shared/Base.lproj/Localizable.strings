@@ -12,9 +12,9 @@ Loop = "Play Again";
 Next = "Play Next";
 When.track.finishes = "When Frack Finishes";
 When.album.finishes = "When Album Finishes";
-Notify.on.track = "Notification on new Track";
+Notify.on.track = "Track change notification";
 Restore.purchases = "Restore Purchases";
-Purchases.are = "All purchases are non-consumable, you only pay for them once, and they are shared between iOS and macOS.";
+Purchases.are = "Purchases are non-consumable, you pay for them only once.\nThey are shared between iOS and macOS.";
 
 album_mists_title = "The Mists";
 album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
@@ -23,10 +23,10 @@ album_melancholy_title = "Melancholy";
 album_melancholy_subtitle = "Spellbound.";
 
 album_tension_title = "Tension";
-album_tension_subtitle = "Try not to hold your breath for too long.";
+album_tension_subtitle = "Holding your breath.";
 
-album_dawn_title = "A New Dawn";
-album_dawn_subtitle = "The start of a new cycle.";
+album_dawn_title = "New Dawn";
+album_dawn_subtitle = "A bright new start.";
 
 composer_satie_name = "Erik Satie";
 composer_mozart_name = "Wolfgang Amadeus Mozart";
