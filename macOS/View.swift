@@ -1,8 +1,10 @@
 import AppKit
+import Combine
 
 final class View: NSView {
     private weak var bar: Bar!
     private weak var side: Side!
+    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
     init() {
@@ -23,12 +25,14 @@ final class View: NSView {
         side.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         side.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
-        switch session.ui.value.section {
-        case .music: side.showMusic()
-        case .stats: side.showStats()
-        case .store: side.showStore()
-        case .settings: side.showSettings()
-        }
+        session.ui.sink {
+            switch $0.section {
+            case .music: side.showMusic()
+            case .stats: side.showStats()
+            case .store: side.showStore()
+            case .settings: side.showSettings()
+            }
+        }.store(in: &subs)
     }
     
     func show(_ view: NSView) {

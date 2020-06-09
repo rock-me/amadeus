@@ -69,28 +69,24 @@ final class Side: NSView {
         indicator.layer!.backgroundColor = NSColor.highlightColor.cgColor
     }
     
-    @discardableResult func showMusic() -> Bool {
-        guard select(item: music) else { return false }
+    func showMusic() {
+        guard select(item: music) else { return }
         view.show(Music())
-        return true
     }
     
-    @discardableResult func showStats() -> Bool {
-        guard select(item: stats) else { return false }
+    func showStats() {
+        guard select(item: stats) else { return }
         view.show(Settings())
-        return true
     }
     
-    @discardableResult func showStore() -> Bool {
-        guard select(item: store) else { return false }
+    func showStore() {
+        guard select(item: store) else { return }
         view.show(Store())
-        return true
     }
     
-    @discardableResult func showSettings() -> Bool {
-        guard select(item: settings) else { return false }
+    func showSettings() {
+        guard select(item: settings) else { return }
         view.show(Settings())
-        return true
     }
     
     private func item(_ title: String, top: NSLayoutYAxisAnchor) -> Item {
@@ -114,29 +110,29 @@ final class Side: NSView {
         return true
     }
     
-    @objc private func selectMusic() {
-        guard showMusic() else { return }
+    @objc private func selectMusic(_ item: Item) {
+        guard !item.selected else { return }
         session.update {
             $0.section = .music
         }
     }
     
-    @objc private func selectStats() {
-        guard showStats() else { return }
+    @objc private func selectStats(_ item: Item) {
+        guard !item.selected else { return }
         session.update {
             $0.section = .stats
         }
     }
     
-    @objc private func selectStore() {
-        guard showStore() else { return }
+    @objc private func selectStore(_ item: Item) {
+        guard !item.selected else { return }
         session.update {
             $0.section = .store
         }
     }
     
-    @objc private func selectSettings() {
-        guard showSettings() else { return }
+    @objc private func selectSettings(_ item: Item) {
+        guard !item.selected else { return }
         session.update {
             $0.section = .settings
         }

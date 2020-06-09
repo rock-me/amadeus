@@ -74,7 +74,7 @@ final class Coverflow: NSView {
     }
     
     @objc private func store() {
-        
+        session.ui.value.section = .store
     }
 }
 
