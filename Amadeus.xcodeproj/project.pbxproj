@@ -20,6 +20,7 @@
 		CE4A60D52490BDFB0002FE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4A60D32490BDFB0002FE19 /* LaunchScreen.storyboard */; };
 		CE4A60DC2490BE100002FE19 /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DB2490BE100002FE19 /* Balam */; };
 		CE4A60DE2490BE100002FE19 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DD2490BE100002FE19 /* Player */; };
+		CE4A60E02490C6930002FE19 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A60DF2490C6930002FE19 /* Music.swift */; };
 		CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD9C21248B992F00E1BDB2 /* Playback.swift */; };
 		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
 		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */; };
@@ -77,6 +78,7 @@
 		CE4A60D12490BDFB0002FE19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE4A60D42490BDFB0002FE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE4A60D62490BDFB0002FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE4A60DF2490C6930002FE19 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		CEAD9C21248B992F00E1BDB2 /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony2.mp3; sourceTree = "<group>"; };
 		CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brahmsSymphony3.mp3; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4A60D62490BDFB0002FE19 /* Info.plist */,
+				CE4A60DF2490C6930002FE19 /* Music.swift */,
 				CE4A60CA2490BDFA0002FE19 /* Scene.swift */,
 				CE4A60D12490BDFB0002FE19 /* Assets.xcassets */,
 				CE4A60D32490BDFB0002FE19 /* LaunchScreen.storyboard */,
@@ -397,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4A60CB2490BDFA0002FE19 /* Scene.swift in Sources */,
+				CE4A60E02490C6930002FE19 /* Music.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
