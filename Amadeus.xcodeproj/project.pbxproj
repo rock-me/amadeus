@@ -45,6 +45,8 @@
 		CE3B3DFD2491415300D1EBC8 /* mozartSymphony1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C38248BCC6300E1BDB2 /* mozartSymphony1.mp3 */; };
 		CE3B3DFE2491415300D1EBC8 /* mozartSymphony40.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */; };
 		CE3B3DFF2491415300D1EBC8 /* satieGymnopedies.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C30248BCC6300E1BDB2 /* satieGymnopedies.mp3 */; };
+		CE3B3E012491592400D1EBC8 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3E002491592400D1EBC8 /* Control.swift */; };
+		CE3B3E03249159E200D1EBC8 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3E02249159E200D1EBC8 /* Hud.swift */; };
 		CE48A41724895786004555C1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41624895786004555C1 /* Section.swift */; };
 		CE48A41D24895B71004555C1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41C24895B71004555C1 /* Session.swift */; };
 		CE4A60CB2490BDFA0002FE19 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A60CA2490BDFA0002FE19 /* Scene.swift */; };
@@ -103,6 +105,8 @@
 		CE3B0A37248EA68400A810E0 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE3B0A39248EB17F00A810E0 /* Purchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchases.swift; sourceTree = "<group>"; };
 		CE3B3DDE2491342000D1EBC8 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		CE3B3E002491592400D1EBC8 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
+		CE3B3E02249159E200D1EBC8 /* Hud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		CE48A41624895786004555C1 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		CE48A41C24895B71004555C1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CE4A60C62490BDFA0002FE19 /* Amadeus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amadeus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,8 @@
 			children = (
 				CE4A60D62490BDFB0002FE19 /* Info.plist */,
 				CE3B3DDE2491342000D1EBC8 /* Bar.swift */,
+				CE3B3E002491592400D1EBC8 /* Control.swift */,
+				CE3B3E02249159E200D1EBC8 /* Hud.swift */,
 				CE4A60DF2490C6930002FE19 /* Music.swift */,
 				CE4A60CA2490BDFA0002FE19 /* Scene.swift */,
 				CE4A60D12490BDFB0002FE19 /* Assets.xcassets */,
@@ -455,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3B3E03249159E200D1EBC8 /* Hud.swift in Sources */,
 				CE3B3DE6249135CD00D1EBC8 /* Purchases.swift in Sources */,
 				CE4A60CB2490BDFA0002FE19 /* Scene.swift in Sources */,
 				CE3B3DE8249135D700D1EBC8 /* Font.swift in Sources */,
@@ -462,6 +469,7 @@
 				CE3B3DE4249135C500D1EBC8 /* Session.swift in Sources */,
 				CE3B3DE5249135C800D1EBC8 /* Section.swift in Sources */,
 				CE3B3DE3249135BF00D1EBC8 /* String.swift in Sources */,
+				CE3B3E012491592400D1EBC8 /* Control.swift in Sources */,
 				CE3B3DDF2491342000D1EBC8 /* Bar.swift in Sources */,
 				CE4A60E02490C6930002FE19 /* Music.swift in Sources */,
 			);

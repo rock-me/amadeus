@@ -44,6 +44,11 @@ extension UIFont {
         .systemFont(ofSize: size + adding, weight: .bold)
     }
     
+    class func monospaced(_ with: UIFont) -> Self {
+        .init(descriptor: with.fontDescriptor.addingAttributes([.featureSettings:
+            [[UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType, .typeIdentifier: kMonospacedNumbersSelector]]]), size: 0)
+    }
+    
     private static var size: CGFloat {
         Self.preferredFont(forTextStyle: .body).pointSize
     }
