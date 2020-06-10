@@ -52,7 +52,7 @@ final class Purchases: NSObject, SKRequestDelegate, SKProductsRequestDelegate, S
             case .failed:
                 SKPaymentQueue.default().finishTransaction($0)
             case .restored, .purchased:
-                playback.player.config.value.purchases.insert($0.payment.productIdentifier)
+                session.player.config.value.purchases.insert($0.payment.productIdentifier)
                 SKPaymentQueue.default().finishTransaction($0)
             default:
                 break

@@ -109,25 +109,25 @@ final class Bar: NSView {
         separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        playback.player.track.sink {
+        session.player.track.sink {
             title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
-            totalTime.stringValue = self.formatter.string(from: playback.player.track.value.duration)!
+            totalTime.stringValue = self.formatter.string(from: session.player.track.value.duration)!
         }.store(in: &subs)
         
-        playback.time.sink {
+        session.time.sink {
             currentTime.stringValue = self.formatter.string(from: $0)!
         }.store(in: &subs)
         
-        playback.playing.sink {
+        session.playing.sink {
             playButton.isHidden = $0
             pauseButton.isHidden = !$0
         }.store(in: &subs)
         
-        playback.player.nextable.sink {
+        session.player.nextable.sink {
             nextButton.enabled = $0
         }.store(in: &subs)
         
-        playback.player.previousable.sink {
+        session.player.previousable.sink {
             previousButton.enabled = $0
         }.store(in: &subs)
     }
@@ -138,19 +138,19 @@ final class Bar: NSView {
     }
     
     @objc private func play() {
-        playback.play()
+        session.play()
     }
     
     @objc private func pause() {
-        playback.pause()
+        session.pause()
     }
     
     @objc private func previous() {
-        playback.previous()
+        session.previous()
     }
     
     @objc private func next() {
-        playback.next()
+        session.next()
     }
 }
 

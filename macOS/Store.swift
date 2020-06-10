@@ -187,7 +187,7 @@ private final class Item: NSView {
         tracks.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(tracks)
         
-        if playback.player.config.value.purchases.contains(product.productIdentifier) {
+        if session.player.config.value.purchases.contains(product.productIdentifier) {
             let purchased = NSImageView(image: NSImage(named: "purchased")!)
             purchased.translatesAutoresizingMaskIntoConstraints = false
             purchased.imageScaling = .scaleNone

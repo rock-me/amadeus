@@ -42,7 +42,7 @@ final class Coverflow: NSView {
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
         
-        playback.player.config.sink { [weak self] config in
+        session.player.config.sink { [weak self] config in
             guard let self = self else { return }
             scroll.views.map { $0 as! Item }.forEach { item in
                 item.purchase.isHidden = config.purchases.contains(item.album.purchase)

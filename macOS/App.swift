@@ -3,7 +3,6 @@ import Combine
 import UserNotifications
 
 let session = Session()
-let playback = Playback()
 
 @NSApplicationMain final class App: NSApplication, NSApplicationDelegate, UNUserNotificationCenterDelegate {
     private var subs = Set<AnyCancellable>()
@@ -41,13 +40,13 @@ let playback = Playback()
             }
         }
         
-        playback.player.start.sink {
-            guard playback.player.config.value.notifications else { return }
+        session.player.start.sink {
+            guard session.player.config.value.notifications else { return }
             UNUserNotificationCenter.current().getNotificationSettings {
                 guard $0.authorizationStatus == .authorized else { return }
                 UNUserNotificationCenter.current().add({
-                    $0.title = .key(playback.player.track.value.title)
-                    $0.body = .key(playback.player.track.value.composer.name)
+                    $0.title = .key(session.player.track.value.title)
+                    $0.body = .key(session.player.track.value.composer.name)
                     return .init(identifier: UUID().uuidString, content: $0, trigger: nil)
                 } (UNMutableNotificationContent()))
             }

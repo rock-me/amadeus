@@ -21,7 +21,6 @@
 		CE3B3DE4249135C500D1EBC8 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41C24895B71004555C1 /* Session.swift */; };
 		CE3B3DE5249135C800D1EBC8 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41624895786004555C1 /* Section.swift */; };
 		CE3B3DE6249135CD00D1EBC8 /* Purchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B0A39248EB17F00A810E0 /* Purchases.swift */; };
-		CE3B3DE7249135D200D1EBC8 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD9C21248B992F00E1BDB2 /* Playback.swift */; };
 		CE3B3DE8249135D700D1EBC8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68A02483CFAF00716620 /* Font.swift */; };
 		CE48A41724895786004555C1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41624895786004555C1 /* Section.swift */; };
 		CE48A41D24895B71004555C1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41C24895B71004555C1 /* Session.swift */; };
@@ -31,7 +30,6 @@
 		CE4A60DC2490BE100002FE19 /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DB2490BE100002FE19 /* Balam */; };
 		CE4A60DE2490BE100002FE19 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DD2490BE100002FE19 /* Player */; };
 		CE4A60E02490C6930002FE19 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A60DF2490C6930002FE19 /* Music.swift */; };
-		CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD9C21248B992F00E1BDB2 /* Playback.swift */; };
 		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
 		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */; };
 		CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */; };
@@ -90,7 +88,6 @@
 		CE4A60D42490BDFB0002FE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE4A60D62490BDFB0002FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4A60DF2490C6930002FE19 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
-		CEAD9C21248B992F00E1BDB2 /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony2.mp3; sourceTree = "<group>"; };
 		CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brahmsSymphony3.mp3; sourceTree = "<group>"; };
 		CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mozartSymphony40.mp3; sourceTree = "<group>"; };
@@ -264,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				CEEA68A02483CFAF00716620 /* Font.swift */,
-				CEAD9C21248B992F00E1BDB2 /* Playback.swift */,
 				CE3B0A39248EB17F00A810E0 /* Purchases.swift */,
 				CE48A41624895786004555C1 /* Section.swift */,
 				CE48A41C24895B71004555C1 /* Session.swift */,
@@ -421,7 +417,6 @@
 				CE3B3DE5249135C800D1EBC8 /* Section.swift in Sources */,
 				CE3B3DE3249135BF00D1EBC8 /* String.swift in Sources */,
 				CE3B3DDF2491342000D1EBC8 /* Bar.swift in Sources */,
-				CE3B3DE7249135D200D1EBC8 /* Playback.swift in Sources */,
 				CE4A60E02490C6930002FE19 /* Music.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +429,6 @@
 				CEEA68902483B6DA00716620 /* String.swift in Sources */,
 				CEEA68972483B8B700716620 /* Bar.swift in Sources */,
 				CEEA689F2483CF0F00716620 /* Label.swift in Sources */,
-				CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */,
 				CE0436702485667F003841CA /* Detail.swift in Sources */,
 				CEEA689B2483BDE600716620 /* Side.swift in Sources */,
 				CE3B0A3A248EB17F00A810E0 /* Purchases.swift in Sources */,

@@ -3,12 +3,39 @@ import CoreGraphics
 import Balam
 import Player
 import Combine
+import AVFoundation
 
 final class Session {
     private(set) var ui = CurrentValueSubject<UI, Never>(.init())
+    private(set) var playing = CurrentValueSubject<Bool, Never>(false)
+    private(set) var time = CurrentValueSubject<TimeInterval, Never>(.init())
+    let player = Player()
     private var subs = Set<AnyCancellable>()
     private let storeUI = Balam("ui.amadeus")
     private let storePlayer = Balam("player.amadeus")
+    private let audio = AVPlayer()
+    
+    init() {
+        audio.addPeriodicTimeObserver(forInterval: .init(value: 5, timescale: 10), queue: .main) {
+            self.time.value = CMTimeGetSeconds($0)
+        }
+        
+        audio.publisher(for: \.timeControlStatus).sink {
+            self.playing.value = $0 == .playing
+        }.store(in: &subs)
+        
+        NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime).sink { _ in
+            self.player.trackEnds()
+        }.store(in: &subs)
+        
+        player.track.sink {
+            self.audio.replaceCurrentItem(with: .init(asset: AVURLAsset(url: Bundle.main.url(forResource: $0.file, withExtension: "mp3")!)))
+        }.store(in: &subs)
+        
+        player.start.sink {
+            self.audio.play()
+        }.store(in: &subs)
+    }
     
     var loadUI: Future<Bool, Never> {
         .init { promise in
@@ -31,18 +58,18 @@ final class Session {
     func loadPlayer() {
         storePlayer.nodes(Track.self).sink {
             if let stored = $0.first {
-                playback.player.track.value = stored
+                self.player.track.value = stored
             } else {
-                self.storePlayer.add(playback.player.track.value)
+                self.storePlayer.add(self.player.track.value)
             }
             self.listenTrack()
         }.store(in: &subs)
         
         storePlayer.nodes(Config.self).sink {
             if let stored = $0.first {
-                playback.player.config.value = stored
+                self.player.config.value = stored
             } else {
-                self.storePlayer.add(playback.player.config.value)
+                self.storePlayer.add(self.player.config.value)
             }
             self.listenConfig()
         }.store(in: &subs)
@@ -53,14 +80,34 @@ final class Session {
         storeUI.update(ui.value)
     }
     
+    func play() {
+        #if os(iOS)
+        try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try! AVAudioSession.sharedInstance().setActive(true)
+        #endif
+        audio.play()
+    }
+    
+    func pause() {
+        audio.pause()
+    }
+    
+    func next() {
+        player.next()
+    }
+    
+    func previous() {
+        player.previous()
+    }
+    
     private func listenConfig() {
-        playback.player.config.dropFirst().sink {
+        player.config.dropFirst().sink {
             self.storePlayer.update($0)
         }.store(in: &subs)
     }
     
     private func listenTrack() {
-        playback.player.track.dropFirst().sink {
+        player.track.dropFirst().sink {
             self.storePlayer.replace(Track.self, with: $0)
         }.store(in: &subs)
     }
