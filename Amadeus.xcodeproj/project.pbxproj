@@ -15,6 +15,11 @@
 		CE3B0A3A248EB17F00A810E0 /* Purchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B0A39248EB17F00A810E0 /* Purchases.swift */; };
 		CE48A41724895786004555C1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41624895786004555C1 /* Section.swift */; };
 		CE48A41D24895B71004555C1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE48A41C24895B71004555C1 /* Session.swift */; };
+		CE4A60CB2490BDFA0002FE19 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A60CA2490BDFA0002FE19 /* Scene.swift */; };
+		CE4A60D22490BDFB0002FE19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4A60D12490BDFB0002FE19 /* Assets.xcassets */; };
+		CE4A60D52490BDFB0002FE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4A60D32490BDFB0002FE19 /* LaunchScreen.storyboard */; };
+		CE4A60DC2490BE100002FE19 /* Balam in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DB2490BE100002FE19 /* Balam */; };
+		CE4A60DE2490BE100002FE19 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A60DD2490BE100002FE19 /* Player */; };
 		CEAD9C22248B992F00E1BDB2 /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD9C21248B992F00E1BDB2 /* Playback.swift */; };
 		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
 		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */; };
@@ -67,6 +72,11 @@
 		CE3B0A39248EB17F00A810E0 /* Purchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchases.swift; sourceTree = "<group>"; };
 		CE48A41624895786004555C1 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		CE48A41C24895B71004555C1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		CE4A60C62490BDFA0002FE19 /* Amadeus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amadeus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE4A60CA2490BDFA0002FE19 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		CE4A60D12490BDFB0002FE19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE4A60D42490BDFB0002FE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE4A60D62490BDFB0002FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEAD9C21248B992F00E1BDB2 /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony2.mp3; sourceTree = "<group>"; };
 		CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brahmsSymphony3.mp3; sourceTree = "<group>"; };
@@ -117,6 +127,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE4A60C32490BDFA0002FE19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE4A60DC2490BE100002FE19 /* Balam in Frameworks */,
+				CE4A60DE2490BE100002FE19 /* Player in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEF9B297248275BB009FEF9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -129,6 +148,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE4A60C72490BDFA0002FE19 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CE4A60D62490BDFB0002FE19 /* Info.plist */,
+				CE4A60CA2490BDFA0002FE19 /* Scene.swift */,
+				CE4A60D12490BDFB0002FE19 /* Assets.xcassets */,
+				CE4A60D32490BDFB0002FE19 /* LaunchScreen.storyboard */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		CE4A60DA2490BE100002FE19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEB6E66D24881998006C9C47 /* Tracks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +202,8 @@
 				CEF9B2AE24827ED8009FEF9B /* .gitignore */,
 				CEF9B2AD24827ED8009FEF9B /* LICENSE */,
 				CEF9B2AF24827ED8009FEF9B /* README.md */,
+				CE4A60DA2490BE100002FE19 /* Frameworks */,
+				CE4A60C72490BDFA0002FE19 /* iOS */,
 				CEF9B29C248275BB009FEF9B /* macOS */,
 				CEF9B29B248275BB009FEF9B /* Products */,
 				CEF9B2B324827F9C009FEF9B /* Shared */,
@@ -176,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF9B29A248275BB009FEF9B /* Amadeus.app */,
+				CE4A60C62490BDFA0002FE19 /* Amadeus.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +264,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE4A60C52490BDFA0002FE19 /* iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE4A60D92490BDFB0002FE19 /* Build configuration list for PBXNativeTarget "iOS" */;
+			buildPhases = (
+				CE4A60C22490BDFA0002FE19 /* Sources */,
+				CE4A60C32490BDFA0002FE19 /* Frameworks */,
+				CE4A60C42490BDFA0002FE19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS;
+			packageProductDependencies = (
+				CE4A60DB2490BE100002FE19 /* Balam */,
+				CE4A60DD2490BE100002FE19 /* Player */,
+			);
+			productName = iOS;
+			productReference = CE4A60C62490BDFA0002FE19 /* Amadeus.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CEF9B299248275BB009FEF9B /* macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEF9B2AA248275BC009FEF9B /* Build configuration list for PBXNativeTarget "macOS" */;
@@ -254,6 +315,9 @@
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				TargetAttributes = {
+					CE4A60C52490BDFA0002FE19 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 					CEF9B299248275BB009FEF9B = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -277,11 +341,21 @@
 			projectRoot = "";
 			targets = (
 				CEF9B299248275BB009FEF9B /* macOS */,
+				CE4A60C52490BDFA0002FE19 /* iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE4A60C42490BDFA0002FE19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE4A60D52490BDFB0002FE19 /* LaunchScreen.storyboard in Resources */,
+				CE4A60D22490BDFB0002FE19 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEF9B298248275BB009FEF9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +392,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE4A60C22490BDFA0002FE19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE4A60CB2490BDFA0002FE19 /* Scene.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEF9B296248275BB009FEF9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,6 +432,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CE4A60D32490BDFB0002FE19 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE4A60D42490BDFB0002FE19 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		CEEA68912483B75600716620 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -361,12 +451,138 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE4A60D72490BDFB0002FE19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 7AMWG3RLHN;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = rock.me.amadeus;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE4A60D82490BDFB0002FE19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 7AMWG3RLHN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = rock.me.amadeus;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		CEC3ABB62482742E0069DBC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = Amadeus;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -380,7 +596,9 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = Amadeus;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -523,6 +741,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE4A60D92490BDFB0002FE19 /* Build configuration list for PBXNativeTarget "iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE4A60D72490BDFB0002FE19 /* Debug */,
+				CE4A60D82490BDFB0002FE19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEC3ABB52482742E0069DBC3 /* Build configuration list for PBXProject "Amadeus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -564,6 +791,16 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		CE1D719C248D246B004D37F3 /* Player */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1D719B248D246B004D37F3 /* XCRemoteSwiftPackageReference "player" */;
+			productName = Player;
+		};
+		CE4A60DB2490BE100002FE19 /* Balam */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF9B2B024827F8A009FEF9B /* XCRemoteSwiftPackageReference "balam" */;
+			productName = Balam;
+		};
+		CE4A60DD2490BE100002FE19 /* Player */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE1D719B248D246B004D37F3 /* XCRemoteSwiftPackageReference "player" */;
 			productName = Player;
