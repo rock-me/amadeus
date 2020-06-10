@@ -54,11 +54,18 @@ final class Bar: NSView {
         title.textColor = .secondaryLabelColor
         base.addSubview(title)
         
-        let time = Label("", NSFont(descriptor: NSFont.regular(11).fontDescriptor.addingAttributes([
+        let totalTime = Label("", NSFont(descriptor: NSFont.medium(11).fontDescriptor.addingAttributes([
         .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
                             .typeIdentifier: kNumberSpacingType]]]), size: 0)!)
-        time.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        base.addSubview(time)
+        totalTime.textColor = .secondaryLabelColor
+        totalTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        base.addSubview(totalTime)
+        
+        let currentTime = Label("", NSFont(descriptor: NSFont.regular(11).fontDescriptor.addingAttributes([
+        .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
+                            .typeIdentifier: kNumberSpacingType]]]), size: 0)!)
+        currentTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        base.addSubview(currentTime)
         
         let separator = Separator()
         addSubview(separator)
@@ -88,11 +95,14 @@ final class Bar: NSView {
         nextButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
-        title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
+        title.rightAnchor.constraint(lessThanOrEqualTo: currentTime.leftAnchor, constant: -10).isActive = true
         title.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        time.rightAnchor.constraint(equalTo: base.rightAnchor, constant: -10).isActive = true
-        time.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        totalTime.rightAnchor.constraint(equalTo: base.rightAnchor, constant: -10).isActive = true
+        totalTime.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        currentTime.rightAnchor.constraint(equalTo: totalTime.leftAnchor).isActive = true
+        currentTime.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separator.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -101,10 +111,11 @@ final class Bar: NSView {
         
         playback.player.track.sink {
             title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
+            totalTime.stringValue = self.formatter.string(from: playback.player.track.value.duration)!
         }.store(in: &subs)
         
         playback.time.sink {
-            time.stringValue = self.formatter.string(from: $0)! + " / " + self.formatter.string(from: playback.player.track.value.duration)!
+            currentTime.stringValue = self.formatter.string(from: $0)!
         }.store(in: &subs)
         
         playback.playing.sink {
