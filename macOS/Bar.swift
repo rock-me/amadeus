@@ -54,16 +54,12 @@ final class Bar: NSView {
         title.textColor = .secondaryLabelColor
         base.addSubview(title)
         
-        let totalTime = Label("", NSFont(descriptor: NSFont.medium(11).fontDescriptor.addingAttributes([
-        .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
-                            .typeIdentifier: kNumberSpacingType]]]), size: 0)!)
+        let totalTime = Label("", .monospaced(.medium(11)))
         totalTime.textColor = .secondaryLabelColor
         totalTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         base.addSubview(totalTime)
         
-        let currentTime = Label("", NSFont(descriptor: NSFont.regular(11).fontDescriptor.addingAttributes([
-        .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
-                            .typeIdentifier: kNumberSpacingType]]]), size: 0)!)
+        let currentTime = Label("", .monospaced(.regular(11)))
         currentTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         base.addSubview(currentTime)
         

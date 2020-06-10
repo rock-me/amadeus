@@ -8,9 +8,6 @@ final class Detail: NSView {
     private weak var duration: Label!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
-    private let font = NSFont(descriptor: NSFont.regular(12).fontDescriptor.addingAttributes([
-        .featureSettings: [[NSFontDescriptor.FeatureKey.selectorIdentifier: kMonospacedNumbersSelector,
-                            .typeIdentifier: kNumberSpacingType]]]), size: 0)!
     
     required init?(coder: NSCoder) { nil }
     init() {
@@ -30,7 +27,7 @@ final class Detail: NSView {
         addSubview(subtitle)
         self.subtitle = subtitle
         
-        let duration = Label("", font)
+        let duration = Label("", .monospaced(.regular(12)))
         duration.textColor = .secondaryLabelColor
         addSubview(duration)
         self.duration = duration
@@ -93,7 +90,7 @@ final class Detail: NSView {
     }
     
     private func item(_ track: Track) -> Item {
-        let item = Item(track: track, duration: formatter.string(from: track.duration)!, font: font)
+        let item = Item(track: track, duration: formatter.string(from: track.duration)!)
         item.target = self
         item.action = #selector(select(item:))
         addSubview(item)
@@ -128,7 +125,7 @@ private final class Item: Control {
     let track: Track
     
     required init?(coder: NSCoder) { nil }
-    init(track: Track, duration: String, font: NSFont) {
+    init(track: Track, duration: String) {
         self.track = track
         super.init()
         translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +141,7 @@ private final class Item: Control {
         composer.textColor = .secondaryLabelColor
         addSubview(composer)
         
-        let duration = Label(duration, font)
+        let duration = Label(duration, .monospaced(.regular(12)))
         duration.textColor = .secondaryLabelColor
         addSubview(duration)
         
