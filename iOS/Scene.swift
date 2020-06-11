@@ -32,13 +32,16 @@ final class Scene: UIWindow, UIWindowSceneDelegate {
             return .success
         }
         
-        session.player.track.sink {
-            let image = UIImage(named: $0.album.cover)!
+        session.player.track.sink { track in
             MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-                MPMediaItemPropertyTitle: String.key($0.title),
-                MPMediaItemPropertyArtist: String.key($0.composer.name),
-                MPMediaItemPropertyPlaybackDuration: $0.duration,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                MPMediaItemPropertyTitle: String.key(track.title),
+                MPMediaItemPropertyArtist: String.key(track.composer.name),
+                MPMediaItemPropertyPlaybackDuration: track.duration,
+                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: <#T##UIImage#>)  MPMediaItemArtwork(boundsSize: .init(width: 140, height: 140)) { _ in
+                    UIGraphicsImageRenderer(size: .init(width: 140, height: 140)).image { _ in
+                        UIImage(named: track.album.cover)!.draw(in: .init(origin: .init(x: 0, y: -20), size: .init(width: 140, height: 180)))
+                    }
+                }
             ]
         }.store(in: &subs)
         
