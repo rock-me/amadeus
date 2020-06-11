@@ -13,26 +13,25 @@ final class Bar: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
         
-        let playButton = Button(image: "play")
-        playButton.target = self
-        playButton.action = #selector(play)
-        addSubview(playButton)
+        let play = Button(image: "play")
+        play.target = session
+        play.action = #selector(session.play)
+        addSubview(play)
         
-        let pauseButton = Button(image: "pause")
-        pauseButton.target = self
-        pauseButton.action = #selector(pause)
-        pauseButton.isHidden = true
-        addSubview(pauseButton)
+        let pause = Button(image: "pause")
+        pause.target = session
+        pause.action = #selector(session.pause)
+        addSubview(pause)
         
-        let previousButton = Button(image: "previous")
-        previousButton.target = self
-        previousButton.action = #selector(previous)
-        addSubview(previousButton)
+        let previous = Button(image: "previous")
+        previous.target = session
+        previous.action = #selector(session.previous)
+        addSubview(previous)
         
-        let nextButton = Button(image: "next")
-        nextButton.target = self
-        nextButton.action = #selector(next)
-        addSubview(nextButton)
+        let next = Button(image: "next")
+        next.target = session
+        next.action = #selector(session.next)
+        addSubview(next)
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
@@ -78,17 +77,17 @@ final class Bar: NSView {
         border.topAnchor.constraint(equalTo: base.topAnchor).isActive = true
         border.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        playButton.rightAnchor.constraint(equalTo: nextButton.leftAnchor, constant: -10).isActive = true
-        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        play.rightAnchor.constraint(equalTo: next.leftAnchor, constant: -10).isActive = true
+        play.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        pauseButton.centerXAnchor.constraint(equalTo: playButton.centerXAnchor).isActive = true
-        pauseButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        pause.centerXAnchor.constraint(equalTo: play.centerXAnchor).isActive = true
+        pause.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        previousButton.rightAnchor.constraint(equalTo: playButton.leftAnchor, constant: -10).isActive = true
-        previousButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        previous.rightAnchor.constraint(equalTo: play.leftAnchor, constant: -10).isActive = true
+        previous.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        nextButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
-        nextButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        next.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        next.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: currentTime.leftAnchor, constant: -10).isActive = true
@@ -115,38 +114,22 @@ final class Bar: NSView {
         }.store(in: &subs)
         
         session.playing.sink {
-            playButton.isHidden = $0
-            pauseButton.isHidden = !$0
+            play.isHidden = $0
+            pause.isHidden = !$0
         }.store(in: &subs)
         
         session.player.nextable.sink {
-            nextButton.enabled = $0
+            next.enabled = $0
         }.store(in: &subs)
         
         session.player.previousable.sink {
-            previousButton.enabled = $0
+            previous.enabled = $0
         }.store(in: &subs)
     }
     
     override func updateLayer() {
         base.layer!.backgroundColor = NSColor.controlHighlightColor.cgColor
         border.layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
-    }
-    
-    @objc private func play() {
-        session.play()
-    }
-    
-    @objc private func pause() {
-        session.pause()
-    }
-    
-    @objc private func previous() {
-        session.previous()
-    }
-    
-    @objc private func next() {
-        session.next()
     }
 }
 

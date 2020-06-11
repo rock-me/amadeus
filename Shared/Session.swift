@@ -80,7 +80,7 @@ final class Session {
         storeUI.update(ui.value)
     }
     
-    func play() {
+    @objc func play() {
         #if os(iOS)
         try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         try! AVAudioSession.sharedInstance().setActive(true)
@@ -88,15 +88,15 @@ final class Session {
         audio.play()
     }
     
-    func pause() {
+    @objc func pause() {
         audio.pause()
     }
     
-    func next() {
+    @objc func next() {
         player.next()
     }
     
-    func previous() {
+    @objc func previous() {
         player.previous()
     }
     

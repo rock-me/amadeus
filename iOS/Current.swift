@@ -20,17 +20,16 @@ final class Current: UIView {
         
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.font = .bold(-2)
+        title.font = .bold()
         title.numberOfLines = 0
-        title.textColor = .secondaryLabel
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
         let composer = UILabel()
         composer.translatesAutoresizingMaskIntoConstraints = false
-        composer.font = .regular(-4)
+        composer.font = .regular(-2)
         composer.numberOfLines = 0
-        composer.textColor = .tertiaryLabel
+        composer.textColor = .secondaryLabel
         composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(composer)
         
