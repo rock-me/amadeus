@@ -5,12 +5,13 @@ final class Bar: NSView {
     private weak var base: NSView!
     private weak var border: NSView!
     private var subs = Set<AnyCancellable>()
-    private let formatter = DateComponentsFormatter()
     
     required init?(coder: NSCoder) { nil }
     init() {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        
+        let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
         
         let play = Button(image: "play")
@@ -106,11 +107,11 @@ final class Bar: NSView {
         
         session.player.track.sink {
             title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
-            totalTime.stringValue = self.formatter.string(from: session.player.track.value.duration)!
+            totalTime.stringValue = formatter.string(from: session.player.track.value.duration)!
         }.store(in: &subs)
         
         session.time.sink {
-            currentTime.stringValue = self.formatter.string(from: $0)!
+            currentTime.stringValue = formatter.string(from: $0)!
         }.store(in: &subs)
         
         session.playing.sink {
