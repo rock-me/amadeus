@@ -35,6 +35,11 @@ final class Session {
         player.start.sink {
             self.audio.play()
         }.store(in: &subs)
+        
+        #if os(iOS)
+            try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try! AVAudioSession.sharedInstance().setActive(true)
+        #endif
     }
     
     var loadUI: Future<Bool, Never> {
@@ -81,10 +86,6 @@ final class Session {
     }
     
     @objc func play() {
-        #if os(iOS)
-        try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try! AVAudioSession.sharedInstance().setActive(true)
-        #endif
         audio.play()
     }
     
