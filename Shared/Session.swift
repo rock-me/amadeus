@@ -16,6 +16,11 @@ final class Session {
     private let audio = AVPlayer()
     
     init() {
+        #if os(iOS)
+            try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try! AVAudioSession.sharedInstance().setActive(true)
+        #endif
+        
         audio.addPeriodicTimeObserver(forInterval: .init(value: 5, timescale: 10), queue: .main) {
             self.time.value = CMTimeGetSeconds($0)
         }
@@ -35,11 +40,6 @@ final class Session {
         player.start.sink {
             self.audio.play()
         }.store(in: &subs)
-        
-        #if os(iOS)
-            try! AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try! AVAudioSession.sharedInstance().setActive(true)
-        #endif
     }
     
     var loadUI: Future<Bool, Never> {

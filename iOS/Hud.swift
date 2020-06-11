@@ -119,7 +119,7 @@ final class Hud: UIViewController {
         
         session.time.sink {
             time.text = formatter.string(from: $0)!
-            width.constant = duration.bounds.width * .init($0 / session.player.track.value.duration)
+            width.constant = 200 * .init($0 / session.player.track.value.duration)
         }.store(in: &subs)
         
         session.playing.sink {
