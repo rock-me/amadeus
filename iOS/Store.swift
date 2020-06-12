@@ -201,7 +201,7 @@ private final class Item: UIView {
         addSubview(tracks)
         
         if session.player.config.value.purchases.contains(product.productIdentifier) {
-            let purchased = UIImageView(image: UIImage(named: "purchased")!)
+            let purchased = UIImageView(image: UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .black, scale: .large))!)
             purchased.translatesAutoresizingMaskIntoConstraints = false
             purchased.tintColor = .systemBlue
             addSubview(purchased)
@@ -210,8 +210,6 @@ private final class Item: UIView {
             
             purchased.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 30).isActive = true
             purchased.centerXAnchor.constraint(equalTo: image.centerXAnchor).isActive = true
-            purchased.widthAnchor.constraint(equalToConstant: 30).isActive = true
-            purchased.heightAnchor.constraint(equalToConstant: 30).isActive = true
         } else {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currencyISOCode

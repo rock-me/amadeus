@@ -34,7 +34,7 @@ final class Settings: UIViewController {
         scroll.add(randomTitle)
         
         let randomSeparator = Separator()
-        randomSeparator.backgroundColor = .secondarySystemGroupedBackground
+        randomSeparator.backgroundColor = .secondarySystemBackground
         scroll.add(randomSeparator)
         
         let random = UISegmentedControl(items: [String.key("Off"), .key("Track"), .key("Album")])
