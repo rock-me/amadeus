@@ -17,16 +17,16 @@ Restore.purchases = "Restore Purchases";
 Purchases.are = "Purchases are non-consumable, you pay for them only once.\nThey are shared between iOS and macOS.";
 
 album_mists_title = "The Mists";
-album_mists_subtitle = "A temporary lapse of reasoning with oneself.";
+album_mists_subtitle = "A temporary lapse of reasoning with oneself";
 
 album_melancholy_title = "Melancholy";
-album_melancholy_subtitle = "Spellbound.";
+album_melancholy_subtitle = "Spellbound";
 
 album_tension_title = "Tension";
-album_tension_subtitle = "Holding your breath.";
+album_tension_subtitle = "Holding your breath";
 
 album_dawn_title = "New Dawn";
-album_dawn_subtitle = "A bright new start.";
+album_dawn_subtitle = "A bright new start";
 
 composer_satie_name = "Erik Satie";
 composer_mozart_name = "Wolfgang Amadeus Mozart";
