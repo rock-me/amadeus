@@ -20,6 +20,14 @@ final class Music: UIViewController {
         scroll.add(coverflow)
         self.coverflow = coverflow
         
+        let shop = Button(icon: "bag.fill")
+        shop.target = self
+        shop.action = #selector(store)
+        scroll.add(shop)
+        
+        let settings = Button(icon: "dial.fill")
+        scroll.add(settings)
+        
         let detail = Detail()
         scroll.add(detail)
         self.detail = detail
@@ -38,7 +46,13 @@ final class Music: UIViewController {
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: detail.bottomAnchor, constant: 30).isActive = true
         
-        coverflow.topAnchor.constraint(equalTo: scroll.top).isActive = true
+        shop.topAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.topAnchor).isActive = true
+        shop.rightAnchor.constraint(equalTo: scroll.centerX, constant: -5).isActive = true
+        
+        settings.topAnchor.constraint(equalTo: shop.topAnchor).isActive = true
+        settings.leftAnchor.constraint(equalTo: scroll.centerX, constant: 5).isActive = true
+        
+        coverflow.topAnchor.constraint(equalTo: shop.bottomAnchor, constant: -20).isActive = true
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         coverflow.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         
@@ -59,10 +73,6 @@ final class Music: UIViewController {
         }.store(in: &subs)
     }
     
-    @objc private func hud() {
-        present(Hud(), animated: true)
-    }
-    
     func select(album: Album) {
         show(album)
         session.update {
@@ -73,5 +83,42 @@ final class Music: UIViewController {
     private func show(_ album: Album) {
         coverflow.show(album)
         detail.show(album)
+    }
+    
+    @objc private func hud() {
+        present(Hud(), animated: true)
+    }
+    
+    @objc private func store() {
+        present(Store(), animated: true)
+    }
+}
+
+private final class Button: Control {
+    private weak var image: UIImageView!
+    
+    required init?(coder: NSCoder) { nil }
+    init(icon: String) {
+        super.init()
+        let image = UIImageView(image: UIImage(systemName: icon)!)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(image)
+        self.image = image
+        
+        widthAnchor.constraint(equalToConstant: 50).isActive = true
+        heightAnchor.constraint(equalTo: widthAnchor).isActive = true
+        
+        image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        hoverOff()
+    }
+    
+    override func hoverOff() {
+        image.tintColor = .secondaryLabel
+    }
+    
+    override func hoverOn() {
+        image.tintColor = .systemBlue
     }
 }

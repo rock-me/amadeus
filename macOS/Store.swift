@@ -205,7 +205,7 @@ private final class Item: NSView {
             formatter.numberStyle = .currencyISOCode
             formatter.locale = product.priceLocale
             
-            let price = Label(formatter.string(from: product.price) ?? "", .medium(12))
+            let price = Label(formatter.string(from: product.price)!, .medium(12))
             addSubview(price)
             
             let purchase = ButtonPurchase(.key("Purchase"), product: product)
@@ -251,8 +251,6 @@ private final class Item: NSView {
 }
 
 private class Button: Control {
-    private weak var label: Label!
-    
     required init?(coder: NSCoder) { nil }
     init(_ title: String) {
         super.init()
@@ -262,7 +260,6 @@ private class Button: Control {
         let label = Label(title, .medium(12))
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(label)
-        self.label = label
         
         heightAnchor.constraint(equalToConstant: 28).isActive = true
         rightAnchor.constraint(equalTo: label.rightAnchor, constant: 16).isActive = true

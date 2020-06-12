@@ -81,7 +81,7 @@ final class Detail: UIView {
             addSubview(item)
             
             if top == duration.bottomAnchor {
-                item.topAnchor.constraint(equalTo: top, constant: 40).isActive = true
+                item.topAnchor.constraint(equalTo: top, constant: 30).isActive = true
             } else {
                 let separator = Separator()
                 addSubview(separator)

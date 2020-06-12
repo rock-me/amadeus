@@ -11,6 +11,7 @@
 		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
 		CE0436702485667F003841CA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366F2485667F003841CA /* Detail.swift */; };
 		CE1D719D248D246B004D37F3 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE1D719C248D246B004D37F3 /* Player */; };
+		CE31B7662493AF8F003FEF67 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31B7652493AF8F003FEF67 /* Store.swift */; };
 		CE3B0A38248EA68400A810E0 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B0A37248EA68400A810E0 /* Store.swift */; };
 		CE3B0A3A248EB17F00A810E0 /* Purchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B0A39248EB17F00A810E0 /* Purchases.swift */; };
 		CE3B3DDF2491342000D1EBC8 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3DDE2491342000D1EBC8 /* Bar.swift */; };
@@ -107,6 +108,7 @@
 		CE04366724853C1F003841CA /* Coverflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coverflow.swift; sourceTree = "<group>"; };
 		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CE04366F2485667F003841CA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		CE31B7652493AF8F003FEF67 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE3B0A37248EA68400A810E0 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE3B0A39248EB17F00A810E0 /* Purchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchases.swift; sourceTree = "<group>"; };
 		CE3B3DDE2491342000D1EBC8 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				CE3B3E002491592400D1EBC8 /* Control.swift */,
 				CE3D1EEF24935C350006B348 /* Coverflow.swift */,
 				CE3B3E0424915F5400D1EBC8 /* Current.swift */,
+				CE31B7652493AF8F003FEF67 /* Store.swift */,
 				CE3D1EF124935CCE0006B348 /* Detail.swift */,
 				CE3B3E02249159E200D1EBC8 /* Hud.swift */,
 				CE4A60DF2490C6930002FE19 /* Music.swift */,
@@ -486,6 +489,7 @@
 				CE3B3DE5249135C800D1EBC8 /* Section.swift in Sources */,
 				CE3B3DE3249135BF00D1EBC8 /* String.swift in Sources */,
 				CE3B3E012491592400D1EBC8 /* Control.swift in Sources */,
+				CE31B7662493AF8F003FEF67 /* Store.swift in Sources */,
 				CE3B3DDF2491342000D1EBC8 /* Bar.swift in Sources */,
 				CE3D1EF424935F830006B348 /* Separator.swift in Sources */,
 				CE3D1EF224935CCE0006B348 /* Detail.swift in Sources */,

@@ -39,7 +39,7 @@ final class Coverflow: UIView, UIScrollViewDelegate {
         scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
         scroll.width.constraint(equalToConstant: .init(160 * Album.allCases.count) + (margin * 2) + 80).isActive = true
         
-        heightAnchor.constraint(equalToConstant: 400).isActive = true
+        heightAnchor.constraint(equalToConstant: 390).isActive = true
     }
     
     func show(_ album: Album) {
