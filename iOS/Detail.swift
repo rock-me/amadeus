@@ -1,11 +1,11 @@
-import AppKit
+import UIKit
 import Player
 import Combine
 
-final class Detail: NSView {
-    private weak var title: Label!
-    private weak var subtitle: Label!
-    private weak var duration: Label!
+final class Detail: UIView {
+    private weak var title: UILabel!
+    private weak var subtitle: UILabel!
+    private weak var duration: UILabel!
     private var subs = Set<AnyCancellable>()
     private let formatter = DateComponentsFormatter()
     
@@ -15,20 +15,25 @@ final class Detail: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
         
-        let title = Label("", .bold(20))
-        title.textColor = .headerTextColor
+        let title = UILabel()
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = .bold(6)
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         self.title = title
         
-        let subtitle = Label("", .regular(12))
-        subtitle.textColor = .secondaryLabelColor
+        let subtitle = UILabel()
+        subtitle.translatesAutoresizingMaskIntoConstraints = false
+        subtitle.font = .regular(-2)
+        subtitle.textColor = .secondaryLabel
         subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(subtitle)
         self.subtitle = subtitle
         
-        let duration = Label("", .monospaced(.regular(12)))
-        duration.textColor = .secondaryLabelColor
+        let duration = UILabel()
+        duration.translatesAutoresizingMaskIntoConstraints = false
+        duration.font = .monospaced(.regular(12))
+        duration.textColor = .secondaryLabel
         addSubview(duration)
         self.duration = duration
         
@@ -49,11 +54,11 @@ final class Detail: NSView {
     }
     
     func show(_ album: Album) {
-        title.stringValue = .key(album.title)
-        subtitle.stringValue = .key(album.subtitle)
-        duration.stringValue = formatter.string(from: album.duration)!
+        title.text = .key(album.title)
+        subtitle.text = .key(album.subtitle)
+        duration.text = formatter.string(from: album.duration)!
         
-        subviews.filter { !($0 is Label) }.forEach {
+        subviews.filter { !($0 is UILabel) }.forEach {
             $0.removeFromSuperview()
         }
         
@@ -70,8 +75,8 @@ final class Detail: NSView {
             item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
             item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
             
-            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 15).isActive = true
-            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -15).isActive = true
+            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
+            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
             separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
             
             if top == subtitle.bottomAnchor {
@@ -112,7 +117,7 @@ final class Detail: NSView {
 private final class Item: Control {
     var selected = false {
         didSet {
-            updateLayer()
+            hoverOff()
         }
     }
     
@@ -123,24 +128,31 @@ private final class Item: Control {
         self.track = track
         super.init()
         translatesAutoresizingMaskIntoConstraints = false
-        wantsLayer = true
-        layer!.cornerRadius = 10
+        layer.cornerRadius = 10
         
-        let title = Label(.key(track.title), .bold(14))
+        let title = UILabel()
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = .bold()
+        title.text = .key(track.title)
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
-        let composer = Label(.key(track.composer.name), .regular(14))
+        let composer = UILabel()
+        composer.translatesAutoresizingMaskIntoConstraints = false
+        composer.font = .regular()
+        composer.text = .key(track.composer.name)
         composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        composer.textColor = .secondaryLabelColor
+        composer.textColor = .secondaryLabel
         addSubview(composer)
         
-        let time = Label(duration, .monospaced(.regular(12)))
-        time.textColor = .secondaryLabelColor
+        let time = UILabel()
+        time.text = duration
+        time.font = .monospaced(.regular(-2))
+        time.textColor = .secondaryLabel
         addSubview(time)
         
         bottomAnchor.constraint(equalTo: composer.bottomAnchor, constant: 15).isActive = true
-        
+            
         title.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         title.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
@@ -153,15 +165,11 @@ private final class Item: Control {
         time.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    override func updateLayer() {
-        layer!.backgroundColor = selected ? NSColor.controlColor.cgColor : .clear
-    }
-    
     override func hoverOn() {
-        layer!.backgroundColor = NSColor.controlColor.cgColor
+        backgroundColor = .systemBlue
     }
     
     override func hoverOff() {
-        updateLayer()
+        backgroundColor = selected ? .systemBlue : .clear
     }
 }
