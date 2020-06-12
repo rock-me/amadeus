@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +12,43 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvc-m2-Zl6">
+                                <rect key="frame" x="0.0" y="776" width="414" height="120"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="J8X-Gs-ezL"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dial.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-3a-Xav">
+                                <rect key="frame" x="212" y="43.666666666666657" width="50" height="49.333333333333336"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="45N-zh-0is"/>
+                                    <constraint firstAttribute="width" constant="50" id="qja-YQ-utn"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bag.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ax0-YQ-O5M">
+                                <rect key="frame" x="152" y="44.000000000000014" width="50" height="48.666666666666657"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Wtg-4o-w4W"/>
+                                    <constraint firstAttribute="width" constant="50" id="p9N-5N-kkN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mEl-3a-Xav" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9fg-q2-Rv9"/>
+                            <constraint firstItem="Cvc-m2-Zl6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="H87-hH-K2u"/>
+                            <constraint firstItem="Ax0-YQ-O5M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="UTn-5n-U4y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="Ax0-YQ-O5M" secondAttribute="trailing" constant="5" id="YSp-jg-wix"/>
+                            <constraint firstItem="mEl-3a-Xav" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="5" id="msG-qa-XW6"/>
+                            <constraint firstItem="Cvc-m2-Zl6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="o6i-yW-WjR"/>
+                            <constraint firstAttribute="bottom" secondItem="Cvc-m2-Zl6" secondAttribute="bottom" id="sHU-9f-jyc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +57,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bag.fill" catalog="system" width="128" height="128"/>
+        <image name="dial.fill" catalog="system" width="128" height="106"/>
+    </resources>
 </document>
