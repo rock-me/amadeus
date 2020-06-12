@@ -3,6 +3,8 @@ import Player
 import Combine
 
 final class Detail: UIView {
+    weak var target: AnyObject!
+    var store: Selector!
     private weak var title: UILabel!
     private weak var subtitle: UILabel!
     private weak var duration: UILabel!
@@ -54,6 +56,10 @@ final class Detail: UIView {
         session.player.track.dropFirst().sink { [weak self] in
             self?.current($0)
         }.store(in: &self.subs)
+        
+        session.player.config.dropFirst().sink { [weak self] _ in
+            self?.show(session.ui.value.album)
+        }.store(in: &subs)
     }
     
     func show(_ album: Album) {
@@ -73,35 +79,46 @@ final class Detail: UIView {
             $0.removeFromSuperview()
         }
         
-        var top = duration.bottomAnchor
-        album.tracks.forEach {
-            let item = Item(track: $0, duration: formatter.string(from: $0.duration)!)
-            item.target = self
-            item.action = #selector(select(item:))
-            addSubview(item)
-            
-            if top == duration.bottomAnchor {
-                item.topAnchor.constraint(equalTo: top, constant: 30).isActive = true
-            } else {
-                let separator = Separator()
-                addSubview(separator)
+        if session.player.config.value.purchases.contains(album.purchase) {
+            var top = duration.bottomAnchor
+            album.tracks.forEach {
+                let item = Item(track: $0, duration: formatter.string(from: $0.duration)!)
+                item.target = self
+                item.action = #selector(select(item:))
+                addSubview(item)
                 
-                separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
-                separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-                separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-                separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+                if top == duration.bottomAnchor {
+                    item.topAnchor.constraint(equalTo: top, constant: 30).isActive = true
+                } else {
+                    let separator = Separator()
+                    addSubview(separator)
+                    
+                    separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
+                    separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+                    separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
+                    separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+                    
+                    item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 2).isActive = true
+                }
                 
-                item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 2).isActive = true
+                item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+                item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+                
+                top = item.bottomAnchor
             }
             
-            item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+            bottomAnchor.constraint(equalTo: top).isActive = true
+            current(session.player.track.value)
+        } else {
+            let button = Button(.key("In.app"))
+            button.target = target
+            button.action = store
+            addSubview(button)
             
-            top = item.bottomAnchor
+            button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            button.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: 30).isActive = true
+            bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30).isActive = true
         }
-        
-        bottomAnchor.constraint(equalTo: top).isActive = true
-        current(session.player.track.value)
     }
     
     private func current(_ track: Track) {
@@ -184,5 +201,45 @@ private final class Item: Control {
     
     override func hoverOff() {
         backgroundColor = selected ? .systemBlue : .clear
+    }
+}
+
+private class Button: Control {
+    required init?(coder: NSCoder) { nil }
+    init(_ title: String) {
+        super.init()
+        
+        let base = UIView()
+        base.translatesAutoresizingMaskIntoConstraints = false
+        base.isUserInteractionEnabled = false
+        base.backgroundColor = .systemBlue
+        base.layer.cornerRadius = 14
+        addSubview(base)
+        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = title
+        label.font = .regular(-2)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        addSubview(label)
+        
+        rightAnchor.constraint(equalTo: label.rightAnchor, constant: 16).isActive = true
+        heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        base.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        base.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        base.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+        label.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    override func hoverOn() {
+        alpha = 0.3
+    }
+    
+    override func hoverOff() {
+        alpha = 1
     }
 }

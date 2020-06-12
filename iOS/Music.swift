@@ -26,9 +26,13 @@ final class Music: UIViewController {
         scroll.add(shop)
         
         let settings = Button(icon: "dial.fill")
+        settings.target = self
+        settings.action = #selector(self.settings)
         scroll.add(settings)
         
         let detail = Detail()
+        detail.target = self
+        detail.store = #selector(store)
         scroll.add(detail)
         self.detail = detail
         
@@ -90,6 +94,10 @@ final class Music: UIViewController {
     }
     
     @objc private func store() {
+        present(Store(), animated: true)
+    }
+    
+    @objc private func settings() {
         present(Store(), animated: true)
     }
 }
