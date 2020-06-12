@@ -150,10 +150,6 @@ final class Store: UIViewController {
         loading()
         purchases.restore()
     }
-    
-    @objc private func done() {
-        dismiss(animated: true)
-    }
 }
 
 private final class Item: UIView {
@@ -261,32 +257,6 @@ private final class Item: UIView {
         tracks.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 6).isActive = true
         tracks.leftAnchor.constraint(equalTo: title.leftAnchor).isActive = true
         tracks.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -30).isActive = true
-    }
-}
-
-private class Close: Control {
-    required init?(coder: NSCoder) { nil }
-    override init() {
-        super.init()
-        
-        let image = UIImageView(image: UIImage(systemName: "xmark")!)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.tintColor = .secondaryLabel
-        addSubview(image)
-        
-        widthAnchor.constraint(equalToConstant: 50).isActive = true
-        heightAnchor.constraint(equalTo: widthAnchor).isActive = true
-        
-        image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }
-    
-    override func hoverOn() {
-        alpha = 0.3
-    }
-    
-    override func hoverOff() {
-        alpha = 1
     }
 }
 

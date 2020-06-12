@@ -139,10 +139,6 @@ final class Hud: UIViewController {
             previous.enabled = $0
         }.store(in: &subs)
     }
-    
-    @objc private func done() {
-        dismiss(animated: true)
-    }
 }
 
 private final class Button: Control {

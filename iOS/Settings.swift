@@ -21,118 +21,148 @@ final class Settings: UIViewController {
         scroll.showsVerticalScrollIndicator = true
         view.addSubview(scroll)
         
+        let close = Close()
+        close.target = self
+        close.action = #selector(done)
+        view.addSubview(close)
+        
         let randomTitle = UILabel()
         randomTitle.translatesAutoresizingMaskIntoConstraints = false
         randomTitle.text = .key("Random")
-        randomTitle.font = .regular()
+        randomTitle.font = .regular(-2)
         randomTitle.textColor = .secondaryLabel
-        view.addSubview(randomTitle)
+        scroll.add(randomTitle)
+        
+        let randomSeparator = Separator()
+        randomSeparator.backgroundColor = .secondarySystemGroupedBackground
+        scroll.add(randomSeparator)
         
         let random = UISegmentedControl(items: [String.key("Off"), .key("Track"), .key("Album")])
         random.translatesAutoresizingMaskIntoConstraints = false
         random.addTarget(self, action: #selector(self.random), for: .valueChanged)
-        view.addSubview(random)
-        
-        let randomSeparator = Separator()
-        view.addSubview(randomSeparator)
+        random.selectedSegmentTintColor = .systemBlue
+        scroll.add(random)
         
         let trackTitle = UILabel()
         trackTitle.translatesAutoresizingMaskIntoConstraints = false
-        trackTitle.font = .regular()
+        trackTitle.font = .regular(-2)
         trackTitle.text = .key("When.track.finishes")
         trackTitle.textColor = .secondaryLabel
-        view.addSubview(trackTitle)
+        scroll.add(trackTitle)
+        
+        let trackSeparator = Separator()
+        trackSeparator.backgroundColor = randomSeparator.backgroundColor
+        scroll.add(trackSeparator)
         
         let track = UISegmentedControl(items: [String.key("Stop"), .key("Loop"), .key("Next")])
         track.translatesAutoresizingMaskIntoConstraints = false
         track.addTarget(self, action: #selector(self.track), for: .valueChanged)
-        view.addSubview(track)
-        
-        let trackSeparator = Separator()
-        view.addSubview(trackSeparator)
+        track.selectedSegmentTintColor = .systemBlue
+        scroll.add(track)
         
         let albumTitle = UILabel()
         albumTitle.translatesAutoresizingMaskIntoConstraints = false
-        albumTitle.font = .regular()
+        albumTitle.font = .regular(-2)
         albumTitle.text = .key("When.album.finishes")
-        view.addSubview(albumTitle)
+        albumTitle.textColor = .secondaryLabel
+        scroll.add(albumTitle)
+        
+        let albumSeparator = Separator()
+        albumSeparator.backgroundColor = randomSeparator.backgroundColor
+        scroll.add(albumSeparator)
         
         let album = UISegmentedControl(items: [String.key("Stop"), .key("Loop"), .key("Next")])
         album.translatesAutoresizingMaskIntoConstraints = false
         album.addTarget(self, action: #selector(self.album), for: .valueChanged)
-        view.addSubview(album)
+        album.selectedSegmentTintColor = .systemBlue
+        scroll.add(album)
         
-        let albumSeparator = Separator()
-        view.addSubview(albumSeparator)
+        let notificationsSeparator = Separator()
+        notificationsSeparator.backgroundColor = randomSeparator.backgroundColor
+        scroll.add(notificationsSeparator)
         
         let notificationsTitle = UILabel()
         notificationsTitle.translatesAutoresizingMaskIntoConstraints = false
         notificationsTitle.text = .key("Notify.on.track")
-        notificationsTitle.font = .regular()
-        view.addSubview(notificationsTitle)
+        notificationsTitle.font = .regular(-2)
+        notificationsTitle.textColor = .secondaryLabel
+        scroll.add(notificationsTitle)
         
         let notifications = UISwitch()
         notifications.translatesAutoresizingMaskIntoConstraints = false
         notifications.addTarget(self, action: #selector(self.notifications), for: .valueChanged)
-        view.addSubview(notifications)
+        notifications.onTintColor = .systemBlue
+        scroll.add(notifications)
         
-        scroll.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        scroll.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        scroll.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        scroll.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scroll.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scroll.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
-        scroll.bottom.constraint(greaterThanOrEqualTo: notifications.bottomAnchor, constant: 40).isActive = true
+        scroll.bottom.constraint(greaterThanOrEqualTo: notificationsSeparator.bottomAnchor, constant: 30).isActive = true
         scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
         scroll.width.constraint(equalTo: scroll.widthAnchor).isActive = true
         
+        close.topAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        close.leftAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+        
         randomTitle.leftAnchor.constraint(equalTo: random.leftAnchor, constant: 20).isActive = true
-        randomTitle.topAnchor.constraint(equalTo: scroll.top, constant: 30).isActive = true
+        randomTitle.topAnchor.constraint(equalTo: close.bottomAnchor, constant: 20).isActive = true
         
-        random.topAnchor.constraint(equalTo: randomTitle.bottomAnchor, constant: 20).isActive = true
-        random.centerXAnchor.constraint(equalTo: scroll.centerX, constant: 30).isActive = true
+        randomSeparator.topAnchor.constraint(equalTo: randomTitle.bottomAnchor, constant: 5).isActive = true
+        randomSeparator.bottomAnchor.constraint(equalTo: random.bottomAnchor, constant: 10).isActive = true
+        randomSeparator.leftAnchor.constraint(equalTo: scroll.left).isActive = true
+        randomSeparator.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         
+        random.topAnchor.constraint(equalTo: randomSeparator.topAnchor, constant: 10).isActive = true
+        random.leftAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        random.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         
+        trackTitle.leftAnchor.constraint(equalTo: track.leftAnchor, constant: 20).isActive = true
+        trackTitle.topAnchor.constraint(equalTo: randomSeparator.bottomAnchor, constant: 30).isActive = true
         
-//        randomSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-//        randomSeparator.topAnchor.constraint(equalTo: random.bottomAnchor, constant: 30).isActive = true
-//        randomSeparator.leftAnchor.constraint(equalTo: centerXAnchor, constant: -170).isActive = true
-//        randomSeparator.rightAnchor.constraint(equalTo: centerXAnchor, constant: 170).isActive = true
-//
-//        track.topAnchor.constraint(equalTo: randomSeparator.bottomAnchor, constant: 30).isActive = true
-//        track.leftAnchor.constraint(equalTo: random.leftAnchor).isActive = true
-//
-//        trackTitle.rightAnchor.constraint(equalTo: randomTitle.rightAnchor).isActive = true
-//        trackTitle.centerYAnchor.constraint(equalTo: track.centerYAnchor).isActive = true
-//
-//        trackSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-//        trackSeparator.topAnchor.constraint(equalTo: track.bottomAnchor, constant: 30).isActive = true
-//        trackSeparator.leftAnchor.constraint(equalTo: randomSeparator.leftAnchor).isActive = true
-//        trackSeparator.rightAnchor.constraint(equalTo: randomSeparator.rightAnchor).isActive = true
-//
-//        album.topAnchor.constraint(equalTo: trackSeparator.bottomAnchor, constant: 30).isActive = true
-//        album.leftAnchor.constraint(equalTo: random.leftAnchor).isActive = true
-//
-//        albumTitle.rightAnchor.constraint(equalTo: randomTitle.rightAnchor).isActive = true
-//        albumTitle.centerYAnchor.constraint(equalTo: album.centerYAnchor).isActive = true
-//
-//        albumSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-//        albumSeparator.topAnchor.constraint(equalTo: album.bottomAnchor, constant: 30).isActive = true
-//        albumSeparator.leftAnchor.constraint(equalTo: randomSeparator.leftAnchor).isActive = true
-//        albumSeparator.rightAnchor.constraint(equalTo: randomSeparator.rightAnchor).isActive = true
-//
-//        notifications.topAnchor.constraint(equalTo: albumSeparator.bottomAnchor, constant: 32).isActive = true
-//        notifications.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//
-//        session.player.config.sink {
-//            random.selectItem(at: .init($0.random.rawValue))
-//            track.selectItem(at: .init($0.trackEnds.rawValue))
-//            album.selectItem(at: .init($0.albumEnds.rawValue))
-//            track.isEnabled = $0.random == .none
-//            album.isEnabled = $0.random == .none
-//            trackTitle.alphaValue = $0.random == .none ? 1 : 0.3
-//            albumTitle.alphaValue = $0.random == .none ? 1 : 0.3
-//            notifications.state = $0.notifications ? .on : .off
-//        }.store(in: &subs)
+        trackSeparator.topAnchor.constraint(equalTo: trackTitle.bottomAnchor, constant: 5).isActive = true
+        trackSeparator.bottomAnchor.constraint(equalTo: track.bottomAnchor, constant: 10).isActive = true
+        trackSeparator.leftAnchor.constraint(equalTo: scroll.left).isActive = true
+        trackSeparator.rightAnchor.constraint(equalTo: scroll.right).isActive = true
+
+        track.topAnchor.constraint(equalTo: trackSeparator.topAnchor, constant: 10).isActive = true
+        track.leftAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        track.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+
+        albumTitle.leftAnchor.constraint(equalTo: album.leftAnchor, constant: 20).isActive = true
+        albumTitle.topAnchor.constraint(equalTo: trackSeparator.bottomAnchor, constant: 30).isActive = true
+        
+        albumSeparator.topAnchor.constraint(equalTo: albumTitle.bottomAnchor, constant: 5).isActive = true
+        albumSeparator.bottomAnchor.constraint(equalTo: album.bottomAnchor, constant: 10).isActive = true
+        albumSeparator.leftAnchor.constraint(equalTo: scroll.left).isActive = true
+        albumSeparator.rightAnchor.constraint(equalTo: scroll.right).isActive = true
+        
+        album.topAnchor.constraint(equalTo: albumSeparator.topAnchor, constant: 10).isActive = true
+        album.leftAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        album.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+
+        notificationsSeparator.topAnchor.constraint(equalTo: albumSeparator.bottomAnchor, constant: 50).isActive = true
+        notificationsSeparator.bottomAnchor.constraint(equalTo: notifications.bottomAnchor, constant: 10).isActive = true
+        notificationsSeparator.leftAnchor.constraint(equalTo: scroll.left).isActive = true
+        notificationsSeparator.rightAnchor.constraint(equalTo: scroll.right).isActive = true
+
+        notificationsTitle.rightAnchor.constraint(equalTo: notifications.leftAnchor, constant: -20).isActive = true
+        notificationsTitle.centerYAnchor.constraint(equalTo: notificationsSeparator.centerYAnchor).isActive = true
+
+        notifications.topAnchor.constraint(equalTo: notificationsSeparator.topAnchor, constant: 10).isActive = true
+        notifications.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+
+        session.player.config.sink {
+            random.selectedSegmentIndex = .init($0.random.rawValue)
+            track.selectedSegmentIndex = .init($0.trackEnds.rawValue)
+            album.selectedSegmentIndex = .init($0.albumEnds.rawValue)
+            track.isEnabled = $0.random == .none
+            album.isEnabled = $0.random == .none
+            trackTitle.alpha = $0.random == .none ? 1 : 0.3
+            albumTitle.alpha = $0.random == .none ? 1 : 0.3
+            notifications.isOn = $0.notifications
+        }.store(in: &subs)
     }
     
     @objc private func random(_ segmented: UISegmentedControl) {
