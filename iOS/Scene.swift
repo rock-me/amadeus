@@ -37,9 +37,9 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
                 MPMediaItemPropertyTitle: String.key(track.title),
                 MPMediaItemPropertyArtist: String.key(track.composer.name),
                 MPMediaItemPropertyPlaybackDuration: track.duration,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: .init(width: 140, height: 140)) { _ in
-                    UIGraphicsImageRenderer(size: .init(width: 140, height: 140)).image { _ in
-                        UIImage(named: track.album.cover)!.draw(in: .init(origin: .init(x: 0, y: -20), size: .init(width: 140, height: 180)))
+                MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: .init(width: 200, height: 200)) { _ in
+                    UIGraphicsImageRenderer(size: .init(width: 200, height: 200)).image { _ in
+                        UIImage(named: track.album.cover)!.draw(in: .init(origin: .init(x: 0, y: -30), size: .init(width: 200, height: 260)))
                     }
                 }
             ]
