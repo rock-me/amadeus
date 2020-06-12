@@ -4,7 +4,7 @@ import MediaPlayer
 
 let session = Session()
 
-final class Scene: UIWindow, UIWindowSceneDelegate {
+final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
     private var subs = Set<AnyCancellable>()
     
     func scene(_ scene: UIScene, willConnectTo: UISceneSession, options: UIScene.ConnectionOptions) {
@@ -56,14 +56,42 @@ final class Scene: UIWindow, UIWindowSceneDelegate {
         session.player.nextable.sink {
             MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = $0
         }.store(in: &subs)
-    }
-    
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        //notifications
+        
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().getNotificationSettings {
+            if $0.authorizationStatus != .authorized {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { _, _ in }
+                }
+            }
+        }
+        
+        session.player.start.sink {
+            guard session.player.config.value.notifications else { return }
+            UNUserNotificationCenter.current().getNotificationSettings {
+                guard $0.authorizationStatus == .authorized else { return }
+                UNUserNotificationCenter.current().add({
+                    $0.title = .key(session.player.track.value.title)
+                    $0.body = .key(session.player.track.value.composer.name)
+                    return .init(identifier: UUID().uuidString, content: $0, trigger: nil)
+                } (UNMutableNotificationContent()))
+            }
+        }.store(in: &subs)
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = session.time.value
+    }
+    
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent: UNNotification, withCompletionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        withCompletionHandler([.alert])
+        UNUserNotificationCenter.current().getDeliveredNotifications {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: $0.map {
+                $0.request.identifier
+            }.filter {
+                $0 != willPresent.request.identifier
+            })
+        }
     }
 }
 
