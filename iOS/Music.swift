@@ -98,7 +98,7 @@ final class Music: UIViewController {
     }
     
     @objc private func settings() {
-        present(Store(), animated: true)
+        present(Settings(), animated: true)
     }
 }
 

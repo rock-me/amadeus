@@ -66,7 +66,7 @@ final class Store: UIViewController {
         scroll.topAnchor.constraint(equalTo: separator.bottomAnchor).isActive = true
         scroll.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         scroll.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -1).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.height.constraint(greaterThanOrEqualTo: scroll.heightAnchor).isActive = true
         scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
