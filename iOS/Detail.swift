@@ -57,9 +57,17 @@ final class Detail: UIView {
     }
     
     func show(_ album: Album) {
-        title.text = .key(album.title)
-        subtitle.text = .key(album.subtitle)
-        duration.text = formatter.string(from: album.duration)!
+        UIView.transition(with: title, duration: 0.6, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.title.text = .key(album.title)
+        })
+        
+        UIView.transition(with: subtitle, duration: 0.6, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.subtitle.text = .key(album.subtitle)
+        })
+        
+        UIView.transition(with: duration, duration: 0.6, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.duration.text = self?.formatter.string(from: album.duration)!
+        })
         
         subviews.filter { !($0 is UILabel) }.forEach {
             $0.removeFromSuperview()

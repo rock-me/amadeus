@@ -46,9 +46,14 @@ final class Current: UIView {
         composer.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -20).isActive = true
         composer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
-        session.player.track.sink {
-            title.text = .key($0.title)
-            composer.text = .key($0.composer.name)
+        session.player.track.sink { track in
+            UIView.transition(with: title, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                title.text = .key(track.title)
+            })
+            
+            UIView.transition(with: composer, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                composer.text = .key(track.composer.name)
+            })
         }.store(in: &subs)
         
         session.playing.sink {

@@ -49,15 +49,15 @@ final class Hud: UIViewController {
         duration.translatesAutoresizingMaskIntoConstraints = false
         duration.isUserInteractionEnabled = false
         duration.backgroundColor = .secondarySystemFill
-        duration.layer.cornerRadius = 3
+        duration.layer.cornerRadius = 3.5
+        duration.clipsToBounds = true
         view.addSubview(duration)
         
         let elapsed = UIView()
         elapsed.translatesAutoresizingMaskIntoConstraints = false
         elapsed.isUserInteractionEnabled = false
         elapsed.backgroundColor = .systemBlue
-        elapsed.layer.cornerRadius = 3
-        view.addSubview(elapsed)
+        duration.addSubview(elapsed)
         
         let total = UILabel()
         total.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,8 @@ final class Hud: UIViewController {
         
         let time = UILabel()
         time.translatesAutoresizingMaskIntoConstraints = false
-        time.font = .monospaced(.regular(-3))
+        time.font = .monospaced(.medium(-3))
+        time.textColor = .secondaryLabel
         view.addSubview(time)
         
         current.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -96,8 +97,8 @@ final class Hud: UIViewController {
         next.widthAnchor.constraint(equalTo: previous.widthAnchor).isActive = true
         
         duration.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
-        duration.heightAnchor.constraint(equalToConstant: 6).isActive = true
-        duration.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        duration.heightAnchor.constraint(equalToConstant: 7).isActive = true
+        duration.widthAnchor.constraint(equalToConstant: 120).isActive = true
         duration.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         elapsed.leftAnchor.constraint(equalTo: duration.leftAnchor).isActive = true
@@ -113,12 +114,16 @@ final class Hud: UIViewController {
         time.bottomAnchor.constraint(equalTo: duration.topAnchor, constant: -2).isActive = true
         
         session.player.track.sink { _ in
-            total.text = formatter.string(from: session.player.track.value.duration)!
+            UIView.transition(with: total, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                total.text = formatter.string(from: session.player.track.value.duration)!
+            })
         }.store(in: &subs)
         
-        session.time.sink {
-            time.text = formatter.string(from: $0)!
-            width.constant = 200 * .init($0 / session.player.track.value.duration)
+        session.time.sink { current in
+            width.constant = 120 * .init(current / session.player.track.value.duration)
+            UIView.transition(with: time, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                time.text = formatter.string(from: current)!
+            })
         }.store(in: &subs)
         
         session.playing.sink {
