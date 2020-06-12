@@ -29,20 +29,20 @@ final class Music: UIViewController {
         bar.action = #selector(hud)
         view.addSubview(bar)
         
-        scroll.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scroll.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scroll.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scroll.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: bar.topAnchor).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: bar.topAnchor, constant: -1).isActive = true
         scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
         scroll.width.constraint(equalTo: scroll.widthAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: detail.bottomAnchor, constant: 30).isActive = true
         
-        coverflow.topAnchor.constraint(equalTo: scroll.top, constant: 20).isActive = true
+        coverflow.topAnchor.constraint(equalTo: scroll.top).isActive = true
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         coverflow.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         
-        detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 40).isActive = true
+        detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor).isActive = true
         detail.leftAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         detail.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         
@@ -50,7 +50,10 @@ final class Music: UIViewController {
         bar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        session.loadUI.sink { [weak self] _ in
+        session.loadUI.sink { [weak self] in
+            if !$0 {
+                session.add(ui: .zero)
+            }
             session.loadPlayer()
             self?.show(session.ui.value.album)
         }.store(in: &subs)

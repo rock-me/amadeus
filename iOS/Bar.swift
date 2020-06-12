@@ -26,28 +26,9 @@ final class Bar: UIView {
         current.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
         current.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
         current.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
-        hoverOn()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
-        hoverOn()
         _ = target.perform(action, with: self)
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with: UIEvent?) {
-        hoverOff()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with: UIEvent?) {
-        hoverOff()
-    }
-    
-    private func hoverOn() {
-        current.selector.backgroundColor = .systemBlue
-    }
-    
-    private func hoverOff() {
-        current.selector.backgroundColor = .tertiarySystemBackground
     }
 }

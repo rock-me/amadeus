@@ -18,7 +18,6 @@ final class Hud: UIViewController {
         formatter.allowedUnits = [.minute, .second]
         
         let current = Current()
-        current.selector.backgroundColor = .tertiarySystemBackground
         view.addSubview(current)
         
         let close = Control()
@@ -78,7 +77,7 @@ final class Hud: UIViewController {
         close.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         close.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         close.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        close.bottomAnchor.constraint(equalTo: current.selector.bottomAnchor, constant: 30).isActive = true
+        close.bottomAnchor.constraint(equalTo: current.bottomAnchor).isActive = true
         
         play.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         play.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true

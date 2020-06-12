@@ -1,6 +1,6 @@
 import UIKit
 
-final class Scroll: UIScrollView, UIScrollViewDelegate {
+final class Scroll: UIScrollView {
     var views: [UIView] { content.subviews }
     var top: NSLayoutYAxisAnchor { content.topAnchor }
     var bottom: NSLayoutYAxisAnchor { content.bottomAnchor }
@@ -20,7 +20,6 @@ final class Scroll: UIScrollView, UIScrollViewDelegate {
         showsHorizontalScrollIndicator = false
         keyboardDismissMode = .onDrag
         clipsToBounds = true
-        delegate = self
         
         let content = UIView()
         content.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +40,8 @@ final class Scroll: UIScrollView, UIScrollViewDelegate {
         frame.origin.y -= ((bounds.height - frame.size.height) / 2) - 45
         frame.size.width = bounds.width
         frame.size.height = bounds.height
-        UIView.animate(withDuration: duration) { [weak self] in
+        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: { [weak self] in
             self?.scrollRectToVisible(frame, animated: true)
-        }
+        })
     }
 }

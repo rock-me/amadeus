@@ -2,7 +2,6 @@ import UIKit
 import Combine
 
 final class Current: UIView {
-    private(set) weak var selector: UIView!
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -16,7 +15,6 @@ final class Current: UIView {
         selector.isUserInteractionEnabled = false
         selector.layer.cornerRadius = 2
         addSubview(selector)
-        self.selector = selector
         
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +49,10 @@ final class Current: UIView {
         session.player.track.sink {
             title.text = .key($0.title)
             composer.text = .key($0.composer.name)
+        }.store(in: &subs)
+        
+        session.playing.sink {
+            selector.backgroundColor = $0 ? .systemBlue : .tertiarySystemBackground
         }.store(in: &subs)
     }
 }
