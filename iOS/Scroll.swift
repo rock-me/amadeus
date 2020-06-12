@@ -31,9 +31,6 @@ final class Scroll: UIScrollView, UIScrollViewDelegate {
         
         content.topAnchor.constraint(equalTo: topAnchor).isActive = true
         content.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        content.rightAnchor.constraint(greaterThanOrEqualTo: rightAnchor).isActive = true
-        content.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor).isActive = true
-        content.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor).isActive = true
     }
     
     func add(_ view: UIView) { content.addSubview(view) }

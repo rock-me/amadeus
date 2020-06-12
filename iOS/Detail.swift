@@ -18,13 +18,14 @@ final class Detail: UIView {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bold(6)
-        title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        title.numberOfLines = 0
         addSubview(title)
         self.title = title
         
         let subtitle = UILabel()
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         subtitle.font = .regular(-2)
+        subtitle.numberOfLines = 0
         subtitle.textColor = .secondaryLabel
         subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(subtitle)
@@ -32,8 +33,9 @@ final class Detail: UIView {
         
         let duration = UILabel()
         duration.translatesAutoresizingMaskIntoConstraints = false
-        duration.font = .monospaced(.regular(12))
+        duration.font = .monospaced(.regular(-2))
         duration.textColor = .secondaryLabel
+        duration.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(duration)
         self.duration = duration
         
@@ -75,8 +77,8 @@ final class Detail: UIView {
             item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
             item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
             
-            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 20).isActive = true
+            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -20).isActive = true
             separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
             
             if top == subtitle.bottomAnchor {
@@ -127,13 +129,13 @@ private final class Item: Control {
     init(track: Track, duration: String) {
         self.track = track
         super.init()
-        translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bold()
         title.text = .key(track.title)
+        title.numberOfLines = 0
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
@@ -141,27 +143,30 @@ private final class Item: Control {
         composer.translatesAutoresizingMaskIntoConstraints = false
         composer.font = .regular()
         composer.text = .key(track.composer.name)
-        composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        composer.numberOfLines = 0
         composer.textColor = .secondaryLabel
+        composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(composer)
         
         let time = UILabel()
+        time.translatesAutoresizingMaskIntoConstraints = false
         time.text = duration
         time.font = .monospaced(.regular(-2))
         time.textColor = .secondaryLabel
+        time.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(time)
         
         bottomAnchor.constraint(equalTo: composer.bottomAnchor, constant: 15).isActive = true
             
         title.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
     
         composer.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        composer.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        composer.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         composer.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
         
-        time.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        time.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         time.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

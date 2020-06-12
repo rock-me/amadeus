@@ -122,7 +122,6 @@ private final class Item: Control {
     init(track: Track, duration: String) {
         self.track = track
         super.init()
-        translatesAutoresizingMaskIntoConstraints = false
         wantsLayer = true
         layer!.cornerRadius = 10
         

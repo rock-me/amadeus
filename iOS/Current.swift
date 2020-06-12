@@ -22,7 +22,6 @@ final class Current: UIView {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bold()
         title.numberOfLines = 0
-        title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
         let composer = UILabel()
@@ -30,7 +29,6 @@ final class Current: UIView {
         composer.font = .regular(-2)
         composer.numberOfLines = 0
         composer.textColor = .secondaryLabel
-        composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(composer)
         
         topAnchor.constraint(equalTo: selector.topAnchor, constant: -20).isActive = true

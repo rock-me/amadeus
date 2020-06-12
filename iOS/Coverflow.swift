@@ -15,6 +15,7 @@ final class Coverflow: UIView {
         
         let scroll = Scroll()
         scroll.alwaysBounceHorizontal = true
+        scroll.alwaysBounceVertical = false
         addSubview(scroll)
         self.scroll = scroll
         
@@ -35,8 +36,9 @@ final class Coverflow: UIView {
         scroll.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         scroll.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         scroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
+        scroll.height.constraint(equalTo: scroll.heightAnchor).isActive = true
         scroll.bottom.constraint(equalTo: scroll.bottomAnchor).isActive = true
+        scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
         scroll.right.constraint(greaterThanOrEqualTo: left, constant: 100).isActive = true
         
         heightAnchor.constraint(equalToConstant: 250).isActive = true
@@ -123,6 +125,7 @@ private final class Item: Control {
         name.text = .key(album.title)
         name.font = .bold(-4)
         name.textColor = .white
+        name.numberOfLines = 0
         addSubview(name)
         
         let purchase = UIView()
@@ -138,6 +141,7 @@ private final class Item: Control {
         visitStore.text = .key("In.app")
         visitStore.font = .bold(-4)
         visitStore.textColor = .white
+        visitStore.numberOfLines = 0
         purchase.addSubview(visitStore)
         
         widthAnchor.constraint(equalTo: base.widthAnchor, constant: 20).isActive = true
