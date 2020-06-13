@@ -72,6 +72,7 @@
 		CE5981762494E6DC0056AA76 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981752494E6DC0056AA76 /* App.swift */; };
 		CE5981782494E6DC0056AA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5981772494E6DC0056AA76 /* Assets.xcassets */; };
 		CE59817F2494E6DC0056AA76 /* Amadeus.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CE5981602494E6DB0056AA76 /* Amadeus.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE5981892494F3AA0056AA76 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE5981882494F3AA0056AA76 /* Player */; };
 		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
 		CEAD9C3B248BCC6300E1BDB2 /* brahmsSymphony3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C24248BCC6200E1BDB2 /* brahmsSymphony3.mp3 */; };
 		CEAD9C3C248BCC6300E1BDB2 /* mozartSymphony40.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C25248BCC6200E1BDB2 /* mozartSymphony40.mp3 */; };
@@ -255,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5981892494F3AA0056AA76 /* Player in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +479,9 @@
 			dependencies = (
 			);
 			name = "watchOS Extension";
+			packageProductDependencies = (
+				CE5981882494F3AA0056AA76 /* Player */,
+			);
 			productName = "watchOS Extension";
 			productReference = CE59816C2494E6DC0056AA76 /* Amadeus.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -998,7 +1003,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1066,7 +1070,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1370,6 +1373,11 @@
 			productName = Balam;
 		};
 		CE4A60DD2490BE100002FE19 /* Player */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1D719B248D246B004D37F3 /* XCRemoteSwiftPackageReference "player" */;
+			productName = Player;
+		};
+		CE5981882494F3AA0056AA76 /* Player */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE1D719B248D246B004D37F3 /* XCRemoteSwiftPackageReference "player" */;
 			productName = Player;
