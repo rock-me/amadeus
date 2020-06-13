@@ -67,9 +67,9 @@
 		CE5981642494E6DB0056AA76 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5981622494E6DB0056AA76 /* Interface.storyboard */; };
 		CE5981662494E6DC0056AA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5981652494E6DC0056AA76 /* Assets.xcassets */; };
 		CE59816D2494E6DC0056AA76 /* Amadeus.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE59816C2494E6DC0056AA76 /* Amadeus.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CE5981722494E6DC0056AA76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981712494E6DC0056AA76 /* ContentView.swift */; };
-		CE5981742494E6DC0056AA76 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981732494E6DC0056AA76 /* HostingController.swift */; };
-		CE5981762494E6DC0056AA76 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981752494E6DC0056AA76 /* ExtensionDelegate.swift */; };
+		CE5981722494E6DC0056AA76 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981712494E6DC0056AA76 /* Music.swift */; };
+		CE5981742494E6DC0056AA76 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981732494E6DC0056AA76 /* Controller.swift */; };
+		CE5981762494E6DC0056AA76 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5981752494E6DC0056AA76 /* App.swift */; };
 		CE5981782494E6DC0056AA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5981772494E6DC0056AA76 /* Assets.xcassets */; };
 		CE59817F2494E6DC0056AA76 /* Amadeus.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CE5981602494E6DB0056AA76 /* Amadeus.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEAD9C3A248BCC6300E1BDB2 /* beethovenSymphony2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */; };
@@ -188,9 +188,9 @@
 		CE5981652494E6DC0056AA76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE5981672494E6DC0056AA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE59816C2494E6DC0056AA76 /* Amadeus.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Amadeus.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE5981712494E6DC0056AA76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		CE5981732494E6DC0056AA76 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
-		CE5981752494E6DC0056AA76 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		CE5981712494E6DC0056AA76 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		CE5981732494E6DC0056AA76 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CE5981752494E6DC0056AA76 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CE5981772494E6DC0056AA76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE59817C2494E6DC0056AA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEAD9C23248BCC6200E1BDB2 /* beethovenSymphony2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beethovenSymphony2.mp3; sourceTree = "<group>"; };
@@ -315,9 +315,9 @@
 			isa = PBXGroup;
 			children = (
 				CE59817C2494E6DC0056AA76 /* Info.plist */,
-				CE5981712494E6DC0056AA76 /* ContentView.swift */,
-				CE5981752494E6DC0056AA76 /* ExtensionDelegate.swift */,
-				CE5981732494E6DC0056AA76 /* HostingController.swift */,
+				CE5981752494E6DC0056AA76 /* App.swift */,
+				CE5981732494E6DC0056AA76 /* Controller.swift */,
+				CE5981712494E6DC0056AA76 /* Music.swift */,
 				CE5981772494E6DC0056AA76 /* Assets.xcassets */,
 			);
 			path = "watchOS Extension";
@@ -669,9 +669,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5981742494E6DC0056AA76 /* HostingController.swift in Sources */,
-				CE5981722494E6DC0056AA76 /* ContentView.swift in Sources */,
-				CE5981762494E6DC0056AA76 /* ExtensionDelegate.swift in Sources */,
+				CE5981742494E6DC0056AA76 /* Controller.swift in Sources */,
+				CE5981722494E6DC0056AA76 /* Music.swift in Sources */,
+				CE5981762494E6DC0056AA76 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
