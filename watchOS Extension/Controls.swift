@@ -10,12 +10,14 @@ struct Controls: View {
         VStack {
             HStack {
                 Text(.init(track.title))
+                    .padding()
                 Spacer()
             }
             HStack {
                 Text(.init(track.composer.name))
                     .font(.footnote)
                     .foregroundColor(.secondary)
+                    .padding()
                 Spacer()
             }
             if session.track == track && session.playing {

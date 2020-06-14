@@ -1,12 +1,9 @@
 import Player
 import UIKit
-import Combine
-import WatchConnectivity
 
 final class Music: UIViewController {
     private weak var detail: Detail!
     private weak var coverflow: Coverflow!
-    private var subs = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +65,6 @@ final class Music: UIViewController {
         bar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         bar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        
     }
     
     func select(album: Album) {

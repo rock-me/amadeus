@@ -83,7 +83,7 @@ private final class Item: Control {
         didSet {
             width.constant = selected ? 200 : 120
             height.constant = selected ? 260 : 156
-            base.layer.shadowOpacity = selected ? 0.8 : 0.3
+            base.layer.shadowOpacity = selected ? 0.6 : 0.3
             UIView.animate(withDuration: 0.3) { [weak self] in
                 self?.name.alpha = self?.selected == true ? 0 : 1
                 self?.shade.alpha = self?.selected == true ? 0 : 1
@@ -108,9 +108,9 @@ private final class Item: Control {
         base.isUserInteractionEnabled = false
         base.backgroundColor = .secondarySystemBackground
         base.layer.cornerRadius = 10
-        base.layer.shadowOffset.height = 2
+        base.layer.shadowOffset.height = 3
         base.layer.shadowColor = UIColor.secondaryLabel.cgColor
-        base.layer.shadowRadius = 10
+        base.layer.shadowRadius = 6
         addSubview(base)
         self.base = base
         

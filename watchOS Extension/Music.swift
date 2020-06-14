@@ -67,7 +67,7 @@ private struct Item: View {
                     Spacer()
                 }
             }
-        }
+        }.accentColor(session.track == track ? .blue : .accentColor)
     }
 }
 
