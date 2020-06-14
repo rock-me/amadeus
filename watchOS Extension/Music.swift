@@ -2,6 +2,7 @@ import SwiftUI
 import Player
 
 struct Music: View {
+    @EnvironmentObject var session: Session
     let album: Album
     
     var body: some View {
@@ -26,6 +27,7 @@ struct Music: View {
 }
 
 private struct Cover: View {
+    @EnvironmentObject var session: Session
     let album: Album
     let size: CGFloat
     
@@ -43,12 +45,11 @@ private struct Cover: View {
 }
 
 private struct Item: View {
+    @EnvironmentObject var session: Session
     let track: Track
     
     var body: some View {
-        Button(action: {
-            
-        }) {
+        NavigationLink(destination: Controls(session: session, track: track)) {
             VStack {
                 HStack {
                     Text(.init(track.title))

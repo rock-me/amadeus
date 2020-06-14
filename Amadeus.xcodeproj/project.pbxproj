@@ -11,6 +11,8 @@
 		CE04366C24855918003841CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE04366B24855918003841CA /* Media.xcassets */; };
 		CE0436702485667F003841CA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04366F2485667F003841CA /* Detail.swift */; };
 		CE0CA131249643D3002E4410 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
+		CE0CA13324964CF3002E4410 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CA13224964CF3002E4410 /* Controls.swift */; };
+		CE0CA13524966494002E4410 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CA13424966494002E4410 /* Session.swift */; };
 		CE1D719D248D246B004D37F3 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = CE1D719C248D246B004D37F3 /* Player */; };
 		CE31B7662493AF8F003FEF67 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31B7652493AF8F003FEF67 /* Store.swift */; };
 		CE31B7682493C3B1003FEF67 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31B7672493C3B1003FEF67 /* Settings.swift */; };
@@ -163,6 +165,8 @@
 		CE04366724853C1F003841CA /* Coverflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coverflow.swift; sourceTree = "<group>"; };
 		CE04366B24855918003841CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CE04366F2485667F003841CA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		CE0CA13224964CF3002E4410 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
+		CE0CA13424966494002E4410 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CE31B7652493AF8F003FEF67 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE31B7672493C3B1003FEF67 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CE31B7692493D881003FEF67 /* Close.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Close.swift; sourceTree = "<group>"; };
@@ -320,7 +324,9 @@
 				CE59817C2494E6DC0056AA76 /* Info.plist */,
 				CE5981752494E6DC0056AA76 /* App.swift */,
 				CE5981732494E6DC0056AA76 /* Controller.swift */,
+				CE0CA13224964CF3002E4410 /* Controls.swift */,
 				CE5981712494E6DC0056AA76 /* Music.swift */,
+				CE0CA13424966494002E4410 /* Session.swift */,
 				CE5981772494E6DC0056AA76 /* Assets.xcassets */,
 			);
 			path = "watchOS Extension";
@@ -676,7 +682,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0CA13524966494002E4410 /* Session.swift in Sources */,
 				CE5981742494E6DC0056AA76 /* Controller.swift in Sources */,
+				CE0CA13324964CF3002E4410 /* Controls.swift in Sources */,
 				CE5981722494E6DC0056AA76 /* Music.swift in Sources */,
 				CE5981762494E6DC0056AA76 /* App.swift in Sources */,
 			);
