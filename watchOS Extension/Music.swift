@@ -17,8 +17,12 @@ struct Music: View {
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                         .padding()
-                    ForEach(self.album.tracks, id: \.self) {
-                        Item(track: $0)
+                    if self.session.purchases.contains(self.album.purchase) {
+                        ForEach(self.album.tracks, id: \.self) {
+                            Item(track: $0)
+                        }
+                    } else {
+                        Purchase()
                     }
                 }
             }.navigationBarTitle(.init(self.album.title))
@@ -63,6 +67,22 @@ private struct Item: View {
                     Spacer()
                 }
             }
+        }
+    }
+}
+
+private struct Purchase: View {
+    var body: some View {
+        VStack {
+            Text(.init("In.app"))
+                .multilineTextAlignment(.center)
+                .font(.headline)
+                .padding()
+            Text(.init("Check.store"))
+                .multilineTextAlignment(.center)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .padding()
         }
     }
 }

@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 import MediaPlayer
+import WatchConnectivity
 
 let session = Session()
 
@@ -92,6 +93,33 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
                 $0 != willPresent.request.identifier
             })
         }
+    }
+    
+    func session(_: WCSession, activationDidCompleteWith: WCSessionActivationState, error: Error?) {
+
+    }
+    
+    func sessionDidBecomeInactive(_: WCSession) {
+        
+//        modal {
+//            Argonaut.watch(item) {
+//                view?.removeFromSuperview()
+//                if WCSession.default.isPaired && WCSession.default.isWatchAppInstalled {
+//                    do {
+//                        try WCSession.default.updateApplicationContext(["": $0])
+//                        app.alert(.key("Success"), message: .key("Load.watch.success"))
+//                    } catch {
+//                        app.alert(.key("Error"), message: error.localizedDescription)
+//                    }
+//                } else {
+//                    app.alert(.key("Error"), message: .key("Load.watch.error"))
+//                }
+//            }
+//        }
+    }
+    
+    func sessionDidDeactivate(_: WCSession) {
+        
     }
 }
 

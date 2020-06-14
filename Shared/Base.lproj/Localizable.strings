@@ -16,6 +16,7 @@ Notify.on.track = "Track change notification";
 Restore.purchases = "Restore Purchases";
 Purchases.are = "Purchases are non-consumable, you pay for them only once.\nThey are shared between iOS and macOS.";
 Failed.sent = "Failed to connect with Companion App.\nTry again later.";
+Check.store = "To access this album visit the store on the Companion App";
 
 album_mists_title = "The Mists";
 album_mists_subtitle = "A momentary lapse of reason";

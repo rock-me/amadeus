@@ -16,10 +16,17 @@ final class App: NSObject, WKExtensionDelegate, WCSessionDelegate {
         
     }
     
-    func session(_: WCSession, didReceiveApplicationContext: [String: Any]) {
-//        if let items = try? JSONDecoder().decode(Track.self, from: didReceiveApplicationContext["track"] as? Data ?? .init()) {
-//            pointers = items
-//            update()
-//        }
+    func session(_: WCSession, didReceiveMessage: [String : Any]) {
+        if let playing = didReceiveMessage["playing"] as? Bool {
+            session.playing = playing
+        }
+        
+        if let track = didReceiveMessage["playing"] as? Track {
+            session.track = track
+        }
+        
+        if let purchases = didReceiveMessage["purchases"] as? Set<String> {
+            session.purchases = purchases
+        }
     }
 }
