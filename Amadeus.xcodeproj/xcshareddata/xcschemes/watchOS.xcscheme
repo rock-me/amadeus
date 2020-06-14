@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE59815F2494E6DB0056AA76"
-               BuildableName = "watchOS.app"
+               BuildableName = "Amadeus.app"
                BlueprintName = "watchOS"
                ReferencedContainer = "container:Amadeus.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE59815F2494E6DB0056AA76"
-            BuildableName = "watchOS.app"
+            BuildableName = "Amadeus.app"
             BlueprintName = "watchOS"
             ReferencedContainer = "container:Amadeus.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE59815F2494E6DB0056AA76"
-            BuildableName = "watchOS.app"
+            BuildableName = "Amadeus.app"
             BlueprintName = "watchOS"
             ReferencedContainer = "container:Amadeus.xcodeproj">
          </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE59815F2494E6DB0056AA76"
-            BuildableName = "watchOS.app"
+            BuildableName = "Amadeus.app"
             BlueprintName = "watchOS"
             ReferencedContainer = "container:Amadeus.xcodeproj">
          </BuildableReference>

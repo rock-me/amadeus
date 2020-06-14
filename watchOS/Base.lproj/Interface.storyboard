@@ -6,12 +6,45 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
     <scenes>
-        <!--Controller-->
+        <!--Mists Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <hostingController id="3mp-fW-waa" customClass="Controller" customModule="Amadeus"/>
+                <hostingController id="3mp-fW-waa" customClass="MistsController" customModule="Amadeus">
+                    <connections>
+                        <segue destination="wfd-X3-XG4" kind="relationship" relationship="nextPage" id="Wbp-zT-H8W"/>
+                    </connections>
+                </hostingController>
             </objects>
             <point key="canvasLocation" x="34" y="31"/>
+        </scene>
+        <!--Melancholy Controller-->
+        <scene sceneID="kbT-Yq-s5h">
+            <objects>
+                <hostingController id="wfd-X3-XG4" customClass="MelancholyController" customModule="Amadeus">
+                    <connections>
+                        <segue destination="DO9-Un-vjL" kind="relationship" relationship="nextPage" id="Ma1-y3-xnZ"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="291" y="31"/>
+        </scene>
+        <!--Tension Controller-->
+        <scene sceneID="iMY-lt-G2L">
+            <objects>
+                <hostingController id="DO9-Un-vjL" customClass="TensionController" customModule="Amadeus">
+                    <connections>
+                        <segue destination="b7O-YV-d0O" kind="relationship" relationship="nextPage" id="Knf-eO-CMo"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="538" y="31"/>
+        </scene>
+        <!--Dawn Controller-->
+        <scene sceneID="VKI-Mc-Dco">
+            <objects>
+                <hostingController id="b7O-YV-d0O" customClass="DawnController" customModule="Amadeus"/>
+            </objects>
+            <point key="canvasLocation" x="779" y="31"/>
         </scene>
     </scenes>
 </document>
