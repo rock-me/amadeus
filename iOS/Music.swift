@@ -1,6 +1,7 @@
 import Player
 import UIKit
 import Combine
+import WatchConnectivity
 
 final class Music: UIViewController {
     private weak var detail: Detail!
@@ -68,13 +69,7 @@ final class Music: UIViewController {
         bar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        state.loadUI.sink { [weak self] in
-            if !$0 {
-                state.add(ui: .zero)
-            }
-            state.loadPlayer()
-            self?.show(state.ui.value.album)
-        }.store(in: &subs)
+        
     }
     
     func select(album: Album) {
@@ -84,7 +79,7 @@ final class Music: UIViewController {
         }
     }
     
-    private func show(_ album: Album) {
+    func show(_ album: Album) {
         coverflow.show(album)
         detail.show(album)
     }

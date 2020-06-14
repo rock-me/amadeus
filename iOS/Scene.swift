@@ -1,16 +1,14 @@
 import UIKit
 import Combine
 import MediaPlayer
-import WatchConnectivity
-
-let state = Session()
 
 final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
     private var subs = Set<AnyCancellable>()
     
     func scene(_ scene: UIScene, willConnectTo: UISceneSession, options: UIScene.ConnectionOptions) {
+        let music = Music()
         windowScene = scene as? UIWindowScene
-        rootViewController = Music()
+        rootViewController = music
         makeKeyAndVisible()
         
         MPRemoteCommandCenter.shared().playCommand.addTarget { _ in
@@ -78,6 +76,15 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
                 } (UNMutableNotificationContent()))
             }
         }.store(in: &subs)
+        
+        state.loadUI.sink {
+            if !$0 {
+                state.add(ui: .zero)
+            }
+            state.loadPlayer()
+            music.show(state.ui.value.album)
+            (UIApplication.shared.delegate as! App).startSession()
+        }.store(in: &subs)
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
@@ -94,33 +101,4 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
             })
         }
     }
-    
-    func session(_: WCSession, activationDidCompleteWith: WCSessionActivationState, error: Error?) {
-
-    }
-    
-    func sessionDidBecomeInactive(_: WCSession) {
-        
-//        modal {
-//            Argonaut.watch(item) {
-//                view?.removeFromSuperview()
-//                if WCstate.default.isPaired && WCstate.default.isWatchAppInstalled {
-//                    do {
-//                        try WCstate.default.updateApplicationContext(["": $0])
-//                        app.alert(.key("Success"), message: .key("Load.watch.success"))
-//                    } catch {
-//                        app.alert(.key("Error"), message: error.localizedDescription)
-//                    }
-//                } else {
-//                    app.alert(.key("Error"), message: .key("Load.watch.error"))
-//                }
-//            }
-//        }
-    }
-    
-    func sessionDidDeactivate(_: WCSession) {
-        
-    }
 }
-
-@UIApplicationMain private final class App: NSObject, UIApplicationDelegate { }
