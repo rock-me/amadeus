@@ -16,6 +16,7 @@ struct Music: View {
                         .foregroundColor(.secondary)
                         .font(.footnote)
                         .multilineTextAlignment(.center)
+                        .frame(maxWidth: geometry.size.width * 0.6)
                         .padding()
                     if self.state.purchases.contains(self.album.purchase) {
                         ForEach(self.album.tracks, id: \.self) {
