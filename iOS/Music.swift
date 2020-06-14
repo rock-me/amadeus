@@ -68,18 +68,18 @@ final class Music: UIViewController {
         bar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        session.loadUI.sink { [weak self] in
+        state.loadUI.sink { [weak self] in
             if !$0 {
-                session.add(ui: .zero)
+                state.add(ui: .zero)
             }
-            session.loadPlayer()
-            self?.show(session.ui.value.album)
+            state.loadPlayer()
+            self?.show(state.ui.value.album)
         }.store(in: &subs)
     }
     
     func select(album: Album) {
         show(album)
-        session.update {
+        state.update {
             $0.album = album
         }
     }

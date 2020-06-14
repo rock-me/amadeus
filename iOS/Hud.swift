@@ -26,23 +26,23 @@ final class Hud: UIViewController {
         view.addSubview(close)
         
         let play = Button(icon: "play.circle.fill", padding: 0)
-        play.target = session
-        play.action = #selector(session.play)
+        play.target = state
+        play.action = #selector(state.play)
         view.addSubview(play)
         
         let pause = Button(icon: "pause.circle.fill", padding: 0)
-        pause.target = session
-        pause.action = #selector(session.pause)
+        pause.target = state
+        pause.action = #selector(state.pause)
         view.addSubview(pause)
         
         let previous = Button(icon: "backward.end.fill", padding: 15)
-        previous.target = session
-        previous.action = #selector(session.previous)
+        previous.target = state
+        previous.action = #selector(state.previous)
         view.addSubview(previous)
         
         let next = Button(icon: "forward.end.fill", padding: 15)
-        next.target = session
-        next.action = #selector(session.next)
+        next.target = state
+        next.action = #selector(state.next)
         view.addSubview(next)
         
         let duration = UIView()
@@ -113,29 +113,29 @@ final class Hud: UIViewController {
         time.leftAnchor.constraint(equalTo: duration.leftAnchor).isActive = true
         time.bottomAnchor.constraint(equalTo: duration.topAnchor, constant: -2).isActive = true
         
-        session.player.track.sink { _ in
+        state.player.track.sink { _ in
             UIView.transition(with: total, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                total.text = formatter.string(from: session.player.track.value.duration)!
+                total.text = formatter.string(from: state.player.track.value.duration)!
             })
         }.store(in: &subs)
         
-        session.time.sink { current in
-            width.constant = 120 * .init(current / session.player.track.value.duration)
+        state.time.sink { current in
+            width.constant = 120 * .init(current / state.player.track.value.duration)
             UIView.transition(with: time, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 time.text = formatter.string(from: current)!
             })
         }.store(in: &subs)
         
-        session.playing.sink {
+        state.playing.sink {
             play.isHidden = $0
             pause.isHidden = !$0
         }.store(in: &subs)
         
-        session.player.nextable.sink {
+        state.player.nextable.sink {
             next.enabled = $0
         }.store(in: &subs)
         
-        session.player.previousable.sink {
+        state.player.previousable.sink {
             previous.enabled = $0
         }.store(in: &subs)
     }

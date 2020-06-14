@@ -153,7 +153,7 @@ final class Settings: UIViewController {
         notifications.topAnchor.constraint(equalTo: notificationsSeparator.topAnchor, constant: 10).isActive = true
         notifications.rightAnchor.constraint(equalTo: scroll.content.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
 
-        session.player.config.sink {
+        state.player.config.sink {
             random.selectedSegmentIndex = .init($0.random.rawValue)
             track.selectedSegmentIndex = .init($0.trackEnds.rawValue)
             album.selectedSegmentIndex = .init($0.albumEnds.rawValue)
@@ -166,18 +166,18 @@ final class Settings: UIViewController {
     }
     
     @objc private func random(_ segmented: UISegmentedControl) {
-        session.player.config.value.random = Random(rawValue: .init(segmented.selectedSegmentIndex))!
+        state.player.config.value.random = Random(rawValue: .init(segmented.selectedSegmentIndex))!
     }
     
     @objc private func track(_ segmented: UISegmentedControl) {
-        session.player.config.value.trackEnds = Heuristic(rawValue: .init(segmented.selectedSegmentIndex))!
+        state.player.config.value.trackEnds = Heuristic(rawValue: .init(segmented.selectedSegmentIndex))!
     }
     
     @objc private func album(_ segmented: UISegmentedControl) {
-        session.player.config.value.albumEnds = Heuristic(rawValue: .init(segmented.selectedSegmentIndex))!
+        state.player.config.value.albumEnds = Heuristic(rawValue: .init(segmented.selectedSegmentIndex))!
     }
     
     @objc private func notifications(_ toggle: UISwitch) {
-        session.player.config.value.notifications = toggle.isOn
+        state.player.config.value.notifications = toggle.isOn
     }
 }

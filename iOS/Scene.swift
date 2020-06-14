@@ -3,7 +3,7 @@ import Combine
 import MediaPlayer
 import WatchConnectivity
 
-let session = Session()
+let state = Session()
 
 final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
     private var subs = Set<AnyCancellable>()
@@ -14,26 +14,26 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
         makeKeyAndVisible()
         
         MPRemoteCommandCenter.shared().playCommand.addTarget { _ in
-            session.play()
+            state.play()
             return .success
         }
         
         MPRemoteCommandCenter.shared().pauseCommand.addTarget { _ in
-            session.pause()
+            state.pause()
             return .success
         }
         
         MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { _ in
-            session.next()
+            state.next()
             return .success
         }
         
         MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { _ in
-            session.previous()
+            state.previous()
             return .success
         }
         
-        session.player.track.sink { track in
+        state.player.track.sink { track in
             MPNowPlayingInfoCenter.default().nowPlayingInfo = [
                 MPMediaItemPropertyTitle: String.key(track.title),
                 MPMediaItemPropertyArtist: String.key(track.composer.name),
@@ -46,15 +46,15 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
             ]
         }.store(in: &subs)
         
-        session.playing.sink { _ in
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = session.time.value
+        state.playing.sink { _ in
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = state.time.value
         }.store(in: &subs)
         
-        session.player.previousable.sink {
+        state.player.previousable.sink {
             MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = $0
         }.store(in: &subs)
         
-        session.player.nextable.sink {
+        state.player.nextable.sink {
             MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = $0
         }.store(in: &subs)
         
@@ -67,13 +67,13 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
             }
         }
         
-        session.player.start.sink {
-            guard session.player.config.value.notifications else { return }
+        state.player.start.sink {
+            guard state.player.config.value.notifications else { return }
             UNUserNotificationCenter.current().getNotificationSettings {
                 guard $0.authorizationStatus == .authorized else { return }
                 UNUserNotificationCenter.current().add({
-                    $0.title = .key(session.player.track.value.title)
-                    $0.body = .key(session.player.track.value.composer.name)
+                    $0.title = .key(state.player.track.value.title)
+                    $0.body = .key(state.player.track.value.composer.name)
                     return .init(identifier: UUID().uuidString, content: $0, trigger: nil)
                 } (UNMutableNotificationContent()))
             }
@@ -81,7 +81,7 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = session.time.value
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = state.time.value
     }
     
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent: UNNotification, withCompletionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -104,9 +104,9 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
 //        modal {
 //            Argonaut.watch(item) {
 //                view?.removeFromSuperview()
-//                if WCSession.default.isPaired && WCSession.default.isWatchAppInstalled {
+//                if WCstate.default.isPaired && WCstate.default.isWatchAppInstalled {
 //                    do {
-//                        try WCSession.default.updateApplicationContext(["": $0])
+//                        try WCstate.default.updateApplicationContext(["": $0])
 //                        app.alert(.key("Success"), message: .key("Load.watch.success"))
 //                    } catch {
 //                        app.alert(.key("Error"), message: error.localizedDescription)

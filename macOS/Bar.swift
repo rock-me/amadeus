@@ -15,23 +15,23 @@ final class Bar: NSView {
         formatter.allowedUnits = [.minute, .second]
         
         let play = Button(image: "play")
-        play.target = session
-        play.action = #selector(session.play)
+        play.target = state
+        play.action = #selector(state.play)
         addSubview(play)
         
         let pause = Button(image: "pause")
-        pause.target = session
-        pause.action = #selector(session.pause)
+        pause.target = state
+        pause.action = #selector(state.pause)
         addSubview(pause)
         
         let previous = Button(image: "previous")
-        previous.target = session
-        previous.action = #selector(session.previous)
+        previous.target = state
+        previous.action = #selector(state.previous)
         addSubview(previous)
         
         let next = Button(image: "next")
-        next.target = session
-        next.action = #selector(session.next)
+        next.target = state
+        next.action = #selector(state.next)
         addSubview(next)
         
         let base = NSView()
@@ -105,25 +105,25 @@ final class Bar: NSView {
         separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        session.player.track.sink {
+        state.player.track.sink {
             title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
-            totalTime.stringValue = formatter.string(from: session.player.track.value.duration)!
+            totalTime.stringValue = formatter.string(from: state.player.track.value.duration)!
         }.store(in: &subs)
         
-        session.time.sink {
+        state.time.sink {
             currentTime.stringValue = formatter.string(from: $0)!
         }.store(in: &subs)
         
-        session.playing.sink {
+        state.playing.sink {
             play.isHidden = $0
             pause.isHidden = !$0
         }.store(in: &subs)
         
-        session.player.nextable.sink {
+        state.player.nextable.sink {
             next.enabled = $0
         }.store(in: &subs)
         
-        session.player.previousable.sink {
+        state.player.previousable.sink {
             previous.enabled = $0
         }.store(in: &subs)
     }

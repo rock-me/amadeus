@@ -200,7 +200,7 @@ private final class Item: UIView {
         tracks.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(tracks)
         
-        if session.player.config.value.purchases.contains(product.productIdentifier) {
+        if state.player.config.value.purchases.contains(product.productIdentifier) {
             let purchased = UIImageView(image: UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .black, scale: .large))!)
             purchased.translatesAutoresizingMaskIntoConstraints = false
             purchased.tintColor = .systemBlue

@@ -2,7 +2,7 @@ import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
     init() {
-        super.init(contentRect: session.ui.value.frame, styleMask:
+        super.init(contentRect: state.ui.value.frame, styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
         minSize = .init(width: 500, height: 400)
@@ -20,13 +20,13 @@ final class Window: NSWindow, NSWindowDelegate {
     }
     
     func windowDidMove(_: Notification) {
-        session.update {
+        state.update {
             $0.frame = frame
         }
     }
     
     func windowDidResize(_: Notification) {
-        session.update {
+        state.update {
             $0.frame = frame
         }
     }

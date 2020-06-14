@@ -2,7 +2,7 @@ import AppKit
 import Combine
 import UserNotifications
 
-let session = Session()
+let state = Session()
 
 @NSApplicationMain final class App: NSApplication, NSApplicationDelegate, UNUserNotificationCenterDelegate {
     private var subs = Set<AnyCancellable>()
@@ -15,18 +15,18 @@ let session = Session()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        session.loadUI.sink {
+        state.loadUI.sink {
             let window: Window
             if $0 {
                 window = .init()
             } else {
                 window = .init()
                 window.center()
-                session.add(ui: window.frame)
+                state.add(ui: window.frame)
             }
             window.makeKeyAndOrderFront(nil)
             window.delegate = window
-            session.loadPlayer()
+            state.loadPlayer()
         }.store(in: &subs)
     }
     
@@ -40,13 +40,13 @@ let session = Session()
             }
         }
         
-        session.player.start.sink {
-            guard session.player.config.value.notifications else { return }
+        state.player.start.sink {
+            guard state.player.config.value.notifications else { return }
             UNUserNotificationCenter.current().getNotificationSettings {
                 guard $0.authorizationStatus == .authorized else { return }
                 UNUserNotificationCenter.current().add({
-                    $0.title = .key(session.player.track.value.title)
-                    $0.body = .key(session.player.track.value.composer.name)
+                    $0.title = .key(state.player.track.value.title)
+                    $0.body = .key(state.player.track.value.composer.name)
                     return .init(identifier: UUID().uuidString, content: $0, trigger: nil)
                 } (UNMutableNotificationContent()))
             }

@@ -46,7 +46,7 @@ final class Current: UIView {
         composer.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -20).isActive = true
         composer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
         
-        session.player.track.sink { track in
+        state.player.track.sink { track in
             UIView.transition(with: title, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 title.text = .key(track.title)
             })
@@ -56,7 +56,7 @@ final class Current: UIView {
             })
         }.store(in: &subs)
         
-        session.playing.sink {
+        state.playing.sink {
             selector.backgroundColor = $0 ? .systemBlue : .tertiarySystemBackground
         }.store(in: &subs)
     }

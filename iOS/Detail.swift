@@ -53,12 +53,12 @@ final class Detail: UIView {
         duration.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         duration.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 4).isActive = true
         
-        session.player.track.dropFirst().sink { [weak self] in
+        state.player.track.dropFirst().sink { [weak self] in
             self?.current($0)
         }.store(in: &self.subs)
         
-        session.player.config.dropFirst().sink { [weak self] _ in
-            self?.show(session.ui.value.album)
+        state.player.config.dropFirst().sink { [weak self] _ in
+            self?.show(state.ui.value.album)
         }.store(in: &subs)
     }
     
@@ -79,7 +79,7 @@ final class Detail: UIView {
             $0.removeFromSuperview()
         }
         
-        if session.player.config.value.purchases.contains(album.purchase) {
+        if state.player.config.value.purchases.contains(album.purchase) {
             var top = duration.bottomAnchor
             album.tracks.forEach {
                 let item = Item(track: $0, duration: formatter.string(from: $0.duration)!)
@@ -108,7 +108,7 @@ final class Detail: UIView {
             }
             
             bottomAnchor.constraint(equalTo: top).isActive = true
-            current(session.player.track.value)
+            current(state.player.track.value)
         } else {
             let button = Button(.key("In.app"))
             button.target = target
@@ -137,7 +137,7 @@ final class Detail: UIView {
     
     @objc private func select(item: Item) {
         guard show(item) else { return }
-        session.player.track.value = item.track
+        state.player.track.value = item.track
     }
 }
 

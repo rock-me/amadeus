@@ -43,7 +43,7 @@ final class Detail: NSView {
         duration.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         duration.bottomAnchor.constraint(equalTo: subtitle.bottomAnchor).isActive = true
         
-        session.player.track.dropFirst().sink { [weak self] in
+        state.player.track.dropFirst().sink { [weak self] in
             self?.current($0)
         }.store(in: &self.subs)
     }
@@ -86,7 +86,7 @@ final class Detail: NSView {
         }
         
         bottomAnchor.constraint(equalTo: top).isActive = true
-        current(session.player.track.value)
+        current(state.player.track.value)
     }
     
     private func current(_ track: Track) {
@@ -105,7 +105,7 @@ final class Detail: NSView {
     
     @objc private func select(item: Item) {
         guard show(item) else { return }
-        session.player.track.value = item.track
+        state.player.track.value = item.track
     }
 }
 

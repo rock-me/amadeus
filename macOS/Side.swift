@@ -112,28 +112,28 @@ final class Side: NSView {
     
     @objc private func selectMusic(_ item: Item) {
         guard !item.selected else { return }
-        session.update {
+        state.update {
             $0.section = .music
         }
     }
     
     @objc private func selectStats(_ item: Item) {
         guard !item.selected else { return }
-        session.update {
+        state.update {
             $0.section = .stats
         }
     }
     
     @objc private func selectStore(_ item: Item) {
         guard !item.selected else { return }
-        session.update {
+        state.update {
             $0.section = .store
         }
     }
     
     @objc private func selectSettings(_ item: Item) {
         guard !item.selected else { return }
-        session.update {
+        state.update {
             $0.section = .settings
         }
     }

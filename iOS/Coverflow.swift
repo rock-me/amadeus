@@ -74,7 +74,7 @@ final class Coverflow: UIView, UIScrollViewDelegate {
     }
     
     @objc private func store() {
-        session.ui.value.section = .store
+        state.ui.value.section = .store
     }
 }
 

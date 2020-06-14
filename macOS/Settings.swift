@@ -90,7 +90,7 @@ final class Settings: NSView {
         notifications.topAnchor.constraint(equalTo: albumSeparator.bottomAnchor, constant: 32).isActive = true
         notifications.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        session.player.config.sink {
+        state.player.config.sink {
             random.selectItem(at: .init($0.random.rawValue))
             track.selectItem(at: .init($0.trackEnds.rawValue))
             album.selectItem(at: .init($0.albumEnds.rawValue))
@@ -103,18 +103,18 @@ final class Settings: NSView {
     }
     
     @objc private func random(_ button: NSPopUpButton) {
-        session.player.config.value.random = Random(rawValue: .init(button.indexOfSelectedItem))!
+        state.player.config.value.random = Random(rawValue: .init(button.indexOfSelectedItem))!
     }
     
     @objc private func track(_ button: NSPopUpButton) {
-        session.player.config.value.trackEnds = Heuristic(rawValue: .init(button.indexOfSelectedItem))!
+        state.player.config.value.trackEnds = Heuristic(rawValue: .init(button.indexOfSelectedItem))!
     }
     
     @objc private func album(_ button: NSPopUpButton) {
-        session.player.config.value.albumEnds = Heuristic(rawValue: .init(button.indexOfSelectedItem))!
+        state.player.config.value.albumEnds = Heuristic(rawValue: .init(button.indexOfSelectedItem))!
     }
     
     @objc private func notifications(_ button: NSButton) {
-        session.player.config.value.notifications = button.state == .on
+        state.player.config.value.notifications = button.state == .on
     }
 }

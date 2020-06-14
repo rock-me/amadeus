@@ -25,7 +25,7 @@ final class View: NSView {
         side.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         side.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
-        session.ui.sink {
+        state.ui.sink {
             switch $0.section {
             case .music: side.showMusic()
             case .stats: side.showStats()
