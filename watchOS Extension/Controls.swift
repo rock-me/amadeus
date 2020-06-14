@@ -10,14 +10,18 @@ struct Controls: View {
         VStack {
             HStack {
                 Text(.init(track.title))
-                    .padding()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(5)
+                    .padding(.horizontal)
                 Spacer()
             }
             HStack {
                 Text(.init(track.composer.name))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(5)
                     .font(.footnote)
                     .foregroundColor(.secondary)
-                    .padding()
+                    .padding(.horizontal)
                 Spacer()
             }
             if session.track == track && session.playing {
