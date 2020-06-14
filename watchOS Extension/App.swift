@@ -3,7 +3,7 @@ import WatchConnectivity
 import Player
 
 final class App: NSObject, WKExtensionDelegate, WCSessionDelegate {
-    let session = Session()
+    let state = Session()
     
     func applicationDidBecomeActive() {
         if WCSession.isSupported() {
@@ -18,15 +18,15 @@ final class App: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
     func session(_: WCSession, didReceiveMessage: [String : Any]) {
         if let playing = didReceiveMessage["playing"] as? Bool {
-            session.playing = playing
+            state.playing = playing
         }
         
         if let track = didReceiveMessage["playing"] as? Track {
-            session.track = track
+            state.track = track
         }
         
         if let purchases = didReceiveMessage["purchases"] as? Set<String> {
-            session.purchases = purchases
+            state.purchases = purchases
         }
     }
 }

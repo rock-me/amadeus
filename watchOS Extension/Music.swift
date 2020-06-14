@@ -2,7 +2,7 @@ import SwiftUI
 import Player
 
 struct Music: View {
-    @EnvironmentObject var session: Session
+    @EnvironmentObject var state: Session
     let album: Album
     
     var body: some View {
@@ -17,7 +17,7 @@ struct Music: View {
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                         .padding()
-                    if self.session.purchases.contains(self.album.purchase) {
+                    if self.state.purchases.contains(self.album.purchase) {
                         ForEach(self.album.tracks, id: \.self) {
                             Item(track: $0)
                         }
