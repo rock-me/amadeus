@@ -1,9 +1,11 @@
 import AppKit
 import Player
+import Combine
 
 final class Music: NSView {
     private weak var detail: Detail!
     private weak var coverflow: Coverflow!
+    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
     init() {
@@ -36,10 +38,14 @@ final class Music: NSView {
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         
         detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
-        detail.leftAnchor.constraint(equalTo: scroll.left).isActive = true
-        detail.rightAnchor.constraint(equalTo: scroll.right).isActive = true
+        detail.centerX = detail.centerXAnchor.constraint(equalTo: scroll.left)
+        detail.centerX.isActive = true
         
         show(state.ui.value.album)
+        
+//        scroll.wheel.sink {
+//            print($0)
+//        }.store(in: &subs)
     }
     
     func select(album: Album) {

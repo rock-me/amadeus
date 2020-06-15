@@ -3,6 +3,7 @@ import Player
 import Combine
 
 final class Detail: NSView {
+    weak var centerX: NSLayoutConstraint!
     private weak var title: Label!
     private weak var subtitle: Label!
     private weak var duration: Label!
@@ -31,6 +32,8 @@ final class Detail: NSView {
         duration.textColor = .secondaryLabelColor
         addSubview(duration)
         self.duration = duration
+        
+        widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -153,11 +156,11 @@ private final class Item: Control {
     }
     
     override func updateLayer() {
-        layer!.backgroundColor = selected ? NSColor.controlColor.cgColor : .clear
+        layer!.backgroundColor = selected ? NSColor.systemBlue.cgColor : .clear
     }
     
     override func hoverOn() {
-        layer!.backgroundColor = NSColor.controlColor.cgColor
+        layer!.backgroundColor = NSColor.systemBlue.cgColor
     }
     
     override func hoverOff() {
