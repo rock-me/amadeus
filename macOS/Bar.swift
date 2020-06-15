@@ -66,7 +66,7 @@ final class Bar: NSView {
         let separator = Separator()
         addSubview(separator)
         
-        heightAnchor.constraint(equalToConstant: 40).isActive = true
+        heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

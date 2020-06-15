@@ -108,7 +108,6 @@ private final class Item: Control {
         base.isUserInteractionEnabled = false
         base.backgroundColor = .secondarySystemBackground
         base.layer.cornerRadius = 10
-        base.layer.shadowOffset.height = 3
         base.layer.shadowColor = UIColor.secondaryLabel.cgColor
         base.layer.shadowRadius = 6
         addSubview(base)
