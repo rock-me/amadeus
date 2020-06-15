@@ -4,7 +4,6 @@ import Player
 
 final class Coverflow: NSView {
     private weak var music: Music!
-    private weak var scroll: Scroll!
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -13,38 +12,25 @@ final class Coverflow: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         self.music = music
         
-        let scroll = Scroll()
-        scroll.verticalScrollElasticity = .none
-        scroll.horizontalScrollElasticity = .allowed
-        addSubview(scroll)
-        self.scroll = scroll
-        
-        var left = scroll.left
+        var left = leftAnchor
         Album.allCases.forEach {
             let item = Item(album: $0)
             item.target = self
-            scroll.add(item)
+            addSubview(item)
             
-            item.leftAnchor.constraint(equalTo: left, constant: left == scroll.left ? 100 : 10).isActive = true
-            item.topAnchor.constraint(equalTo: scroll.top, constant: 20).isActive = true
-            item.bottomAnchor.constraint(equalTo: scroll.bottom, constant: -20).isActive = true
+            item.leftAnchor.constraint(equalTo: left, constant: left == leftAnchor ? 100 : 10).isActive = true
+            item.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+            item.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
             
             left = item.rightAnchor
         }
         
-        scroll.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        scroll.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        scroll.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
-        scroll.bottom.constraint(equalTo: scroll.bottomAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: left, constant: 100).isActive = true
-        
         heightAnchor.constraint(equalToConstant: 250).isActive = true
+        rightAnchor.constraint(equalTo: left, constant: 100).isActive = true
         
         state.player.config.sink { [weak self] config in
             guard let self = self else { return }
-            scroll.views.map { $0 as! Item }.forEach { item in
+            self.subviews.map { $0 as! Item }.forEach { item in
                 item.purchase.isHidden = config.purchases.contains(item.album.purchase)
                 item.action = config.purchases.contains(item.album.purchase) ? #selector(self.select(item:)) : #selector(self.store)
             }
@@ -52,14 +38,14 @@ final class Coverflow: NSView {
     }
     
     func show(_ album: Album) {
-        selected(item: scroll.views.map { $0 as! Item }.first { $0.album == album }!)
+        selected(item: subviews.map { $0 as! Item }.first { $0.album == album }!)
     }
     
     private func selected(item: Item) {
-        scroll.views.map { $0 as! Item }.forEach {
+        subviews.map { $0 as! Item }.forEach {
             $0.selected = $0 == item
         }
-        scroll.center(item.frame, duration: 0.5)
+//        scroll.center(item.frame, duration: 0.5)
     }
     
     @objc private func select(item: Item) {
@@ -68,7 +54,7 @@ final class Coverflow: NSView {
         NSAnimationContext.runAnimationGroup {
             $0.duration = 1
             $0.allowsImplicitAnimation = true
-            scroll.documentView!.layoutSubtreeIfNeeded()
+            layoutSubtreeIfNeeded()
         }
         music.select(album: item.album)
     }

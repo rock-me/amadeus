@@ -2,7 +2,6 @@ import AppKit
 import Combine
 
 final class Bar: NSView {
-    private weak var border: NSView!
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -26,8 +25,6 @@ final class Bar: NSView {
         play.action = #selector(state.play)
         addSubview(play)
         
-        
-        
         let pause = Button(image: "pause")
         pause.target = state
         pause.action = #selector(state.pause)
@@ -43,13 +40,25 @@ final class Bar: NSView {
         next.action = #selector(state.next)
         addSubview(next)
         
+        let progress = NSView()
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.wantsLayer = true
+        progress.layer!.backgroundColor = NSColor.underPageBackgroundColor.cgColor
+        progress.layer!.cornerRadius = 3
+        addSubview(progress)
+        
+        let elapsed = NSView()
+        elapsed.translatesAutoresizingMaskIntoConstraints = false
+        elapsed.wantsLayer = true
+        elapsed.layer!.backgroundColor = NSColor.systemBlue.cgColor
+        progress.addSubview(elapsed)
+        
         let totalTime = Label("", .monospaced(.medium(11)))
-        totalTime.textColor = .secondaryLabelColor
-        totalTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        totalTime.textColor = .tertiaryLabelColor
         addSubview(totalTime)
         
         let currentTime = Label("", .monospaced(.regular(11)))
-        currentTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        currentTime.textColor = .tertiaryLabelColor
         addSubview(currentTime)
         
         let separator = Separator()
@@ -67,7 +76,7 @@ final class Bar: NSView {
         play.topAnchor.constraint(equalTo: composer.bottomAnchor, constant: 20).isActive = true
         
         pause.centerXAnchor.constraint(equalTo: play.centerXAnchor).isActive = true
-        pause.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        pause.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
         previous.rightAnchor.constraint(equalTo: play.leftAnchor, constant: -10).isActive = true
         previous.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
@@ -75,16 +84,29 @@ final class Bar: NSView {
         next.leftAnchor.constraint(equalTo: play.rightAnchor, constant: 10).isActive = true
         next.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
+        progress.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        progress.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        progress.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        progress.heightAnchor.constraint(equalToConstant: 6).isActive = true
         
+        elapsed.leftAnchor.constraint(equalTo: progress.leftAnchor).isActive = true
+        elapsed.topAnchor.constraint(equalTo: progress.topAnchor).isActive = true
+        elapsed.bottomAnchor.constraint(equalTo: progress.bottomAnchor).isActive = true
+        let width = elapsed.widthAnchor.constraint(equalToConstant: 0)
+        width.isActive = true
         
+        currentTime.rightAnchor.constraint(equalTo: progress.leftAnchor, constant: -10).isActive = true
+        currentTime.centerYAnchor.constraint(equalTo: progress.centerYAnchor, constant: -1).isActive = true
         
-        currentTime.rightAnchor.constraint(equalTo: totalTime.leftAnchor).isActive = true
-        currentTime.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        totalTime.leftAnchor.constraint(equalTo: progress.rightAnchor, constant: 10).isActive = true
+        totalTime.centerYAnchor.constraint(equalTo: progress.centerYAnchor, constant: -1).isActive = true
         
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separator.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        layoutSubtreeIfNeeded()
         
         state.player.track.sink {
             title.stringValue = .key($0.title)
@@ -94,6 +116,12 @@ final class Bar: NSView {
         
         state.time.sink {
             currentTime.stringValue = formatter.string(from: $0)!
+            width.constant = 150 * .init($0 / state.player.track.value.duration)
+            NSAnimationContext.runAnimationGroup {
+                $0.duration = 0.3
+                $0.allowsImplicitAnimation = true
+                progress.layoutSubtreeIfNeeded()
+            }
         }.store(in: &subs)
         
         state.playing.sink {
@@ -126,7 +154,6 @@ private final class Button: Control {
         
         let image = NSImageView(image: NSImage(named: image)!)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentTintColor = .controlTextColor
         image.imageScaling = .scaleNone
         addSubview(image)
         self.image = image
@@ -138,10 +165,12 @@ private final class Button: Control {
         image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         image.widthAnchor.constraint(equalToConstant: 22).isActive = true
         image.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        
+        hoverOff()
     }
     
     override func hoverOn() {
-        image.contentTintColor = .controlAccentColor
+        image.contentTintColor = .systemBlue
     }
     
     override func hoverOff() {
