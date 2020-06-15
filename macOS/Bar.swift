@@ -2,7 +2,6 @@ import AppKit
 import Combine
 
 final class Bar: NSView {
-    private weak var base: NSView!
     private weak var border: NSView!
     private var subs = Set<AnyCancellable>()
     
@@ -14,10 +13,20 @@ final class Bar: NSView {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
         
+        let title = Label("", .bold(16))
+        title.textColor = .headerColor
+        addSubview(title)
+        
+        let composer = Label("", .regular(12))
+        composer.textColor = .secondaryLabelColor
+        addSubview(composer)
+        
         let play = Button(image: "play")
         play.target = state
         play.action = #selector(state.play)
         addSubview(play)
+        
+        
         
         let pause = Button(image: "pause")
         pause.target = state
@@ -34,68 +43,40 @@ final class Bar: NSView {
         next.action = #selector(state.next)
         addSubview(next)
         
-        let base = NSView()
-        base.translatesAutoresizingMaskIntoConstraints = false
-        base.wantsLayer = true
-        base.layer!.cornerRadius = 4
-        addSubview(base)
-        self.base = base
-        
-        let border = NSView()
-        border.translatesAutoresizingMaskIntoConstraints = false
-        border.wantsLayer = true
-        base.addSubview(border)
-        self.border = border
-        
-        let title = Label("", .regular(11))
-        title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        title.maximumNumberOfLines = 1
-        title.lineBreakMode = .byTruncatingTail
-        title.textColor = .secondaryLabelColor
-        base.addSubview(title)
-        
         let totalTime = Label("", .monospaced(.medium(11)))
         totalTime.textColor = .secondaryLabelColor
         totalTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        base.addSubview(totalTime)
+        addSubview(totalTime)
         
         let currentTime = Label("", .monospaced(.regular(11)))
         currentTime.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        base.addSubview(currentTime)
+        addSubview(currentTime)
         
         let separator = Separator()
         addSubview(separator)
         
-        heightAnchor.constraint(equalToConstant: 200).isActive = true
+        heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        base.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        base.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        title.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        title.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
         
-        border.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
-        border.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
-        border.topAnchor.constraint(equalTo: base.topAnchor).isActive = true
-        border.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        composer.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 2).isActive = true
+        composer.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        play.rightAnchor.constraint(equalTo: next.leftAnchor, constant: -10).isActive = true
-        play.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        play.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        play.topAnchor.constraint(equalTo: composer.bottomAnchor, constant: 20).isActive = true
         
         pause.centerXAnchor.constraint(equalTo: play.centerXAnchor).isActive = true
         pause.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         previous.rightAnchor.constraint(equalTo: play.leftAnchor, constant: -10).isActive = true
-        previous.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        previous.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
-        next.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
-        next.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        next.leftAnchor.constraint(equalTo: play.rightAnchor, constant: 10).isActive = true
+        next.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
-        title.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
-        title.rightAnchor.constraint(lessThanOrEqualTo: currentTime.leftAnchor, constant: -10).isActive = true
-        title.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        totalTime.rightAnchor.constraint(equalTo: base.rightAnchor, constant: -10).isActive = true
-        totalTime.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
         
         currentTime.rightAnchor.constraint(equalTo: totalTime.leftAnchor).isActive = true
         currentTime.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -106,7 +87,8 @@ final class Bar: NSView {
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         state.player.track.sink {
-            title.stringValue = .key($0.composer.name) + " - " + .key($0.title)
+            title.stringValue = .key($0.title)
+            composer.stringValue = .key($0.composer.name)
             totalTime.stringValue = formatter.string(from: state.player.track.value.duration)!
         }.store(in: &subs)
         
@@ -126,11 +108,6 @@ final class Bar: NSView {
         state.player.previousable.sink {
             previous.enabled = $0
         }.store(in: &subs)
-    }
-    
-    override func updateLayer() {
-        base.layer!.backgroundColor = NSColor.controlHighlightColor.cgColor
-        border.layer!.backgroundColor = NSColor.controlLightHighlightColor.cgColor
     }
 }
 

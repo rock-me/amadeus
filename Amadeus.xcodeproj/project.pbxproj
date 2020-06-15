@@ -102,7 +102,6 @@
 		CEEA688E2483B6B400716620 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688D2483B6B400716620 /* Menu.swift */; };
 		CEEA68902483B6DA00716620 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA688F2483B6DA00716620 /* String.swift */; };
 		CEEA68932483B75600716620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEA68912483B75600716620 /* Localizable.strings */; };
-		CEEA68952483B86500716620 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68942483B86500716620 /* View.swift */; };
 		CEEA68972483B8B700716620 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68962483B8B700716620 /* Bar.swift */; };
 		CEEA68992483BB1800716620 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA68982483BB1800716620 /* Separator.swift */; };
 		CEEA689D2483CCA700716620 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA689C2483CCA700716620 /* Control.swift */; };
@@ -224,7 +223,6 @@
 		CEEA688D2483B6B400716620 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		CEEA688F2483B6DA00716620 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CEEA68922483B75600716620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CEEA68942483B86500716620 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CEEA68962483B8B700716620 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		CEEA68982483BB1800716620 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		CEEA689C2483CCA700716620 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				CEEA68982483BB1800716620 /* Separator.swift */,
 				CEB55D3B248A3073002CDB8A /* Settings.swift */,
 				CE3B0A37248EA68400A810E0 /* Store.swift */,
-				CEEA68942483B86500716620 /* View.swift */,
 				CEF9B2AB24827C08009FEF9B /* Window.swift */,
 				CEF9B2A1248275BC009FEF9B /* Assets.xcassets */,
 			);
@@ -705,7 +702,6 @@
 				CEB55D3C248A3073002CDB8A /* Settings.swift in Sources */,
 				CEF9B2B524827FFD009FEF9B /* UI.swift in Sources */,
 				CE48A41D24895B71004555C1 /* Session.swift in Sources */,
-				CEEA68952483B86500716620 /* View.swift in Sources */,
 				CEEA68A32483DB1000716620 /* Music.swift in Sources */,
 				CEEA688E2483B6B400716620 /* Menu.swift in Sources */,
 				CEEA68992483BB1800716620 /* Separator.swift in Sources */,

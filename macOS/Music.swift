@@ -9,6 +9,7 @@ final class Music: NSView {
     init() {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        wantsLayer = true
         
         let scroll = Scroll()
         scroll.hasVerticalScroller = true
@@ -47,6 +48,10 @@ final class Music: NSView {
         state.update {
             $0.album = album
         }
+    }
+    
+    override func updateLayer() {
+        layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
     }
     
     private func show(_ album: Album) {

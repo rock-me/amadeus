@@ -12,7 +12,21 @@ final class Window: NSWindow, NSWindowDelegate {
         toolbar!.showsBaselineSeparator = false
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
-        contentView = View()
+        
+        let bar = Bar()
+        contentView!.addSubview(bar)
+        
+        let music = Music()
+        contentView!.addSubview(music)
+        
+        bar.topAnchor.constraint(equalTo: contentView!.topAnchor).isActive = true
+        bar.leftAnchor.constraint(equalTo: contentView!.leftAnchor).isActive = true
+        bar.rightAnchor.constraint(equalTo: contentView!.rightAnchor).isActive = true
+        
+        music.topAnchor.constraint(equalTo: bar.bottomAnchor).isActive = true
+        music.leftAnchor.constraint(equalTo: contentView!.leftAnchor).isActive = true
+        music.rightAnchor.constraint(equalTo: contentView!.rightAnchor).isActive = true
+        music.bottomAnchor.constraint(equalTo: contentView!.bottomAnchor).isActive = true
     }
     
     override func close() {
