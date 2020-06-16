@@ -1,8 +1,10 @@
 import AppKit
 
 final class Window: NSWindow, NSWindowDelegate {
+    override var frameAutosaveName: NSWindow.FrameAutosaveName { "Window" }
+    
     init() {
-        super.init(contentRect: state.ui.value.frame, styleMask:
+        super.init(contentRect: .init(x: 0, y: 0, width: 500, height: 700), styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
         minSize = .init(width: 500, height: 400)
@@ -12,6 +14,9 @@ final class Window: NSWindow, NSWindowDelegate {
         toolbar!.showsBaselineSeparator = false
         collectionBehavior = .fullScreenNone
         isReleasedWhenClosed = false
+        if !setFrameUsingName(frameAutosaveName) {
+            center()
+        }
         
         let bar = Bar()
         contentView!.addSubview(bar)
@@ -34,14 +39,10 @@ final class Window: NSWindow, NSWindowDelegate {
     }
     
     func windowDidMove(_: Notification) {
-        state.update {
-            $0.frame = frame
-        }
+        saveFrame(usingName: frameAutosaveName)
     }
-    
+
     func windowDidResize(_: Notification) {
-        state.update {
-            $0.frame = frame
-        }
+        saveFrame(usingName: frameAutosaveName)
     }
 }

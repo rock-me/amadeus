@@ -3,7 +3,6 @@ import Player
 import Combine
 
 final class Detail: NSView {
-    weak var centerX: NSLayoutConstraint!
     private weak var title: Label!
     private weak var subtitle: Label!
     private weak var duration: Label!

@@ -14,7 +14,7 @@ final class Music: NSView {
         wantsLayer = true
         
         let scroll = Scroll()
-        scroll.horizontalScrollElasticity = .allowed
+        scroll.horizontalScrollElasticity = .none
         addSubview(scroll)
         
         let coverflow = Coverflow(music: self)
@@ -29,8 +29,8 @@ final class Music: NSView {
         scroll.leftAnchor.constraint(equalTo: leftAnchor, constant: 1).isActive = true
         scroll.rightAnchor.constraint(equalTo: rightAnchor, constant: -1).isActive = true
         scroll.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: coverflow.rightAnchor).isActive = true
+        scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
+        scroll.width.constraint(equalTo: scroll.widthAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: detail.bottomAnchor, constant: 30).isActive = true
         
@@ -38,8 +38,7 @@ final class Music: NSView {
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         
         detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
-        detail.centerX = detail.centerXAnchor.constraint(equalTo: scroll.left)
-        detail.centerX.isActive = true
+        detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
         
         show(state.ui.value.album)
         
