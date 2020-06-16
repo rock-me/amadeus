@@ -101,8 +101,6 @@ final class Store: UIViewController {
             }
             
             scroll.bottom.constraint(greaterThanOrEqualTo: top, constant: 10).isActive = true
-            
-            (UIApplication.shared.delegate as! App).sendContext()
         }.store(in: &subs)
         
         purchases.error.receive(on: DispatchQueue.main).sink { [weak self] in

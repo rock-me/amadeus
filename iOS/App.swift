@@ -14,28 +14,17 @@ let state = Session()
         WCSession.default.activate()
     }
     
-    func sendContext() {
-        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled else { return }
-        try? WCSession.default.updateApplicationContext(full)
-    }
-    
-    func sendMessage() {
-        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled && WCSession.default.isReachable else {
-            sendContext()
-            return
-        }
-        WCSession.default.sendMessage(basic, replyHandler: nil, errorHandler: nil)
-    }
-    
     func session(_: WCSession, activationDidCompleteWith: WCSessionActivationState, error: Error?) {
-        sendContext()
-        
         state.playing.dropFirst().sink { _ in
             self.sendMessage()
         }.store(in: &subs)
         
         state.player.track.dropFirst().sink { _ in
             self.sendMessage()
+        }.store(in: &subs)
+        
+        state.player.config.sink { _ in
+            self.sendContext()
         }.store(in: &subs)
     }
     
@@ -64,6 +53,21 @@ let state = Session()
         
     }
     
+    private func sendMessage() {
+        guard WCSession.isSupported() else { return }
+        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled && WCSession.default.isReachable else {
+            sendContext()
+            return
+        }
+        WCSession.default.sendMessage(basic, replyHandler: nil, errorHandler: nil)
+    }
+    
+    private func sendContext() {
+        guard WCSession.isSupported() else { return }
+        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled else { return }
+        try? WCSession.default.updateApplicationContext(full)
+    }
+    
     private var full: [String : Any] {
         basic.merging(["purchases": Array(state.player.config.value.purchases)]) {
             $1
@@ -71,8 +75,7 @@ let state = Session()
     }
     
     private var basic: [String : Any] {
-        ["purchases": Array(state.player.config.value.purchases),
-         "track": state.player.track.value.rawValue,
+        ["track": state.player.track.value.rawValue,
          "playing": state.playing.value]
     }
 }

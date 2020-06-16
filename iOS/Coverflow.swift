@@ -72,10 +72,6 @@ final class Coverflow: UIView, UIScrollViewDelegate {
     @objc private func focus(item: Item) {
         scroll.center(item.frame, duration: 0.1)
     }
-    
-    @objc private func store() {
-        state.ui.value.section = .store
-    }
 }
 
 private final class Item: Control {
