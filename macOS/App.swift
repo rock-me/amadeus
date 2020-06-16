@@ -18,12 +18,9 @@ let state = Session()
         let window = Window()
         window.makeKeyAndOrderFront(nil)
         state.loadTrack.sink {
-            window.music.select(album: state.player.track.value.album)
+            window.music.coverflow.show(state.player.track.value.album)
             state.loadConfig()
-            
         }.store(in: &subs)
-        
-        _ = state.loadConfig
     }
     
     func applicationDidFinishLaunching(_: Notification) {

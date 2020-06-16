@@ -1,66 +1,57 @@
 import AppKit
-import Combine
 import Player
 
 final class Coverflow: NSView {
-    private weak var music: Music!
-    private var subs = Set<AnyCancellable>()
+    private weak var center: NSLayoutConstraint? {
+        didSet {
+            oldValue?.isActive = false
+            center!.isActive = true
+        }
+    }
+    
+    private weak var detail: Detail!
     
     required init?(coder: NSCoder) { nil }
-    init(music: Music) {
+    init(detail: Detail) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        self.music = music
+        self.detail = detail
         
-        var left = leftAnchor
+        var left: NSLayoutXAxisAnchor?
         Album.allCases.forEach {
             let item = Item(album: $0)
             item.target = self
+            item.action = #selector(select(item:))
             addSubview(item)
             
-            item.leftAnchor.constraint(equalTo: left, constant: left == leftAnchor ? 100 : 10).isActive = true
+            if left != nil {
+                item.leftAnchor.constraint(equalTo: left!, constant: 10).isActive = true
+            }
             item.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
             item.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
             
             left = item.rightAnchor
         }
         
-        heightAnchor.constraint(equalToConstant: 250).isActive = true
-        rightAnchor.constraint(equalTo: left, constant: 100).isActive = true
-        
-        state.player.config.sink { [weak self] config in
-            guard let self = self else { return }
-            self.subviews.map { $0 as! Item }.forEach { item in
-                item.purchase.isHidden = config.purchases.contains(item.album.purchase)
-                item.action = config.purchases.contains(item.album.purchase) ? #selector(self.select(item:)) : #selector(self.store)
-            }
-        }.store(in: &subs)
+        heightAnchor.constraint(equalToConstant: 350).isActive = true
     }
     
     func show(_ album: Album) {
-        selected(item: subviews.map { $0 as! Item }.first { $0.album == album }!)
-    }
-    
-    private func selected(item: Item) {
-        subviews.map { $0 as! Item }.forEach {
-            $0.selected = $0 == item
-        }
-//        scroll.center(item.frame, duration: 0.5)
+        select(item: subviews.map { $0 as! Item }.first { $0.album == album }!)
     }
     
     @objc private func select(item: Item) {
         guard !item.selected else { return }
-        selected(item: item)
+        center = item.centerXAnchor.constraint(equalTo: centerXAnchor)
+        subviews.map { $0 as! Item }.forEach {
+            $0.selected = $0 == item
+        }
         NSAnimationContext.runAnimationGroup {
-            $0.duration = 1
+            $0.duration = 0.6
             $0.allowsImplicitAnimation = true
             layoutSubtreeIfNeeded()
         }
-        music.select(album: item.album)
-    }
-    
-    @objc private func store() {
-        
+        detail.show(item.album)
     }
 }
 
@@ -73,8 +64,6 @@ private final class Item: Control {
     }
     
     let album: Album
-    private(set) weak var purchase: NSView!
-    private weak var base: NSView!
     private weak var width: NSLayoutConstraint!
     private weak var height: NSLayoutConstraint!
     
@@ -91,9 +80,9 @@ private final class Item: Control {
         base.translatesAutoresizingMaskIntoConstraints = false
         base.wantsLayer = true
         base.layer!.cornerRadius = 10
+        base.layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
         base.shadow = shadow
         addSubview(base)
-        self.base = base
         
         let image = NSImageView(image: NSImage(named: album.cover)!)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -112,18 +101,6 @@ private final class Item: Control {
         let name = Label(.key(album.title), .bold(10))
         name.textColor = .white
         addSubview(name)
-        
-        let purchase = NSView()
-        purchase.translatesAutoresizingMaskIntoConstraints = false
-        purchase.wantsLayer = true
-        purchase.layer!.backgroundColor = CGColor(gray: 0, alpha: 0.85)
-        purchase.isHidden = true
-        addSubview(purchase)
-        self.purchase = purchase
-        
-        let visitStore = Label(.key("In.app"), .bold(10))
-        visitStore.textColor = .white
-        purchase.addSubview(visitStore)
         
         widthAnchor.constraint(equalTo: base.widthAnchor, constant: 20).isActive = true
         
@@ -147,17 +124,5 @@ private final class Item: Control {
         name.bottomAnchor.constraint(equalTo: base.bottomAnchor, constant: -10).isActive = true
         name.leftAnchor.constraint(equalTo: base.leftAnchor, constant: 10).isActive = true
         name.rightAnchor.constraint(lessThanOrEqualTo: base.rightAnchor, constant: -10).isActive = true
-        
-        purchase.leftAnchor.constraint(equalTo: base.leftAnchor).isActive = true
-        purchase.rightAnchor.constraint(equalTo: base.rightAnchor).isActive = true
-        purchase.centerYAnchor.constraint(equalTo: base.centerYAnchor).isActive = true
-        purchase.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        visitStore.centerYAnchor.constraint(equalTo: purchase.centerYAnchor).isActive = true
-        visitStore.centerXAnchor.constraint(equalTo: purchase.centerXAnchor).isActive = true
-    }
-    
-    override func updateLayer() {
-        base.layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
     }
 }

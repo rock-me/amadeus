@@ -1,11 +1,8 @@
 import AppKit
 import Player
-import Combine
 
 final class Music: NSView {
-    private weak var detail: Detail!
-    private weak var coverflow: Coverflow!
-    private var subs = Set<AnyCancellable>()
+    private(set) weak var coverflow: Coverflow!
     
     required init?(coder: NSCoder) { nil }
     init() {
@@ -17,13 +14,12 @@ final class Music: NSView {
         scroll.horizontalScrollElasticity = .none
         addSubview(scroll)
         
-        let coverflow = Coverflow(music: self)
-        scroll.add(coverflow)
-        self.coverflow = coverflow
-        
         let detail = Detail()
         scroll.add(detail)
-        self.detail = detail
+        
+        let coverflow = Coverflow(detail: detail)
+        scroll.add(coverflow)
+        self.coverflow = coverflow
         
         scroll.topAnchor.constraint(equalTo: topAnchor).isActive = true
         scroll.leftAnchor.constraint(equalTo: leftAnchor, constant: 1).isActive = true
@@ -36,18 +32,10 @@ final class Music: NSView {
         
         coverflow.topAnchor.constraint(equalTo: scroll.top, constant: 30).isActive = true
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
+        coverflow.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         
         detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
         detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
-        
-        state.player.track.prefix(2).sink { [weak self] in
-            self?.select(album: $0.album)
-        }.store(in: &subs)
-    }
-    
-    func select(album: Album) {
-        coverflow.show(album)
-        detail.show(album)
     }
     
     override func updateLayer() {
