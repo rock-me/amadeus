@@ -17,6 +17,7 @@ final class Window: NSWindow, NSWindowDelegate {
         if !setFrameUsingName(frameAutosaveName) {
             center()
         }
+        delegate = self
         
         let bar = Bar()
         contentView!.addSubview(bar)

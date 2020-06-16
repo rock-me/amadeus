@@ -40,26 +40,17 @@ final class Music: NSView {
         detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
         detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
         
-        show(state.ui.value.album)
-        
-//        scroll.wheel.sink {
-//            print($0)
-//        }.store(in: &subs)
+        state.player.track.dropFirst().first().sink { [weak self] in
+            self?.select(album: $0.album)
+        }.store(in: &subs)
     }
     
     func select(album: Album) {
-        show(album)
-        state.update {
-            $0.album = album
-        }
+        coverflow.show(album)
+        detail.show(album)
     }
     
     override func updateLayer() {
         layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
-    }
-    
-    private func show(_ album: Album) {
-        coverflow.show(album)
-        detail.show(album)
     }
 }

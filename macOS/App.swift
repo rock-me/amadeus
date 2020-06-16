@@ -15,19 +15,8 @@ let state = Session()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        state.loadUI.sink {
-            let window: Window
-            if $0 {
-                window = .init()
-            } else {
-                window = .init()
-                window.center()
-                state.add(ui: window.frame)
-            }
-            window.makeKeyAndOrderFront(nil)
-            window.delegate = window
-            state.loadPlayer()
-        }.store(in: &subs)
+        Window().makeKeyAndOrderFront(nil)
+        state.load()
     }
     
     func applicationDidFinishLaunching(_: Notification) {
