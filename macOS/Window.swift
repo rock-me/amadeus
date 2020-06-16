@@ -6,10 +6,10 @@ final class Window: NSWindow, NSWindowDelegate {
     private(set) weak var music: Music!
     
     init() {
-        super.init(contentRect: .init(x: 0, y: 0, width: 500, height: 700), styleMask:
+        super.init(contentRect: .init(x: 0, y: 0, width: 400, height: 800), styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
-        minSize = .init(width: 500, height: 400)
+        minSize = .init(width: 400, height: 300)
         titlebarAppearsTransparent = true
         titleVisibility = .hidden
         toolbar = .init()

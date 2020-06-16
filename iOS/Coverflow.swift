@@ -138,10 +138,10 @@ private final class Item: Control {
         heightAnchor.constraint(equalTo: base.heightAnchor, constant: 20).isActive = true
         
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        base.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
-        width = base.widthAnchor.constraint(equalToConstant: 100)
+        base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        width = base.widthAnchor.constraint(equalToConstant: 160)
         width.isActive = true
-        height = base.heightAnchor.constraint(equalToConstant: 130)
+        height = base.heightAnchor.constraint(equalToConstant: 176)
         height.isActive = true
         
         image.topAnchor.constraint(equalTo: base.topAnchor).isActive = true

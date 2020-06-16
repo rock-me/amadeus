@@ -27,13 +27,11 @@ final class Coverflow: NSView {
             if left != nil {
                 item.leftAnchor.constraint(equalTo: left!, constant: 10).isActive = true
             }
-            item.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-            item.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
-            
+            item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             left = item.rightAnchor
         }
         
-        heightAnchor.constraint(equalToConstant: 350).isActive = true
+        heightAnchor.constraint(equalToConstant: 400).isActive = true
     }
     
     func show(_ album: Album) {
@@ -58,15 +56,24 @@ final class Coverflow: NSView {
 private final class Item: Control {
     var selected = false {
         didSet {
-            width.constant = selected ? 140 : 98
-            height.constant = selected ? -30 : -84
+            width.constant = selected ? 200 : 120
+            height.constant = selected ? 260 : 156
+            
+            NSAnimationContext.runAnimationGroup {
+                $0.duration = 3
+                $0.allowsImplicitAnimation = true
+                name.alphaValue = selected ? 0 : 1
+                shade.alphaValue = selected ? 0 : 1
+            }
         }
     }
     
     let album: Album
+    private weak var name: Label!
+    private weak var shade: NSImageView!
     private weak var width: NSLayoutConstraint!
     private weak var height: NSLayoutConstraint!
-    
+
     required init?(coder: NSCoder) { nil }
     init(album: Album) {
         self.album = album
@@ -97,18 +104,21 @@ private final class Item: Control {
         shade.wantsLayer = true
         shade.layer!.cornerRadius = 10
         addSubview(shade)
+        self.shade = shade
         
-        let name = Label(.key(album.title), .bold(10))
+        let name = Label(.key(album.title), .bold(12))
         name.textColor = .white
         addSubview(name)
+        self.name = name
         
-        widthAnchor.constraint(equalTo: base.widthAnchor, constant: 20).isActive = true
+        widthAnchor.constraint(equalTo: base.widthAnchor, constant: 40).isActive = true
+        heightAnchor.constraint(equalTo: base.heightAnchor, constant: 20).isActive = true
         
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        base.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
-        width = base.widthAnchor.constraint(equalToConstant: 98)
+        base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        width = base.widthAnchor.constraint(equalToConstant: 120)
         width.isActive = true
-        height = base.heightAnchor.constraint(equalTo: heightAnchor, constant: -84)
+        height = base.heightAnchor.constraint(equalToConstant: 156)
         height.isActive = true
         
         image.topAnchor.constraint(equalTo: base.topAnchor).isActive = true

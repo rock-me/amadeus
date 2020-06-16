@@ -84,7 +84,7 @@ final class Bar: NSView {
         next.leftAnchor.constraint(equalTo: play.rightAnchor, constant: 10).isActive = true
         next.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
-        progress.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        progress.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         progress.widthAnchor.constraint(equalToConstant: 150).isActive = true
         progress.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         progress.heightAnchor.constraint(equalToConstant: 6).isActive = true

@@ -30,11 +30,11 @@ final class Music: NSView {
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: detail.bottomAnchor, constant: 30).isActive = true
         
-        coverflow.topAnchor.constraint(equalTo: scroll.top, constant: 30).isActive = true
+        coverflow.topAnchor.constraint(equalTo: scroll.top).isActive = true
         coverflow.leftAnchor.constraint(equalTo: scroll.left).isActive = true
         coverflow.rightAnchor.constraint(equalTo: scroll.right).isActive = true
         
-        detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
+        detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor).isActive = true
         detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
     }
     
