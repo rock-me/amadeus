@@ -103,7 +103,7 @@ private final class Item: Control {
         base.translatesAutoresizingMaskIntoConstraints = false
         base.isUserInteractionEnabled = false
         base.backgroundColor = .secondarySystemBackground
-        base.layer.cornerRadius = 10
+        base.layer.cornerRadius = 12
         base.layer.shadowColor = UIColor.secondaryLabel.cgColor
         base.layer.shadowRadius = 6
         addSubview(base)
@@ -113,14 +113,14 @@ private final class Item: Control {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = 10
+        image.layer.cornerRadius = 12
         addSubview(image)
         
         let shade = UIImageView(image: UIImage(named: "shade")!)
         shade.translatesAutoresizingMaskIntoConstraints = false
         shade.contentMode = .scaleAspectFill
         shade.clipsToBounds = true
-        shade.layer.cornerRadius = 10
+        shade.layer.cornerRadius = 12
         addSubview(shade)
         self.shade = shade
         

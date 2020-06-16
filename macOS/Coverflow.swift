@@ -60,7 +60,7 @@ private final class Item: Control {
             height.constant = selected ? 260 : 156
             
             NSAnimationContext.runAnimationGroup {
-                $0.duration = 3
+                $0.duration = 0.6
                 $0.allowsImplicitAnimation = true
                 name.alphaValue = selected ? 0 : 1
                 shade.alphaValue = selected ? 0 : 1
@@ -81,12 +81,12 @@ private final class Item: Control {
         
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 6
-        shadow.shadowOffset.height = -3
+        shadow.shadowColor = .quaternaryLabelColor
         
         let base = NSView()
         base.translatesAutoresizingMaskIntoConstraints = false
         base.wantsLayer = true
-        base.layer!.cornerRadius = 10
+        base.layer!.cornerRadius = 12
         base.layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
         base.shadow = shadow
         addSubview(base)
@@ -95,18 +95,18 @@ private final class Item: Control {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.imageScaling = .scaleProportionallyUpOrDown
         image.wantsLayer = true
-        image.layer!.cornerRadius = 10
+        image.layer!.cornerRadius = 12
         addSubview(image)
         
         let shade = NSImageView(image: NSImage(named: "shade")!)
         shade.translatesAutoresizingMaskIntoConstraints = false
         shade.imageScaling = .scaleProportionallyUpOrDown
         shade.wantsLayer = true
-        shade.layer!.cornerRadius = 10
+        shade.layer!.cornerRadius = 12
         addSubview(shade)
         self.shade = shade
         
-        let name = Label(.key(album.title), .bold(12))
+        let name = Label(.key(album.title), .bold())
         name.textColor = .white
         addSubview(name)
         self.name = name

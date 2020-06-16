@@ -12,11 +12,11 @@ final class Bar: NSView {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
         
-        let title = Label("", .bold(16))
+        let title = Label("", .bold(4))
         title.textColor = .headerColor
         addSubview(title)
         
-        let composer = Label("", .regular(12))
+        let composer = Label("", .regular())
         composer.textColor = .secondaryLabelColor
         addSubview(composer)
         
@@ -53,11 +53,11 @@ final class Bar: NSView {
         elapsed.layer!.backgroundColor = NSColor.systemBlue.cgColor
         progress.addSubview(elapsed)
         
-        let totalTime = Label("", .monospaced(.medium(11)))
+        let totalTime = Label("", .monospaced(.medium(-1)))
         totalTime.textColor = .tertiaryLabelColor
         addSubview(totalTime)
         
-        let currentTime = Label("", .monospaced(.regular(11)))
+        let currentTime = Label("", .monospaced(.regular(-1)))
         currentTime.textColor = .tertiaryLabelColor
         addSubview(currentTime)
         
