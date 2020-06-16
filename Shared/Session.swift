@@ -40,16 +40,21 @@ final class Session {
         }.store(in: &subs)
     }
     
-    func load() {
-        store.nodes(Track.self).sink {
-            if let stored = $0.first {
-                self.player.track.value = stored
-            } else {
-                self.store.add(self.player.track.value)
-            }
-            self.listenTrack()
-        }.store(in: &subs)
-        
+    var loadTrack: Future<Void, Never> {
+        .init { promise in
+            self.store.nodes(Track.self).sink {
+                if let stored = $0.first {
+                    self.player.track.value = stored
+                } else {
+                    self.store.add(self.player.track.value)
+                }
+                self.listenTrack()
+                promise(.success(()))
+            }.store(in: &self.subs)
+        }
+    }
+    
+    func loadConfig() {
         store.nodes(Config.self).sink {
             if let stored = $0.first {
                 self.player.config.value = stored

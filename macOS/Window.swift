@@ -3,6 +3,8 @@ import AppKit
 final class Window: NSWindow, NSWindowDelegate {
     override var frameAutosaveName: NSWindow.FrameAutosaveName { "Window" }
     
+    private(set) weak var music: Music!
+    
     init() {
         super.init(contentRect: .init(x: 0, y: 0, width: 500, height: 700), styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
@@ -23,6 +25,7 @@ final class Window: NSWindow, NSWindowDelegate {
         contentView!.addSubview(bar)
         
         let music = Music()
+        self.music = music
         contentView!.addSubview(music)
         
         bar.topAnchor.constraint(equalTo: contentView!.topAnchor).isActive = true

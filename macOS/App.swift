@@ -15,8 +15,15 @@ let state = Session()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        Window().makeKeyAndOrderFront(nil)
-        state.load()
+        let window = Window()
+        window.makeKeyAndOrderFront(nil)
+        state.loadTrack.sink {
+            window.music.select(album: state.player.track.value.album)
+            state.loadConfig()
+            
+        }.store(in: &subs)
+        
+        _ = state.loadConfig
     }
     
     func applicationDidFinishLaunching(_: Notification) {

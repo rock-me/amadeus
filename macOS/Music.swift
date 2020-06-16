@@ -40,7 +40,7 @@ final class Music: NSView {
         detail.topAnchor.constraint(equalTo: coverflow.bottomAnchor, constant: 30).isActive = true
         detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
         
-        state.player.track.dropFirst().first().sink { [weak self] in
+        state.player.track.prefix(2).sink { [weak self] in
             self?.select(album: $0.album)
         }.store(in: &subs)
     }
