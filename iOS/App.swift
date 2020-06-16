@@ -20,7 +20,10 @@ let state = Session()
     }
     
     func sendMessage() {
-        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled && WCSession.default.isReachable else { return }
+        guard WCSession.default.isPaired && WCSession.default.isWatchAppInstalled && WCSession.default.isReachable else {
+            sendContext()
+            return
+        }
         WCSession.default.sendMessage(basic, replyHandler: nil, errorHandler: nil)
     }
     
