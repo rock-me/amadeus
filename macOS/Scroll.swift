@@ -16,7 +16,6 @@ final class Scroll: NSScrollView {
         final class Flipped: NSView { override var isFlipped: Bool { true } }
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        drawsBackground = false
         hasVerticalScroller = false
         hasHorizontalScroller = false
         documentView = Flipped()

@@ -15,10 +15,10 @@ let state = Session()
     
     func applicationWillFinishLaunching(_: Notification) {
         mainMenu = Menu()
-        let window = Window()
-        window.makeKeyAndOrderFront(nil)
+        let music = Music()
+        music.makeKeyAndOrderFront(nil)
         state.loadTrack.sink {
-            window.music.coverflow.show(state.player.track.value.album)
+            music.coverflow.show(state.player.track.value.album)
             state.loadConfig()
         }.store(in: &subs)
     }

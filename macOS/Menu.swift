@@ -23,8 +23,8 @@ final class Menu: NSMenu {
     
     private var window: NSMenuItem {
         menu(.key("Window"), items: [
-            .init(title: .key("Minimize"), action: #selector(Window.miniaturize), keyEquivalent: "m"),
-            .init(title: .key("Zoom"), action: #selector(Window.zoom), keyEquivalent: "p"),
+            .init(title: .key("Minimize"), action: #selector(NSWindow.miniaturize), keyEquivalent: "m"),
+            .init(title: .key("Zoom"), action: #selector(NSWindow.zoom), keyEquivalent: "p"),
             .separator(),
             .init(title: .key("Bring.all"), action: #selector(NSApplication.arrangeInFront), keyEquivalent: ""),
             .separator(),

@@ -1,18 +1,32 @@
 import AppKit
-import Player
 
-final class Music: NSView {
+final class Music: NSWindow, NSWindowDelegate {
     private(set) weak var coverflow: Coverflow!
     
-    required init?(coder: NSCoder) { nil }
+    override var frameAutosaveName: NSWindow.FrameAutosaveName { "Music" }
+    
     init() {
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        wantsLayer = true
+        super.init(contentRect: .init(x: 0, y: 0, width: 400, height: 800), styleMask:
+            [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
+                   backing: .buffered, defer: false)
+        minSize = .init(width: 400, height: 300)
+        titlebarAppearsTransparent = true
+        titleVisibility = .hidden
+        toolbar = .init()
+        toolbar!.showsBaselineSeparator = false
+        collectionBehavior = .fullScreenNone
+        isReleasedWhenClosed = false
+        if !setFrameUsingName(frameAutosaveName) {
+            center()
+        }
+        delegate = self
+        
+        let bar = Bar()
+        contentView!.addSubview(bar)
         
         let scroll = Scroll()
         scroll.horizontalScrollElasticity = .none
-        addSubview(scroll)
+        contentView!.addSubview(scroll)
         
         let detail = Detail()
         scroll.add(detail)
@@ -21,10 +35,14 @@ final class Music: NSView {
         scroll.add(coverflow)
         self.coverflow = coverflow
         
-        scroll.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        scroll.leftAnchor.constraint(equalTo: leftAnchor, constant: 1).isActive = true
-        scroll.rightAnchor.constraint(equalTo: rightAnchor, constant: -1).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
+        bar.topAnchor.constraint(equalTo: contentView!.topAnchor).isActive = true
+        bar.leftAnchor.constraint(equalTo: contentView!.leftAnchor).isActive = true
+        bar.rightAnchor.constraint(equalTo: contentView!.rightAnchor).isActive = true
+        
+        scroll.topAnchor.constraint(equalTo: bar.bottomAnchor).isActive = true
+        scroll.leftAnchor.constraint(equalTo: contentView!.leftAnchor, constant: 1).isActive = true
+        scroll.rightAnchor.constraint(equalTo: contentView!.rightAnchor, constant: -1).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: contentView!.bottomAnchor, constant: -1).isActive = true
         scroll.right.constraint(equalTo: scroll.rightAnchor).isActive = true
         scroll.width.constraint(equalTo: scroll.widthAnchor).isActive = true
         scroll.bottom.constraint(greaterThanOrEqualTo: scroll.bottomAnchor).isActive = true
@@ -38,7 +56,15 @@ final class Music: NSView {
         detail.centerXAnchor.constraint(equalTo: scroll.centerX).isActive = true
     }
     
-    override func updateLayer() {
-        layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
+    override func close() {
+        NSApp.terminate(nil)
+    }
+    
+    func windowDidMove(_: Notification) {
+        saveFrame(usingName: frameAutosaveName)
+    }
+
+    func windowDidResize(_: Notification) {
+        saveFrame(usingName: frameAutosaveName)
     }
 }
