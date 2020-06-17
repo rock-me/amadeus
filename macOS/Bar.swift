@@ -67,6 +67,16 @@ final class Bar: NSView {
         separator.layer!.backgroundColor = NSColor.controlDarkShadowColor.cgColor
         addSubview(separator)
         
+        let store = Icon(image: "store")
+        store.target = NSApp
+        store.action = #selector(App.store)
+        addSubview(store)
+        
+        let settings = Icon(image: "settings")
+        settings.target = NSApp
+        settings.action = #selector(App.settings)
+        addSubview(settings)
+        
         heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         title.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -76,15 +86,15 @@ final class Bar: NSView {
         composer.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         play.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        play.topAnchor.constraint(equalTo: composer.bottomAnchor, constant: 20).isActive = true
+        play.topAnchor.constraint(equalTo: composer.bottomAnchor, constant: 15).isActive = true
         
         pause.centerXAnchor.constraint(equalTo: play.centerXAnchor).isActive = true
         pause.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
-        previous.rightAnchor.constraint(equalTo: play.leftAnchor, constant: -10).isActive = true
+        previous.rightAnchor.constraint(equalTo: play.leftAnchor, constant: -5).isActive = true
         previous.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
-        next.leftAnchor.constraint(equalTo: play.rightAnchor, constant: 10).isActive = true
+        next.leftAnchor.constraint(equalTo: play.rightAnchor, constant: 5).isActive = true
         next.centerYAnchor.constraint(equalTo: play.centerYAnchor).isActive = true
         
         progress.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
@@ -108,6 +118,12 @@ final class Bar: NSView {
         separator.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         separator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        store.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        store.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        settings.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        settings.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         layoutSubtreeIfNeeded()
         
@@ -161,8 +177,8 @@ private final class Button: Control {
         addSubview(image)
         self.image = image
         
-        widthAnchor.constraint(equalToConstant: 24).isActive = true
-        heightAnchor.constraint(equalToConstant: 24).isActive = true
+        widthAnchor.constraint(equalToConstant: 30).isActive = true
+        heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -178,5 +194,38 @@ private final class Button: Control {
     
     override func hoverOff() {
         image.contentTintColor = .controlTextColor
+    }
+}
+
+private final class Icon: Control {
+    private weak var image: NSImageView!
+    
+    required init?(coder: NSCoder) { nil }
+    init(image: String) {
+        super.init()
+        
+        let image = NSImageView(image: NSImage(named: image)!)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.imageScaling = .scaleNone
+        addSubview(image)
+        self.image = image
+        
+        widthAnchor.constraint(equalToConstant: 44).isActive = true
+        heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        hoverOff()
+    }
+    
+    override func hoverOn() {
+        image.contentTintColor = .systemBlue
+    }
+    
+    override func hoverOff() {
+        image.contentTintColor = .secondaryLabelColor
     }
 }

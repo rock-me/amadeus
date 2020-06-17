@@ -31,7 +31,7 @@ final class Coverflow: NSView {
             left = item.rightAnchor
         }
         
-        heightAnchor.constraint(equalToConstant: 400).isActive = true
+        heightAnchor.constraint(equalToConstant: 450).isActive = true
     }
     
     func show(_ album: Album) {

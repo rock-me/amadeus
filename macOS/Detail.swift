@@ -15,19 +15,19 @@ final class Detail: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
         
-        let title = Label("", .bold(12))
+        let title = Label("", .bold(14))
         title.textColor = .headerTextColor
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         self.title = title
         
-        let subtitle = Label("", .regular(2))
+        let subtitle = Label("", .regular(4))
         subtitle.textColor = .secondaryLabelColor
         subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(subtitle)
         self.subtitle = subtitle
         
-        let duration = Label("", .monospaced(.medium()))
+        let duration = Label("", .monospaced(.medium(2)))
         duration.textColor = .tertiaryLabelColor
         addSubview(duration)
         self.duration = duration
@@ -90,14 +90,14 @@ final class Detail: NSView {
             bottomAnchor.constraint(equalTo: top).isActive = true
             current(state.player.track.value)
         } else {
-//            let button = Button(.key("In.app"))
-//            button.target = target
-//            button.action = store
-//            addSubview(button)
-//            
-//            button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//            button.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: 30).isActive = true
-//            bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30).isActive = true
+            let button = Button(.key("In.app"))
+            button.target = self
+            button.action = #selector(store)
+            addSubview(button)
+            
+            button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            button.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: 30).isActive = true
+            bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30).isActive = true
         }
     }
     
@@ -118,6 +118,10 @@ final class Detail: NSView {
     @objc private func select(item: Item) {
         guard show(item) else { return }
         state.player.track.value = item.track
+    }
+    
+    @objc private func store() {
+        
     }
 }
 
@@ -174,5 +178,36 @@ private final class Item: Control {
     
     override func hoverOff() {
         updateLayer()
+    }
+}
+
+private class Button: Control {
+    required init?(coder: NSCoder) { nil }
+    init(_ title: String) {
+        super.init()
+        wantsLayer = true
+        layer!.cornerRadius = 14
+        
+        let label = Label(title, .regular())
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        addSubview(label)
+        
+        heightAnchor.constraint(equalToConstant: 28).isActive = true
+        rightAnchor.constraint(equalTo: label.rightAnchor, constant: 16).isActive = true
+        
+        label.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    override func updateLayer() {
+        layer!.backgroundColor = NSColor.systemBlue.cgColor
+    }
+    
+    override func hoverOff() {
+        alphaValue = 1
+    }
+    
+    override func hoverOn() {
+        alphaValue = 0.3
     }
 }

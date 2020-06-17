@@ -56,4 +56,12 @@ let state = Session()
             })
         }
     }
+    
+    @objc func store() {
+        
+    }
+    
+    @objc func settings() {
+        
+    }
 }
