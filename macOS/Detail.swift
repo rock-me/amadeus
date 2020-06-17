@@ -91,8 +91,8 @@ final class Detail: NSView {
             current(state.player.track.value)
         } else {
             let button = Button(.key("In.app"))
-            button.target = self
-            button.action = #selector(store)
+            button.target = NSApp
+            button.action = #selector(App.store)
             addSubview(button)
             
             button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -118,10 +118,6 @@ final class Detail: NSView {
     @objc private func select(item: Item) {
         guard show(item) else { return }
         state.player.track.value = item.track
-    }
-    
-    @objc private func store() {
-        
     }
 }
 

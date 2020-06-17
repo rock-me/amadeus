@@ -6,7 +6,7 @@ final class Music: NSWindow, NSWindowDelegate {
     override var frameAutosaveName: NSWindow.FrameAutosaveName { "Music" }
     
     init() {
-        super.init(contentRect: .init(x: 0, y: 0, width: 400, height: 800), styleMask:
+        super.init(contentRect: .init(x: 0, y: 0, width: 400, height: 900), styleMask:
             [.borderless, .miniaturizable, .resizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
                    backing: .buffered, defer: false)
         minSize = .init(width: 400, height: 300)

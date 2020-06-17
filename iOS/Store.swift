@@ -165,7 +165,7 @@ private final class Item: UIView {
         let image = UIImageView(image: UIImage(named: album.cover)!)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 10
+        image.layer.cornerRadius = 12
         image.clipsToBounds = true
         addSubview(image)
         
@@ -240,7 +240,7 @@ private final class Item: UIView {
         height.isActive = true
         
         image.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 156).isActive = true
         image.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
         image.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
         

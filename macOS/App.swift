@@ -58,7 +58,7 @@ let state = Session()
     }
     
     @objc func store() {
-        
+        (windows.first { $0 is Store } ?? Store()).makeKeyAndOrderFront(nil)
     }
     
     @objc func settings() {
