@@ -64,4 +64,10 @@ let state = Session()
     @objc func settings() {
         (windows.first { $0 is Settings } ?? Settings()).makeKeyAndOrderFront(nil)
     }
+    
+    @objc func status(_ button: NSStatusBarButton) {
+        let status = Status()
+        status.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        status.contentViewController!.view.window!.makeKey()
+    }
 }

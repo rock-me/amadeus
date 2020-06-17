@@ -1,10 +1,15 @@
 import AppKit
 
 final class Menu: NSMenu {
+    private let status = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    
     required init(coder: NSCoder) { super.init(coder: coder) }
     init() {
         super.init(title: "")
         items = [amadeus, window, help]
+        status.button!.image = NSImage(named: "status")
+        status.button!.target = NSApp
+        status.button!.action = #selector(App.status(_:))
     }
 
     private var amadeus: NSMenuItem {
