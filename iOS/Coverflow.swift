@@ -1,15 +1,17 @@
 import UIKit
 import Player
+import Combine
 
 final class Coverflow: UIView, UIScrollViewDelegate {
-    private weak var music: Music!
+    private weak var detail: Detail!
     private weak var scroll: Scroll!
+    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
-    init(music: Music) {
+    init(detail: Detail) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        self.music = music
+        self.detail = detail
         
         let scroll = Scroll()
         scroll.alwaysBounceHorizontal = true
@@ -40,12 +42,18 @@ final class Coverflow: UIView, UIScrollViewDelegate {
         scroll.width.constraint(equalToConstant: .init(160 * Album.allCases.count) + (margin * 2) + 80).isActive = true
         
         heightAnchor.constraint(equalToConstant: 390).isActive = true
+        
+        state.player.config.dropFirst().sink { [weak self] _ in
+            guard let album = scroll.views.map({ $0 as! Item }).first(where: { $0.selected })?.album else { return }
+            self?.detail.show(album)
+        }.store(in: &self.subs)
     }
     
     func show(_ album: Album) {
         let item = scroll.views.map { $0 as! Item }.first { $0.album == album }!
         select(item: item)
         focus(item: item)
+        detail.show(album)
     }
     
     func scrollViewDidScroll(_: UIScrollView) {
@@ -54,7 +62,7 @@ final class Coverflow: UIView, UIScrollViewDelegate {
             !item.selected
         else { return }
         select(item: item)
-        music.select(album: item.album)
+        detail.show(item.album)
     }
     
     private func select(item: Item) {

@@ -77,12 +77,9 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
             }
         }.store(in: &subs)
         
-        state.loadUI.sink {
-            if !$0 {
-                state.add(ui: .zero)
-            }
-            state.loadPlayer()
-            music.show(state.ui.value.album)
+        state.loadTrack.sink {
+            music.coverflow.show(state.player.track.value.album)
+            state.loadConfig()
             (UIApplication.shared.delegate as! App).startSession()
         }.store(in: &subs)
     }
@@ -100,5 +97,13 @@ final class Scene: UIWindow, UIWindowSceneDelegate, UNUserNotificationCenterDele
                 $0 != willPresent.request.identifier
             })
         }
+    }
+    
+    @objc func store() {
+        rootViewController!.present(Store(), animated: true)
+    }
+    
+    @objc func settings() {
+        rootViewController!.present(Settings(), animated: true)
     }
 }

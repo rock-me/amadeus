@@ -2,8 +2,7 @@ import Player
 import UIKit
 
 final class Music: UIViewController {
-    private weak var detail: Detail!
-    private weak var coverflow: Coverflow!
+    private(set) weak var coverflow: Coverflow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,25 +13,22 @@ final class Music: UIViewController {
         scroll.alwaysBounceHorizontal = false
         view.addSubview(scroll)
         
-        let coverflow = Coverflow(music: self)
-        scroll.add(coverflow)
-        self.coverflow = coverflow
-        
         let shop = Button(icon: "bag.fill")
-        shop.target = self
-        shop.action = #selector(store)
+        shop.target = view.window
+        shop.action = #selector(Scene.store)
         scroll.add(shop)
         
         let settings = Button(icon: "dial.fill")
-        settings.target = self
-        settings.action = #selector(self.settings)
+        settings.target = view.window
+        settings.action = #selector(Scene.settings)
         scroll.add(settings)
         
         let detail = Detail()
-        detail.target = self
-        detail.store = #selector(store)
         scroll.add(detail)
-        self.detail = detail
+        
+        let coverflow = Coverflow(detail: detail)
+        scroll.add(coverflow)
+        self.coverflow = coverflow
         
         let bar = Bar()
         bar.target = self
@@ -67,28 +63,8 @@ final class Music: UIViewController {
         bar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     
-    func select(album: Album) {
-        show(album)
-        state.update {
-            $0.album = album
-        }
-    }
-    
-    func show(_ album: Album) {
-        coverflow.show(album)
-        detail.show(album)
-    }
-    
     @objc private func hud() {
         present(Hud(), animated: true)
-    }
-    
-    @objc private func store() {
-        present(Store(), animated: true)
-    }
-    
-    @objc private func settings() {
-        present(Settings(), animated: true)
     }
 }
 

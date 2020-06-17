@@ -3,8 +3,6 @@ import Player
 import Combine
 
 final class Detail: UIView {
-    weak var target: AnyObject!
-    var store: Selector!
     private weak var title: UILabel!
     private weak var subtitle: UILabel!
     private weak var duration: UILabel!
@@ -56,10 +54,6 @@ final class Detail: UIView {
         state.player.track.dropFirst().sink { [weak self] in
             self?.current($0)
         }.store(in: &self.subs)
-        
-        state.player.config.dropFirst().sink { [weak self] _ in
-            self?.show(state.ui.value.album)
-        }.store(in: &subs)
     }
     
     func show(_ album: Album) {
@@ -111,8 +105,8 @@ final class Detail: UIView {
             current(state.player.track.value)
         } else {
             let button = Button(.key("In.app"))
-            button.target = target
-            button.action = store
+            button.target = window
+            button.action = #selector(Scene.store)
             addSubview(button)
             
             button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -138,6 +132,7 @@ final class Detail: UIView {
     @objc private func select(item: Item) {
         guard show(item) else { return }
         state.player.track.value = item.track
+        
     }
 }
 

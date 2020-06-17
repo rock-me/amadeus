@@ -36,8 +36,8 @@ final class Coverflow: NSView {
         heightAnchor.constraint(equalToConstant: 450).isActive = true
         
         state.player.config.dropFirst().sink { [weak self] _ in
-            guard let self = self else { return }
-            self.detail.show(self.subviews.compactMap { $0 as? Item }.first { $0.selected }!.album)
+            guard let album = self?.subviews.map({ $0 as! Item }).first(where: { $0.selected })?.album else { return }
+            self?.detail.show(album)
         }.store(in: &self.subs)
     }
     
