@@ -62,6 +62,6 @@ let state = Session()
     }
     
     @objc func settings() {
-        
+        (windows.first { $0 is Settings } ?? Settings()).makeKeyAndOrderFront(nil)
     }
 }

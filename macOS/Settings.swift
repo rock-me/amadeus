@@ -2,68 +2,75 @@ import AppKit
 import Player
 import Combine
 
-final class Settings: NSView {
+final class Settings: NSWindow {
     private var subs = Set<AnyCancellable>()
     
-    required init?(coder: NSCoder) { nil }
     init() {
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
+        super.init(contentRect: .init(x: 0, y: 0, width: 350, height: 400), styleMask:
+            [.borderless, .miniaturizable, .closable, .titled, .unifiedTitleAndToolbar, .fullSizeContentView],
+                   backing: .buffered, defer: false)
+        titlebarAppearsTransparent = true
+        titleVisibility = .hidden
+        toolbar = .init()
+        toolbar!.showsBaselineSeparator = false
+        collectionBehavior = .fullScreenNone
+        isReleasedWhenClosed = false
+        center()
         
-        let randomTitle = Label(.key("Random"), .regular(14))
-        addSubview(randomTitle)
+        let randomTitle = Label(.key("Random"), .regular())
+        contentView!.addSubview(randomTitle)
         
         let random = NSPopUpButton(frame: .zero)
         random.translatesAutoresizingMaskIntoConstraints = false
         random.addItems(withTitles: [.key("Off"), .key("Track"), .key("Album")])
         random.target = self
         random.action = #selector(self.random)
-        addSubview(random)
+        contentView!.addSubview(random)
         
         let randomSeparator = Separator()
-        addSubview(randomSeparator)
+        contentView!.addSubview(randomSeparator)
         
-        let trackTitle = Label(.key("When.track.finishes"), .regular(14))
-        addSubview(trackTitle)
+        let trackTitle = Label(.key("When.track.finishes"), .regular())
+        contentView!.addSubview(trackTitle)
         
         let track = NSPopUpButton(frame: .zero)
         track.translatesAutoresizingMaskIntoConstraints = false
         track.addItems(withTitles: [.key("Stop"), .key("Loop"), .key("Next")])
         track.target = self
         track.action = #selector(self.track)
-        addSubview(track)
+        contentView!.addSubview(track)
         
         let trackSeparator = Separator()
-        addSubview(trackSeparator)
+        contentView!.addSubview(trackSeparator)
         
-        let albumTitle = Label(.key("When.album.finishes"), .regular(14))
-        addSubview(albumTitle)
+        let albumTitle = Label(.key("When.album.finishes"), .regular())
+        contentView!.addSubview(albumTitle)
         
         let album = NSPopUpButton(frame: .zero)
         album.translatesAutoresizingMaskIntoConstraints = false
         album.addItems(withTitles: [.key("Stop"), .key("Loop"), .key("Next")])
         album.target = self
         album.action = #selector(self.album)
-        addSubview(album)
+        contentView!.addSubview(album)
         
         let albumSeparator = Separator()
-        addSubview(albumSeparator)
+        contentView!.addSubview(albumSeparator)
         
         let notifications = NSButton(checkboxWithTitle: .key("Notify.on.track"), target: self, action: #selector(self.notifications))
         notifications.translatesAutoresizingMaskIntoConstraints = false
-        notifications.font = .regular(14)
-        addSubview(notifications)
+        notifications.font = .regular()
+        contentView!.addSubview(notifications)
         
-        random.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
-        random.leftAnchor.constraint(equalTo: centerXAnchor, constant: 30).isActive = true
+        random.topAnchor.constraint(equalTo: contentView!.topAnchor, constant: 70).isActive = true
+        random.leftAnchor.constraint(equalTo: contentView!.centerXAnchor, constant: 30).isActive = true
         
         randomTitle.rightAnchor.constraint(equalTo: random.leftAnchor, constant: -20).isActive = true
         randomTitle.centerYAnchor.constraint(equalTo: random.centerYAnchor).isActive = true
         
         randomSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         randomSeparator.topAnchor.constraint(equalTo: random.bottomAnchor, constant: 30).isActive = true
-        randomSeparator.leftAnchor.constraint(equalTo: centerXAnchor, constant: -170).isActive = true
-        randomSeparator.rightAnchor.constraint(equalTo: centerXAnchor, constant: 170).isActive = true
+        randomSeparator.leftAnchor.constraint(equalTo: contentView!.leftAnchor, constant: 60).isActive = true
+        randomSeparator.rightAnchor.constraint(equalTo: contentView!.rightAnchor, constant: -60).isActive = true
         
         track.topAnchor.constraint(equalTo: randomSeparator.bottomAnchor, constant: 30).isActive = true
         track.leftAnchor.constraint(equalTo: random.leftAnchor).isActive = true
@@ -88,7 +95,7 @@ final class Settings: NSView {
         albumSeparator.rightAnchor.constraint(equalTo: randomSeparator.rightAnchor).isActive = true
         
         notifications.topAnchor.constraint(equalTo: albumSeparator.bottomAnchor, constant: 32).isActive = true
-        notifications.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        notifications.centerXAnchor.constraint(equalTo: contentView!.centerXAnchor).isActive = true
         
         state.player.config.sink {
             random.selectItem(at: .init($0.random.rawValue))
