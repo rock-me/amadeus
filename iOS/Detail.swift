@@ -105,7 +105,7 @@ final class Detail: UIView {
             current(state.player.track.value)
         } else {
             let button = Button(.key("In.app"))
-            button.target = window
+            button.target = UIApplication.shared.windows.first { $0 is Scene }
             button.action = #selector(Scene.store)
             addSubview(button)
             

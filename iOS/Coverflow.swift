@@ -2,9 +2,15 @@ import UIKit
 import Player
 import Combine
 
-final class Coverflow: UIView, UIScrollViewDelegate {
+final class Coverflow: UIView {
+    private weak var centerX: NSLayoutConstraint? {
+        didSet {
+            oldValue?.isActive = false
+            centerX!.isActive = true
+        }
+    }
+    
     private weak var detail: Detail!
-    private weak var scroll: Scroll!
     private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
@@ -13,72 +19,42 @@ final class Coverflow: UIView, UIScrollViewDelegate {
         translatesAutoresizingMaskIntoConstraints = false
         self.detail = detail
         
-        let scroll = Scroll()
-        scroll.alwaysBounceHorizontal = true
-        scroll.alwaysBounceVertical = false
-        addSubview(scroll)
-        self.scroll = scroll
-        
-        let margin = (min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 240) / 2
-        var left = scroll.left
+        var left: NSLayoutXAxisAnchor?
         Album.allCases.forEach {
             let item = Item(album: $0)
             item.target = self
-            item.action = #selector(focus(item:))
-            scroll.add(item)
+            item.action = #selector(select(item:))
+            addSubview(item)
             
-            item.leftAnchor.constraint(equalTo: left, constant: left == scroll.left ? margin : 0).isActive = true
-            item.centerYAnchor.constraint(equalTo: scroll.centerYAnchor).isActive = true
+            if left != nil {
+                item.leftAnchor.constraint(equalTo: left!).isActive = true
+            }
+            item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             left = item.rightAnchor
         }
         
-        scroll.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        scroll.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        scroll.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scroll.height.constraint(equalTo: scroll.heightAnchor).isActive = true
-        scroll.bottom.constraint(equalTo: scroll.bottomAnchor).isActive = true
-        scroll.right.constraint(greaterThanOrEqualTo: scroll.rightAnchor).isActive = true
-        scroll.width.constraint(equalToConstant: .init(160 * Album.allCases.count) + (margin * 2) + 80).isActive = true
-        
-        heightAnchor.constraint(equalToConstant: 390).isActive = true
+        heightAnchor.constraint(equalToConstant: 400).isActive = true
         
         state.player.config.dropFirst().sink { [weak self] _ in
-            guard let album = scroll.views.map({ $0 as! Item }).first(where: { $0.selected })?.album else { return }
+            guard let album = self?.subviews.map({ $0 as! Item }).first(where: { $0.selected })?.album else { return }
             self?.detail.show(album)
         }.store(in: &self.subs)
     }
     
     func show(_ album: Album) {
-        let item = scroll.views.map { $0 as! Item }.first { $0.album == album }!
-        select(item: item)
-        focus(item: item)
-        detail.show(album)
+        select(item: subviews.map { $0 as! Item }.first { $0.album == album }!)
     }
     
-    func scrollViewDidScroll(_: UIScrollView) {
-        guard
-            let item = scroll.content.hitTest(.init(x: bounds.midX + scroll.contentOffset.x, y: scroll.bounds.midY), with: nil) as? Item,
-            !item.selected
-        else { return }
-        select(item: item)
-        detail.show(item.album)
-    }
-    
-    private func select(item: Item) {
-        scroll.delegate = nil
-        scroll.views.map { $0 as! Item }.forEach {
+    @objc private func select(item: Item) {
+        guard !item.selected else { return }
+        centerX = item.centerXAnchor.constraint(equalTo: centerXAnchor)
+        subviews.map { $0 as! Item }.forEach {
             $0.selected = $0 == item
         }
-        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: { [weak self] in
-            self?.scroll.content.layoutIfNeeded()
-        }) { [weak self] _ in
-            self?.scroll.delegate = self
-        }
-    }
-    
-    @objc private func focus(item: Item) {
-        scroll.center(item.frame, duration: 0.1)
+        UIView.animate(withDuration: 0.4, delay: 0, options: .allowUserInteraction, animations: { [weak self] in
+            self?.layoutIfNeeded()
+        })
+        detail.show(item.album)
     }
 }
 
@@ -110,10 +86,11 @@ private final class Item: Control {
         let base = UIView()
         base.translatesAutoresizingMaskIntoConstraints = false
         base.isUserInteractionEnabled = false
-        base.backgroundColor = .secondarySystemBackground
+        base.backgroundColor = .black
         base.layer.cornerRadius = 12
         base.layer.shadowColor = UIColor.secondaryLabel.cgColor
-        base.layer.shadowRadius = 6
+        base.layer.shadowRadius = 5
+        base.layer.shadowOffset = .zero
         addSubview(base)
         self.base = base
         
@@ -147,9 +124,9 @@ private final class Item: Control {
         
         base.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         base.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        width = base.widthAnchor.constraint(equalToConstant: 160)
+        width = base.widthAnchor.constraint(equalToConstant: 120)
         width.isActive = true
-        height = base.heightAnchor.constraint(equalToConstant: 176)
+        height = base.heightAnchor.constraint(equalToConstant: 156)
         height.isActive = true
         
         image.topAnchor.constraint(equalTo: base.topAnchor).isActive = true

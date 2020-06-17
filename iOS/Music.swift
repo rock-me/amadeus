@@ -14,12 +14,12 @@ final class Music: UIViewController {
         view.addSubview(scroll)
         
         let shop = Button(icon: "bag.fill")
-        shop.target = view.window
+        shop.target = UIApplication.shared.windows.first { $0 is Scene }
         shop.action = #selector(Scene.store)
         scroll.add(shop)
         
         let settings = Button(icon: "dial.fill")
-        settings.target = view.window
+        settings.target = UIApplication.shared.windows.first { $0 is Scene }
         settings.action = #selector(Scene.settings)
         scroll.add(settings)
         

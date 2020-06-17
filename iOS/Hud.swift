@@ -25,22 +25,22 @@ final class Hud: UIViewController {
         close.action = #selector(done)
         view.addSubview(close)
         
-        let play = Button(icon: "play.circle.fill", padding: 0)
+        let play = Button(icon: "play.circle.fill", padding: 8)
         play.target = state
         play.action = #selector(state.play)
         view.addSubview(play)
         
-        let pause = Button(icon: "pause.circle.fill", padding: 0)
+        let pause = Button(icon: "pause.circle.fill", padding: 8)
         pause.target = state
         pause.action = #selector(state.pause)
         view.addSubview(pause)
         
-        let previous = Button(icon: "backward.end.fill", padding: 15)
+        let previous = Button(icon: "backward.end.fill", padding: 18)
         previous.target = state
         previous.action = #selector(state.previous)
         view.addSubview(previous)
         
-        let next = Button(icon: "forward.end.fill", padding: 15)
+        let next = Button(icon: "forward.end.fill", padding: 18)
         next.target = state
         next.action = #selector(state.next)
         view.addSubview(next)
@@ -48,7 +48,7 @@ final class Hud: UIViewController {
         let duration = UIView()
         duration.translatesAutoresizingMaskIntoConstraints = false
         duration.isUserInteractionEnabled = false
-        duration.backgroundColor = .secondarySystemFill
+        duration.backgroundColor = .secondarySystemBackground
         duration.layer.cornerRadius = 3.5
         duration.clipsToBounds = true
         view.addSubview(duration)
@@ -61,14 +61,14 @@ final class Hud: UIViewController {
         
         let total = UILabel()
         total.translatesAutoresizingMaskIntoConstraints = false
-        total.font = .monospaced(.medium(-3))
-        total.textColor = .secondaryLabel
+        total.font = .monospaced(.medium(-2))
+        total.textColor = .tertiaryLabel
         view.addSubview(total)
         
         let time = UILabel()
         time.translatesAutoresizingMaskIntoConstraints = false
-        time.font = .monospaced(.medium(-3))
-        time.textColor = .secondaryLabel
+        time.font = .monospaced(.medium(-2))
+        time.textColor = .tertiaryLabel
         view.addSubview(time)
         
         current.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -98,7 +98,7 @@ final class Hud: UIViewController {
         
         duration.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
         duration.heightAnchor.constraint(equalToConstant: 7).isActive = true
-        duration.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        duration.widthAnchor.constraint(equalToConstant: 150).isActive = true
         duration.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         elapsed.leftAnchor.constraint(equalTo: duration.leftAnchor).isActive = true
@@ -107,11 +107,11 @@ final class Hud: UIViewController {
         let width = elapsed.widthAnchor.constraint(equalToConstant: 0)
         width.isActive = true
         
-        total.rightAnchor.constraint(equalTo: duration.rightAnchor).isActive = true
-        total.bottomAnchor.constraint(equalTo: duration.topAnchor, constant: -2).isActive = true
+        total.leftAnchor.constraint(equalTo: duration.rightAnchor, constant: 7).isActive = true
+        total.centerYAnchor.constraint(equalTo: duration.centerYAnchor, constant: -1).isActive = true
         
-        time.leftAnchor.constraint(equalTo: duration.leftAnchor).isActive = true
-        time.bottomAnchor.constraint(equalTo: duration.topAnchor, constant: -2).isActive = true
+        time.rightAnchor.constraint(equalTo: duration.leftAnchor, constant: -7).isActive = true
+        time.centerYAnchor.constraint(equalTo: duration.centerYAnchor, constant: -1).isActive = true
         
         state.player.track.sink { _ in
             UIView.transition(with: total, duration: 0.3, options: .transitionCrossDissolve, animations: {
@@ -120,7 +120,7 @@ final class Hud: UIViewController {
         }.store(in: &subs)
         
         state.time.sink { current in
-            width.constant = 120 * .init(current / state.player.track.value.duration)
+            width.constant = 150 * .init(current / state.player.track.value.duration)
             UIView.transition(with: time, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 time.text = formatter.string(from: current)!
             })

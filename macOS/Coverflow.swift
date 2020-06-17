@@ -3,10 +3,10 @@ import Player
 import Combine
 
 final class Coverflow: NSView {
-    private weak var center: NSLayoutConstraint? {
+    private weak var centerX: NSLayoutConstraint? {
         didSet {
             oldValue?.isActive = false
-            center!.isActive = true
+            centerX!.isActive = true
         }
     }
     
@@ -47,7 +47,7 @@ final class Coverflow: NSView {
     
     @objc private func select(item: Item) {
         guard !item.selected else { return }
-        center = item.centerXAnchor.constraint(equalTo: centerXAnchor)
+        centerX = item.centerXAnchor.constraint(equalTo: centerXAnchor)
         subviews.map { $0 as! Item }.forEach {
             $0.selected = $0 == item
         }
