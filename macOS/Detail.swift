@@ -15,35 +15,35 @@ final class Detail: NSView {
         translatesAutoresizingMaskIntoConstraints = false
         formatter.allowedUnits = [.minute, .second]
         
-        let title = Label("", .bold(20))
+        let title = Label("", .bold(12))
         title.textColor = .headerTextColor
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         self.title = title
         
-        let subtitle = Label("", .regular(12))
+        let subtitle = Label("", .regular(2))
         subtitle.textColor = .secondaryLabelColor
         subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(subtitle)
         self.subtitle = subtitle
         
-        let duration = Label("", .monospaced(.regular(12)))
-        duration.textColor = .secondaryLabelColor
+        let duration = Label("", .monospaced(.medium()))
+        duration.textColor = .tertiaryLabelColor
         addSubview(duration)
         self.duration = duration
         
         widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        title.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
+        title.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        subtitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        subtitle.rightAnchor.constraint(lessThanOrEqualTo: duration.leftAnchor, constant: -10).isActive = true
+        subtitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        subtitle.leftAnchor.constraint(greaterThanOrEqualTo: leftAnchor, constant: 20).isActive = true
+        subtitle.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -20).isActive = true
         
-        duration.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        duration.bottomAnchor.constraint(equalTo: subtitle.bottomAnchor).isActive = true
+        duration.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 5).isActive = true
+        duration.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         state.player.track.dropFirst().sink { [weak self] in
             self?.current($0)
@@ -59,36 +59,46 @@ final class Detail: NSView {
             $0.removeFromSuperview()
         }
         
-        var top = subtitle.bottomAnchor
-        album.tracks.forEach {
-            let separator = Separator()
-            addSubview(separator)
-            
-            let item = Item(track: $0, duration: formatter.string(from: $0.duration)!)
-            item.target = self
-            item.action = #selector(select(item:))
-            addSubview(item)
-            
-            item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-            
-            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: top == subtitle.bottomAnchor ? 0 : 15).isActive = true
-            separator.rightAnchor.constraint(equalTo: rightAnchor, constant: top == subtitle.bottomAnchor ? 0 : -15).isActive = true
-            separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-            
-            if top == subtitle.bottomAnchor {
-                separator.topAnchor.constraint(equalTo: top, constant: 20).isActive = true
-                item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20).isActive = true
-            } else {
-                separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
-                item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 2).isActive = true
+        if state.player.config.value.purchases.contains(album.purchase) {
+            var top = duration.bottomAnchor
+            album.tracks.forEach {
+                let item = Item(track: $0, duration: formatter.string(from: $0.duration)!)
+                item.target = self
+                item.action = #selector(select(item:))
+                addSubview(item)
+                
+                if top == duration.bottomAnchor {
+                    item.topAnchor.constraint(equalTo: top, constant: 30).isActive = true
+                } else {
+                    let separator = Separator()
+                    addSubview(separator)
+                    
+                    separator.topAnchor.constraint(equalTo: top, constant: 2).isActive = true
+                    separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+                    separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
+                    separator.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+                    
+                    item.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 2).isActive = true
+                }
+                
+                item.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+                item.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+                
+                top = item.bottomAnchor
             }
             
-            top = item.bottomAnchor
+            bottomAnchor.constraint(equalTo: top).isActive = true
+            current(state.player.track.value)
+        } else {
+//            let button = Button(.key("In.app"))
+//            button.target = target
+//            button.action = store
+//            addSubview(button)
+//            
+//            button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//            button.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: 30).isActive = true
+//            bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 30).isActive = true
         }
-        
-        bottomAnchor.constraint(equalTo: top).isActive = true
-        current(state.player.track.value)
     }
     
     private func current(_ track: Track) {
@@ -125,32 +135,32 @@ private final class Item: Control {
         self.track = track
         super.init()
         wantsLayer = true
-        layer!.cornerRadius = 10
+        layer!.cornerRadius = 12
         
-        let title = Label(.key(track.title), .bold(14))
+        let title = Label(.key(track.title), .bold())
         title.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(title)
         
-        let composer = Label(.key(track.composer.name), .regular(14))
+        let composer = Label(.key(track.composer.name), .regular())
         composer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         composer.textColor = .secondaryLabelColor
         addSubview(composer)
         
-        let time = Label(duration, .monospaced(.regular(12)))
-        time.textColor = .secondaryLabelColor
+        let time = Label(duration, .monospaced(.medium()))
+        time.textColor = .tertiaryLabelColor
         addSubview(time)
         
         bottomAnchor.constraint(equalTo: composer.bottomAnchor, constant: 15).isActive = true
-        
+                
         title.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         title.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
     
-        composer.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        composer.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        composer.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3).isActive = true
+        composer.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         composer.rightAnchor.constraint(lessThanOrEqualTo: time.leftAnchor, constant: -10).isActive = true
         
-        time.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        time.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         time.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

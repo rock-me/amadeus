@@ -154,7 +154,7 @@ private final class Item: Control {
     init(track: Track, duration: String) {
         self.track = track
         super.init()
-        layer.cornerRadius = 10
+        layer.cornerRadius = 12
         
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -176,7 +176,7 @@ private final class Item: Control {
         let time = UILabel()
         time.translatesAutoresizingMaskIntoConstraints = false
         time.text = duration
-        time.font = .monospaced(.regular(-2))
+        time.font = .monospaced(.medium(-2))
         time.textColor = .tertiaryLabel
         time.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(time)

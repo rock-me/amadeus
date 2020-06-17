@@ -57,11 +57,14 @@ final class Bar: NSView {
         totalTime.textColor = .tertiaryLabelColor
         addSubview(totalTime)
         
-        let currentTime = Label("", .monospaced(.regular(-1)))
+        let currentTime = Label("", .monospaced(.medium(-1)))
         currentTime.textColor = .tertiaryLabelColor
         addSubview(currentTime)
         
-        let separator = Separator()
+        let separator = NSView()
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        separator.wantsLayer = true
+        separator.layer!.backgroundColor = NSColor.controlDarkShadowColor.cgColor
         addSubview(separator)
         
         heightAnchor.constraint(equalToConstant: 150).isActive = true
