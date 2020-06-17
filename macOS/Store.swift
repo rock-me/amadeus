@@ -173,7 +173,7 @@ private final class Item: NSView {
             let purchased = NSImageView(image: NSImage(named: "purchased")!)
             purchased.translatesAutoresizingMaskIntoConstraints = false
             purchased.imageScaling = .scaleNone
-            purchased.contentTintColor = .controlAccentColor
+            purchased.contentTintColor = .systemBlue
             addSubview(purchased)
             
             bottomAnchor.constraint(greaterThanOrEqualTo: purchased.bottomAnchor, constant: 60).isActive = true
@@ -247,7 +247,7 @@ private class Button: Control {
     }
     
     override func updateLayer() {
-        layer!.backgroundColor = NSColor.controlAccentColor.cgColor
+        layer!.backgroundColor = NSColor.systemBlue.cgColor
     }
 }
 

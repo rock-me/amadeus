@@ -43,7 +43,7 @@ final class Bar: NSView {
         let progress = NSView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.wantsLayer = true
-        progress.layer!.backgroundColor = NSColor.underPageBackgroundColor.cgColor
+        progress.layer!.backgroundColor = NSColor.controlBackgroundColor.cgColor
         progress.layer!.cornerRadius = 3
         addSubview(progress)
         
@@ -64,7 +64,7 @@ final class Bar: NSView {
         let separator = NSView()
         separator.translatesAutoresizingMaskIntoConstraints = false
         separator.wantsLayer = true
-        separator.layer!.backgroundColor = NSColor.controlDarkShadowColor.cgColor
+        separator.layer!.backgroundColor = NSColor.controlShadowColor.cgColor
         addSubview(separator)
         
         let store = Icon(image: "store")
