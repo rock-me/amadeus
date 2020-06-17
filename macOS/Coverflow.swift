@@ -1,5 +1,6 @@
 import AppKit
 import Player
+import Combine
 
 final class Coverflow: NSView {
     private weak var center: NSLayoutConstraint? {
@@ -10,6 +11,7 @@ final class Coverflow: NSView {
     }
     
     private weak var detail: Detail!
+    private var subs = Set<AnyCancellable>()
     
     required init?(coder: NSCoder) { nil }
     init(detail: Detail) {
@@ -32,6 +34,11 @@ final class Coverflow: NSView {
         }
         
         heightAnchor.constraint(equalToConstant: 450).isActive = true
+        
+        state.player.config.dropFirst().sink { [weak self] _ in
+            guard let self = self else { return }
+            self.detail.show(self.subviews.compactMap { $0 as? Item }.first { $0.selected }!.album)
+        }.store(in: &self.subs)
     }
     
     func show(_ album: Album) {

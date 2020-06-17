@@ -47,13 +47,15 @@ final class Purchases: NSObject, SKRequestDelegate, SKProductsRequestDelegate, S
     
     private func update(_ transactions: [SKPaymentTransaction]) {
         guard !transactions.contains(where: { $0.transactionState == .purchasing }) else { return }
-        transactions.forEach {
-            switch $0.transactionState {
+        transactions.forEach { transation in
+            switch transation.transactionState {
             case .failed:
-                SKPaymentQueue.default().finishTransaction($0)
+                SKPaymentQueue.default().finishTransaction(transation)
             case .restored, .purchased:
-                state.player.config.value.purchases.insert($0.payment.productIdentifier)
-                SKPaymentQueue.default().finishTransaction($0)
+                DispatchQueue.main.async {
+                    state.player.config.value.purchases.insert(transation.payment.productIdentifier)
+                }
+                SKPaymentQueue.default().finishTransaction(transation)
             default:
                 break
             }
