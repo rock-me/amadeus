@@ -1,10 +1,6 @@
 import AppKit
-import Player
-import Combine
 
 final class Status: NSPopover {
-    private var subs = Set<AnyCancellable>()
-    
     required init?(coder: NSCoder) { nil }
     override init() {
         super.init()
