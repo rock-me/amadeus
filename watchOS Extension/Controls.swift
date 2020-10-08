@@ -33,8 +33,10 @@ struct Controls: View {
                         .renderingMode(.template)
                         .foregroundColor(.blue)
                         .frame(width: 30, height: 30)
-                }.accentColor(.clear)
-                    .padding()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .accentColor(.clear)
+                .padding()
             } else {
                 Button(action: {
                     self.error = !self.session.change(track: self.track)
@@ -44,8 +46,10 @@ struct Controls: View {
                         .renderingMode(.template)
                         .foregroundColor(.blue)
                         .frame(width: 30, height: 30)
-                }.accentColor(.clear)
-                    .padding()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .accentColor(.clear)
+                .padding()
             }
         }.sheet(isPresented: $error) {
             Text(.init("Failed.sent"))
