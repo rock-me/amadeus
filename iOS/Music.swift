@@ -18,7 +18,14 @@ final class Music: UIViewController {
         shop.action = #selector(Scene.store)
         scroll.add(shop)
         
-        let settings = Button(icon: "dial.min.fill")
+        let dial: String
+        if #available(iOS 13.0, *) {
+            dial = "dial.min.fill"
+        } else {
+            dial = "dial.fill"
+        }
+        
+        let settings = Button(icon: dial)
         settings.target = UIApplication.shared.windows.first { $0 is Scene }
         settings.action = #selector(Scene.settings)
         scroll.add(settings)
