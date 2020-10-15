@@ -12,7 +12,7 @@ final class Session: ObservableObject {
             return false
         }
         self.track = track
-        self.playing = true
+        playing = true
         WCSession.default.sendMessage(["track": track.rawValue, "playing": true], replyHandler: nil, errorHandler: nil)
         return true
     }

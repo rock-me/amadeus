@@ -11,22 +11,22 @@ struct Music: View {
                 VStack {
                     Spacer()
                         .frame(height: geometry.size.height * 0.1)
-                    Cover(album: self.album, size: min(geometry.size.width, geometry.size.height) * 0.6)
-                    Text(.init(self.album.subtitle))
+                    Cover(album: album, size: min(geometry.size.width, geometry.size.height) * 0.6)
+                    Text(.init(album.subtitle))
                         .foregroundColor(.secondary)
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: geometry.size.width * 0.6)
                         .padding()
-                    if self.state.purchases.contains(self.album.purchase) {
-                        ForEach(self.album.tracks, id: \.self) {
+                    if self.state.purchases.contains(album.purchase) {
+                        ForEach(album.tracks, id: \.self) {
                             Item(track: $0)
                         }
                     } else {
                         Purchase()
                     }
                 }
-            }.navigationBarTitle(.init(self.album.title))
+            }.navigationBarTitle(.init(album.title))
         }
     }
 }
@@ -75,11 +75,11 @@ private struct Item: View {
 private struct Purchase: View {
     var body: some View {
         VStack {
-            Text(.init("In.app"))
+            Text("In.app")
                 .multilineTextAlignment(.center)
                 .font(.headline)
                 .padding()
-            Text(.init("Check.store"))
+            Text("Check.store")
                 .multilineTextAlignment(.center)
                 .font(.footnote)
                 .foregroundColor(.secondary)

@@ -26,7 +26,7 @@ struct Controls: View {
             }
             if session.track == track && session.playing {
                 Button(action: {
-                    self.error = !self.session.pause()
+                    error = !session.pause()
                 }) {
                     Image(systemName: "pause.circle.fill")
                         .resizable()
@@ -39,7 +39,7 @@ struct Controls: View {
                 .padding()
             } else {
                 Button(action: {
-                    self.error = !self.session.change(track: self.track)
+                    error = !session.change(track: track)
                 }) {
                     Image(systemName: "play.circle.fill")
                         .resizable()
@@ -52,7 +52,7 @@ struct Controls: View {
                 .padding()
             }
         }.sheet(isPresented: $error) {
-            Text(.init("Failed.sent"))
+            Text("Failed.sent")
         }.navigationBarTitle(.init(track.album.title))
     }
 }
